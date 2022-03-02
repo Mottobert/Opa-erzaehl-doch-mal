@@ -72,3 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/DreamForestTree/Materials/ClearSky.psd
 Assets/DreamForestTree/Materials/ClearSky.psd.meta
+*.abc
+Assets/Meshes/Flood/Memories_Room.abc.meta
+Assets/Meshes/Flood/Memories_Room1.abc.meta
