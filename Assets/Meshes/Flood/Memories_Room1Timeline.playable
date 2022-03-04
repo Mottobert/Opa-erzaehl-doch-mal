@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5709890509815221637
+--- !u!114 &-3210715144719842578
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AlembicShotAsset
   m_EditorClassIdentifier: 
   streamPlayer:
-    exposedName: 82996d0e03ea04d4cb20629251c1be4f
+    exposedName: aeebc614e05f57a45a396a1407bff38a
     defaultValue: {fileID: 0}
   endOffset: 0
 --- !u!114 &11400000
@@ -30,14 +30,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 0
   m_Tracks:
-  - {fileID: 5661378976857047650}
+  - {fileID: 3330810568206015439}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 9014611616620763297}
---- !u!114 &5661378976857047650
+--- !u!114 &3330810568206015439
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f669ed87322f9554d9dff5c29f48f549, type: 3}
-  m_Name: Alembic Track
+  m_Name: Alembic Track (1)
   m_EditorClassIdentifier: 
   m_Version: 3
   m_AnimClip: {fileID: 0}
@@ -61,10 +61,10 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: -5709890509815221637}
+    m_Asset: {fileID: -3210715144719842578}
     m_Duration: 41.62500127032399
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 5661378976857047650}
+    m_ParentTrack: {fileID: 3330810568206015439}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0
