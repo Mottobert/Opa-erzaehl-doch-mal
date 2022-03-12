@@ -13,16 +13,25 @@ public class Waterhose : MonoBehaviour
     [SerializeField]
     private ActionBasedController rightController;
 
+    public bool active = false;
+
     // Update is called once per frame
     void Update()
     {
-        float input = waterHoseReference.action.ReadValue<float>();
-        UpdateWaterParticleSystem(input);
+        if (active)
+        {
+            float input = waterHoseReference.action.ReadValue<float>();
+            UpdateWaterParticleSystem(input);
+        }
     }
 
     private void UpdateWaterParticleSystem(float input)
     {
-        rightController.SendHapticImpulse(Clamp(input + Random.Range(0,0.1f), 1f), 0.5f);
+        if(input != 0)
+        {
+            rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f), 1/Time.deltaTime);
+        }
+        
         var emission = waterParticleSystem.emission;
         emission.rateOverTime = input * 1000;
     }
@@ -37,6 +46,18 @@ public class Waterhose : MonoBehaviour
         {
             return value;
         }
+    }
+
+    public void ActivateWaterhose()
+    {
+        active = true;
+        waterParticleSystem.Play();
+    }
+
+    public void DeactivateWaterhose()
+    {
+        active = false;
+        waterParticleSystem.Stop();
     }
 }
 

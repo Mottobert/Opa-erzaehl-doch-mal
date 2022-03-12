@@ -13,6 +13,5 @@ public class DissolvePlane : MonoBehaviour
     void Update()
     {
         dissolveMaterial.GetComponent<MeshRenderer>().sharedMaterial.SetVector("Vector3_9102b48e333349b2867fec4b30279474", dissolvePoint.transform.position);
-        Debug.Log(dissolveMaterial.GetComponent<MeshRenderer>().sharedMaterial.GetVector("Vector3_9102b48e333349b2867fec4b30279474"));
     }
 }
