@@ -7,18 +7,6 @@ public class FireAnimationController : MonoBehaviour
     [SerializeField]
     private GameObject[] particleSystems;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ActivateParticleSystems()
     {
         foreach(GameObject ps in particleSystems)

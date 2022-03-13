@@ -10,9 +10,13 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private GameObject[] sphereIgniters;
 
+    [SerializeField]
+    private Material terrainMaterial;
+
     private void Start()
     {
-        StartCoroutine(ChangeFogDensity(0.01f));
+        RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1);
+        terrainMaterial.SetFloat("Vector1_5a729d7b72da468d839cfbf65d212a2f", 0);
     }
 
     public void ActivateBurning()
@@ -20,7 +24,9 @@ public class AnimationController : MonoBehaviour
         ActivateFlammableObjects();
         ActivateFireAnimationControllers();
 
-        StartCoroutine(ChangeFogDensity(0.01f));
+        StartCoroutine(ChangeFogDensity(0.02f));
+        StartCoroutine(ChangeSkyboxAtmosphereThickness(1f, 4f));
+        StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
     }
 
     private void ActivateFlammableObjects()
@@ -32,14 +38,14 @@ public class AnimationController : MonoBehaviour
     {
         foreach (GameObject si in sphereIgniters)
         {
-            si.SetActive(true);
+            si.GetComponent<SphereIgnite>().enabled = true;
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
         }
     }
 
     private void ActivateFireAnimationControllers()
     {
-        StartCoroutine(ActivateFireAnimationControllersDelay(2, 5));
+        StartCoroutine(ActivateFireAnimationControllersDelay(2, 4));
     }
 
     IEnumerator ActivateFireAnimationControllersDelay(float minDelay, float maxDelay)
@@ -57,8 +63,33 @@ public class AnimationController : MonoBehaviour
 
         while(density < maxValue)
         {
-            RenderSettings.fogDensity = density + 0.00001f;
+            density = density + 0.0001f;
+            RenderSettings.fogDensity = density;
             yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator ChangeSkyboxAtmosphereThickness(float start, float end)
+    {
+        float density = start;
+
+        while (density < end)
+        {
+            density = density + 0.1f;
+            RenderSettings.skybox.SetFloat("_AtmosphereThickness", density);
+            yield return new WaitForSeconds(0.06f);
+        }
+    }
+
+    IEnumerator ChangeTerrainMaterialTemperature(float start, float end)
+    {
+        float density = start;
+
+        while (density < end)
+        {
+            density = density + 1f;
+            terrainMaterial.SetFloat("Vector1_5a729d7b72da468d839cfbf65d212a2f", density);
+            yield return new WaitForSeconds(0.06f);
         }
     }
 }
