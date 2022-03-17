@@ -687,8 +687,8 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: OAVA_IGNIS
-    7: OAVA_IGNIS
+    1: AutoSetupForUnity
+    7: OAVA_IGNIS;USING_URP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
