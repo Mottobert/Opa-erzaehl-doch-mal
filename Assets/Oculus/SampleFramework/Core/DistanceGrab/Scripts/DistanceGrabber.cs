@@ -81,6 +81,7 @@ namespace OculusSampleFramework
             // Note that there's no major downside to making this value too high, as objects
             // outside the player's grabbable trigger volume will not be eligible targets regardless.
             Collider sc = m_player.GetComponentInChildren<Collider>();
+            
             if(sc != null)
             {
                 m_maxGrabDistance = sc.bounds.size.z * 0.5f + 3.0f;
