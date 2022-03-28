@@ -132,7 +132,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_DEE9AF98: {r: 1, g: 0.6999741, b: 0.36320752, a: 1}
+    - Color_DEE9AF98: {r: 1, g: 0.59589833, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
