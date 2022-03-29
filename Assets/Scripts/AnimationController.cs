@@ -19,6 +19,12 @@ public class AnimationController : MonoBehaviour
     private Volume volume;
     private ColorAdjustments thisExposure;
 
+    [SerializeField]
+    private Color fogStartColor;
+    [SerializeField]
+    private Color fogEndColor;
+
+
     private void Start()
     {
         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1);
@@ -34,6 +40,7 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeSkyboxAtmosphereThickness(1f, 4f));
         StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
         StartCoroutine(ChangePostProcessingExposure(1.5f, 0f));
+        StartCoroutine(ChangeFogColor(fogStartColor, fogEndColor));
     }
 
     private void ActivateFlammableObjects()
@@ -72,6 +79,21 @@ public class AnimationController : MonoBehaviour
         {
             density = density + 0.0001f;
             RenderSettings.fogDensity = density;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator ChangeFogColor(Color startColor, Color endColor)
+    {
+        Color fogColor = startColor;
+
+        int i = 0;
+
+        while (fogColor != endColor || i < 100)
+        {
+            fogColor = Color.Lerp(fogColor, endColor, 0.1f);
+            RenderSettings.fogColor = fogColor;
+            i++;
             yield return new WaitForSeconds(0.01f);
         }
     }
