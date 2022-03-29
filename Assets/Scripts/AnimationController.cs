@@ -2,6 +2,8 @@ using Ignis;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class AnimationController : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class AnimationController : MonoBehaviour
 
     [SerializeField]
     private Material terrainMaterial;
+
+    [SerializeField]
+    private Volume volume;
+    private ColorAdjustments thisExposure;
 
     private void Start()
     {
@@ -27,6 +33,7 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeFogDensity(0.02f));
         StartCoroutine(ChangeSkyboxAtmosphereThickness(1f, 4f));
         StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
+        StartCoroutine(ChangePostProcessingExposure(1.5f, 0f));
     }
 
     private void ActivateFlammableObjects()
@@ -90,6 +97,21 @@ public class AnimationController : MonoBehaviour
             density = density + 1f;
             terrainMaterial.SetFloat("Vector1_5a729d7b72da468d839cfbf65d212a2f", density);
             yield return new WaitForSeconds(0.06f);
+        }
+    }
+
+    IEnumerator ChangePostProcessingExposure(float start, float end)
+    {
+        float exposure = start;
+
+        while (exposure > end)
+        {
+            exposure = exposure - 0.1f;
+
+            volume.profile.TryGet<ColorAdjustments>(out thisExposure);
+            thisExposure.postExposure.value = exposure;
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

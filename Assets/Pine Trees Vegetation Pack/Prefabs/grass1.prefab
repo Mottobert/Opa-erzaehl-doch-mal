@@ -144,8 +144,8 @@ MonoBehaviour:
   burnOutLength_s: 5
   isReignitable: 1
   deleteAfterBurnout: 0
-  useMeshFire: 0
-  meshFireCount: 10
+  useMeshFire: 1
+  meshFireCount: 2
   meshFireMeshFilters: []
   calculateFlammationAreaFromMesh: 0
   affectedByWind: 1
@@ -170,5 +170,5 @@ MonoBehaviour:
   spreadLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  openTabUpper: 2
+  openTabUpper: 0
   openTabLower: 4
