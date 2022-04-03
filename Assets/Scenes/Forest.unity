@@ -7010,11 +7010,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045658361521219834, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029802315
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6045658361521219834, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000029802315
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6191874271603454742, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_Name
@@ -7306,7 +7306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7637670096464585582, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.7071069
       objectReference: {fileID: 0}
     - target: {fileID: 7637670096464585582, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7446,11 +7446,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7966683227124996788, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.008910532
+      value: 0.008910502
       objectReference: {fileID: 0}
     - target: {fileID: 7966683227124996788, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.042000514
+      value: 0.042000484
       objectReference: {fileID: 0}
     - target: {fileID: 7983084945279353069, guid: 0049614dff8fb4a4fabbfb717aba056c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52568,6 +52568,8 @@ PlayableDirector:
     value: {fileID: 220138315}
   - key: {fileID: -4016492870435163072, guid: f37ee3173fa81504aae47cf9ad18fd22, type: 2}
     value: {fileID: 171329902}
+  - key: {fileID: 1536484587204027422, guid: f37ee3173fa81504aae47cf9ad18fd22, type: 2}
+    value: {fileID: 345726668}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &911734735
