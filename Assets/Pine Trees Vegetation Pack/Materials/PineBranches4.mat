@@ -8,11 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PineBranches4
-  m_Shader: {fileID: -6465566751694194690, guid: 0b9792cdcc32700488bccc638fdd9131,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 0b9792cdcc32700488bccc638fdd9131, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -92,6 +91,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_D4808672: 0.1
     - _AlphaClip: 1
@@ -141,6 +152,7 @@ Material:
     - _SpecColor: {r: 0.14705884, g: 0.13192043, b: 0.13192043, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &647369311953170943
 MonoBehaviour:
   m_ObjectHideFlags: 11
