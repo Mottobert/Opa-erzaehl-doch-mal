@@ -10,11 +10,14 @@ public class ChangeMaterialAlpha : MonoBehaviour
     void Start()
     {
         ChangeAlpha(0);
-        //Invoke("ChangeAlphaOverTime", 3f);
+    }
+
+    public void StartChangeAlpha()
+    {
         StartCoroutine(ChangeAlphaOverTime());
     }
 
-    public void ChangeAlpha(float newAlpha)
+    private void ChangeAlpha(float newAlpha)
     {
         GetComponent<Terrain>().materialTemplate.SetFloat("Vector1_1a9f23ea7f93457bbd2ad37ba62472f5", newAlpha);
     }
@@ -25,7 +28,6 @@ public class ChangeMaterialAlpha : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             alpha = alpha + 0.01f;
-            Debug.Log(alpha);
 
             ChangeAlpha(alpha);
         }

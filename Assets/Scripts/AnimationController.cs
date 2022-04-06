@@ -24,6 +24,9 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private Color fogEndColor;
 
+    [SerializeField]
+    private GameObject burningFloorTerrain;
+
 
     private void Start()
     {
@@ -41,6 +44,13 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
         StartCoroutine(ChangePostProcessingExposure(1.5f, 0f));
         StartCoroutine(ChangeFogColor(fogStartColor, fogEndColor));
+
+        Invoke("BurningFloorChangeAlpha", 8f);
+    }
+
+    private void BurningFloorChangeAlpha()
+    {
+        burningFloorTerrain.GetComponent<ChangeMaterialAlpha>().StartChangeAlpha();
     }
 
     private void ActivateFlammableObjects()

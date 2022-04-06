@@ -105,7 +105,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
-    - _AtmosphereThickness: 1
+    - _AtmosphereThickness: 4.0999985
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
