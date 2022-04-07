@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1794877114}
-  m_IndirectSpecularColor: {r: 0.2425726, g: 0.20019814, b: 0.11065285, a: 1}
+  m_IndirectSpecularColor: {r: 0.047575638, g: 0.067158476, b: 0.1044142, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &11124168
 Canvas:
   m_ObjectHideFlags: 0
@@ -348,8 +348,8 @@ Canvas:
   m_GameObject: {fileID: 11124165}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 2
+  m_Camera: {fileID: 1480707036}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -369,17 +369,17 @@ RectTransform:
   m_GameObject: {fileID: 11124165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1610330486}
-  m_Father: {fileID: 0}
-  m_RootOrder: 50
+  m_Father: {fileID: 1480707032}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &24038936
 GameObject:
   m_ObjectHideFlags: 0
@@ -20988,18 +20988,13 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &169152785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96807316a29a9084b942f6605addfb60, type: 3}
-  m_PrefabInstance: {fileID: 874884440}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &169152786
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169152785}
+  m_GameObject: {fileID: 919132148821692425}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -21012,7 +21007,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169152785}
+  m_GameObject: {fileID: 919132148821692425}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45fa1a403ac351a47a29cea99a046537, type: 3}
@@ -21021,11 +21016,11 @@ MonoBehaviour:
   maxSpread: 10000
   fireCrawlSpeed: 1
   overrideFireVFX: 0
-  overrideVFXVariant: 3
+  overrideVFXVariant: 0
   fireColor: {r: 0.7490196, g: 0.65882355, b: 0, a: 1}
   colorIntensityMultiplier: 0
-  fireColorBlend: 0.1
-  flameLength: 5.31
+  fireColorBlend: 0.22
+  flameLength: 5.23
   smokeColor: {r: 0.18039216, g: 0.18039216, b: 0.18039216, a: 1}
   smokeColorIntensity: 10
   smokeAlpha: 0.7
@@ -21061,15 +21056,16 @@ MonoBehaviour:
   affectedByWind: 1
   ignitionTime: 0
   flameEnvironmentalSpeed: 1
-  flameLiveliness: 2
+  flameLiveliness: 0.96
   windForceMultiplier: 1
   flameLivelinessSpeed: 1.12
-  flameParticleSize: 1.99
+  flameParticleSize: 1.6
   flameBurstDelayMinMax: {x: 0, y: 0}
   flameAreaNoiseMinMaxMultiplier: {x: 0.9, y: 1.1}
   flameVFXMultiplier: 0.07
   onFire: 0
-  flammableColliders: []
+  flammableColliders:
+  - {fileID: 169152786}
   flammableMaterialIndexes: 
   useFireSFX: 1
   customFireSFX: {fileID: 0}
@@ -21080,8 +21076,8 @@ MonoBehaviour:
   spreadLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  openTabUpper: 1
-  openTabLower: 4
+  openTabUpper: 4
+  openTabLower: 1
 --- !u!1001 &171329900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42778,7 +42774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 51
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &340313274
 PrefabInstance:
@@ -50024,7 +50020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInterval_seconds: 3
-  minCheckDistance_m: 5
+  minCheckDistance_m: 1
 --- !u!1001 &548002514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82977,7 +82973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028698875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.101, z: 0}
+  m_LocalPosition: {x: 0, y: -0.989, z: 0.088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1126147547}
@@ -83692,7 +83688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126147546}
   m_LocalRotation: {x: -0, y: -0.7071071, z: -0, w: 0.7071065}
-  m_LocalPosition: {x: 0.963, y: -5.43, z: -0.238}
+  m_LocalPosition: {x: 0.712, y: -5.43, z: -0.238}
   m_LocalScale: {x: 0.39383, y: 0.8743291, z: 0.4459494}
   m_Children:
   - {fileID: 1149706634}
@@ -104919,13 +104915,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467034735}
-  m_LocalRotation: {x: 0.008605313, y: -0.5358643, z: -0.040725157, w: 0.8432775}
-  m_LocalPosition: {x: 10.17, y: 4.37, z: 23.96}
+  m_LocalRotation: {x: 0.0059196264, y: -0.5899426, z: -0.04120131, w: 0.8063716}
+  m_LocalPosition: {x: 9.96, y: 4.42, z: 23.3}
   m_LocalScale: {x: 2.6443944, y: 0.044839997, z: 10.777484}
   m_Children: []
   m_Father: {fileID: 179707493}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: -1.669, y: -64.803, z: -4.47}
+  m_LocalEulerAnglesHint: {x: -2.239, y: -72.296, z: -4.214}
 --- !u!1 &1477898582
 GameObject:
   m_ObjectHideFlags: 0
@@ -105037,7 +105033,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 11124169}
   m_Father: {fileID: 1953377742}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120775,7 +120772,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610330485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 11124169}
@@ -120825,8 +120822,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 749615b78f067c442b8275980b7ed7c8, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -125994,12 +125991,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
+      propertyPath: fireVFXVariant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: enableOnTouchChecks
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: modifyFlamesOnRuntime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: UnityTerrainCompatible
@@ -126007,11 +126008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: globalFireVFXMultiplier
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422416, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: FlameTriggerCollisionCheckFrequency
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5696770371371422430, guid: c240efe879a8bc249b3f1332f485edc1, type: 3}
       propertyPath: m_Name
@@ -141369,7 +141370,7 @@ MonoBehaviour:
   maxSpread: 10000
   fireCrawlSpeed: 1
   overrideFireVFX: 0
-  overrideVFXVariant: 3
+  overrideVFXVariant: 1
   fireColor: {r: 0.7490196, g: 0.65882355, b: 0, a: 1}
   colorIntensityMultiplier: 3
   fireColorBlend: 0.1
@@ -141429,7 +141430,7 @@ MonoBehaviour:
   spreadLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  openTabUpper: 2
+  openTabUpper: 1
   openTabLower: 4
 --- !u!65 &1845420872
 BoxCollider:
@@ -153179,7 +153180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088736750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.79, y: 4.37, z: 20.82}
+  m_LocalPosition: {x: 13.41, y: 4.37, z: 21.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 179707493}
@@ -153710,6 +153711,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &919132148821692425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96807316a29a9084b942f6605addfb60, type: 3}
+  m_PrefabInstance: {fileID: 874884440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919132148988585386
 GameObject:
   m_ObjectHideFlags: 0
