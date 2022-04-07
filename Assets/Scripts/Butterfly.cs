@@ -9,6 +9,10 @@ public class Butterfly : MonoBehaviour
 
     [SerializeField]
     private Transform target;
+    [SerializeField]
+    private Transform flyAwayTarget;
+
+    private bool flyAway = false;
 
     [SerializeField]
     private Transform zeroTarget;
@@ -52,7 +56,7 @@ public class Butterfly : MonoBehaviour
         {
             FlyToTarget(dist);
         }
-        else
+        else if(!flyAway)
         {
             if (randomFlight)
             {
@@ -125,6 +129,12 @@ public class Butterfly : MonoBehaviour
         randomFlight = false;
         ChangeTarget(target);
         //Debug.Log("Target");
+    }
+
+    public void ActivateFlyAway()
+    {
+        flyAway = true;
+        ChangeTarget(flyAwayTarget);
     }
 
     public float map(float s, float a1, float a2, float b1, float b2)
