@@ -8,9 +8,20 @@ public class Butterfly : MonoBehaviour
     private Transform activeTarget;
 
     [SerializeField]
-    private Transform target;
+    private GameObject currentTargetVisualizer;
+
+    [SerializeField]
+    private Transform playerTarget;
     [SerializeField]
     private Transform flyAwayTarget;
+
+    [SerializeField]
+    private Transform lookAtTransform;
+
+    [SerializeField]
+    private Transform spawnPosition;
+    [SerializeField]
+    private float spawnRadius;
 
     private bool flyAway = false;
 
@@ -25,7 +36,7 @@ public class Butterfly : MonoBehaviour
     [SerializeField]
     private float minDistance;
 
-    private bool randomFlight = false;
+    private bool randomFlight = true;
 
     private Vector3 oldPos;
     private Vector3 newPos;
@@ -33,19 +44,12 @@ public class Butterfly : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(StartTargetFlight());
-        //ChangeTarget(RandomTarget(this.transform));
-
         oldPos = activeTarget.transform.position;
+        ChangeTarget(RandomTarget(this.transform));
     }
 
     void FixedUpdate()
     {
-        //if (!randomFlight)
-        //{
-        //    ActivateTargetFlight();
-        //}
-
         newPos = activeTarget.transform.position;
         velocity = (newPos - oldPos) / Time.deltaTime;
         oldPos = newPos;
@@ -84,7 +88,17 @@ public class Butterfly : MonoBehaviour
         }
     }
 
-    public void ChangeTarget(Transform newTarget)
+    private void OnTriggerEnter(Collider other)
+    {
+        StartCoroutine("ActivateTargetFlightDelay");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        StopCoroutine("ActivateTargetFlightDelay");
+    }
+
+    private void ChangeTarget(Transform newTarget)
     {
         activeTarget = newTarget;
     }
@@ -93,29 +107,63 @@ public class Butterfly : MonoBehaviour
     {
         animator.SetBool("active", true);
 
-        float newSpeed = Mathf.Clamp(distance / speed, 0, 0.01f);
-        
-        transform.position = Vector3.MoveTowards(transform.position, activeTarget.position, newSpeed);
-        transform.LookAt(activeTarget);
+        // Rotation //
+        // Offset für das LookAt Target (zwischen -1 und 1)
+        float xOffset = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
+        float yOffset = map(Mathf.PerlinNoise(0.3f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
+        float zOffset = map(Mathf.PerlinNoise(0.8f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
+
+        // Transform der immer genau auf das Target rotiert ist (plus einem kleinen Offset)
+        lookAtTransform.LookAt(activeTarget.position + new Vector3(xOffset, yOffset, zOffset));
+
+        // Drehungswinkel ist abhängig von der Distanz zum Target (zwischen 0.3 und 1)
+        float degreeDelta = map(0.4f / distance, 0, 1, 0.3f, 3);
+
+        // Schmetterling wird langsam in Richtung Target bewegt
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookAtTransform.rotation, degreeDelta);
+
+
+        // Speed //
+        // zu der Geschwindigkeit wird etwas Noise addiert
+        float newSpeed = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup/10), 0, 1, 0, speed);
+
+        // Wenn der Schmetterling nah an einem Target Point ist, wird er langsamer
+        if (distance < 1f)
+        {
+            newSpeed = newSpeed * (distance + 0.3f);
+        }
+
+        // Schmetterling fliegt die ganze Zeit nur nach vorne mit definierter Geschwindigkeit
+        transform.position = transform.position + (transform.forward * newSpeed);
     }
 
     private Transform RandomTarget(Transform currentPosition)
     {
-        float targetX = Random.Range(-1f, 1f);
-        float targetY = Random.Range(-1f, 1f);
-        float targetZ = Random.Range(-1f, 1f);
+        float targetX = Random.Range(-3f, 3f);
+        float targetY = Random.Range(-3f, 3f);
+        float targetZ = Random.Range(-3f, 3f);
 
         zeroTarget.position = currentPosition.position + new Vector3(targetX, targetY, targetZ);
 
-        //Debug.Log(newTarget.position);
+        float distanceToSpawnPoint = Vector3.Distance(zeroTarget.position, spawnPosition.position);
 
-        return zeroTarget;
+        //fDebug.Log(distanceToSpawnPoint);
+
+        if(distanceToSpawnPoint < spawnRadius)
+        {
+            currentTargetVisualizer.transform.position = zeroTarget.position;
+            return zeroTarget;
+        }
+        else
+        {
+            return RandomTarget(currentPosition);
+        }
     }
 
     IEnumerator ActivateTargetFlightDelay()
     {
-        yield return new WaitForSeconds(3f);
-        ActivateTargetFlight();
+        yield return new WaitForSeconds(1f);
+        ActivatePlayerTargetFlight();
     }
 
     private void ActivateRandomFlight()
@@ -124,10 +172,10 @@ public class Butterfly : MonoBehaviour
         ChangeTarget(RandomTarget(this.transform));
     }
 
-    private void ActivateTargetFlight()
+    private void ActivatePlayerTargetFlight()
     {
         randomFlight = false;
-        ChangeTarget(target);
+        ChangeTarget(playerTarget);
         //Debug.Log("Target");
     }
 
