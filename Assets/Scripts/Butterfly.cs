@@ -12,8 +12,6 @@ public class Butterfly : MonoBehaviour
 
     [SerializeField]
     private Transform playerTarget;
-    [SerializeField]
-    private Transform flyAwayTarget;
 
     [SerializeField]
     private Transform lookAtTransform;
@@ -22,8 +20,6 @@ public class Butterfly : MonoBehaviour
     private Transform spawnPosition;
     [SerializeField]
     private float spawnRadius;
-
-    private bool flyAway = false;
 
     [SerializeField]
     private Transform zeroTarget;
@@ -37,6 +33,7 @@ public class Butterfly : MonoBehaviour
     private float minDistance;
 
     private bool randomFlight = true;
+    private bool handTarget = true;
 
     private Vector3 oldPos;
     private Vector3 newPos;
@@ -50,7 +47,7 @@ public class Butterfly : MonoBehaviour
 
     void FixedUpdate()
     {
-        newPos = activeTarget.transform.position;
+        newPos = playerTarget.transform.position;
         velocity = (newPos - oldPos) / Time.deltaTime;
         oldPos = newPos;
 
@@ -60,7 +57,7 @@ public class Butterfly : MonoBehaviour
         {
             FlyToTarget(dist);
         }
-        else if(!flyAway)
+        else
         {
             if (randomFlight)
             {
@@ -71,31 +68,31 @@ public class Butterfly : MonoBehaviour
                 animator.SetBool("active", false);
                 transform.position = activeTarget.position;
                 transform.rotation = activeTarget.rotation;
-
-                //Debug.Log(velocity.magnitude);
-
-                if (velocity.magnitude > 0.5f)
-                {
-                    if (!randomFlight)
-                    {
-                        ActivateRandomFlight();
-                        //StartCoroutine(ActivateTargetFlightDelay());
-                        Invoke("ActivateTargetFlight", 2f);
-                        //Debug.Log("random");
-                    }
-                }
             }
         }
+
+        if (!randomFlight && velocity.magnitude > 1f && handTarget)
+        {
+            handTarget = false;
+            StopAllCoroutines();
+            StartCoroutine(DelayBeforeHandTarget());
+            ActivateRandomFlight();
+        }
+    }
+
+    IEnumerator DelayBeforeHandTarget()
+    {
+        yield return new WaitForSeconds(3f);
+        handTarget = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine("ActivateTargetFlightDelay");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        StopCoroutine("ActivateTargetFlightDelay");
+        if (handTarget)
+        {
+            StartCoroutine("ActivateTargetFlightDelay");
+            //ActivatePlayerTargetFlight();
+        }
     }
 
     private void ChangeTarget(Transform newTarget)
@@ -147,9 +144,7 @@ public class Butterfly : MonoBehaviour
 
         float distanceToSpawnPoint = Vector3.Distance(zeroTarget.position, spawnPosition.position);
 
-        //fDebug.Log(distanceToSpawnPoint);
-
-        if(distanceToSpawnPoint < spawnRadius)
+        if (distanceToSpawnPoint < spawnRadius)
         {
             currentTargetVisualizer.transform.position = zeroTarget.position;
             return zeroTarget;
@@ -162,7 +157,7 @@ public class Butterfly : MonoBehaviour
 
     IEnumerator ActivateTargetFlightDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
         ActivatePlayerTargetFlight();
     }
 
@@ -176,23 +171,11 @@ public class Butterfly : MonoBehaviour
     {
         randomFlight = false;
         ChangeTarget(playerTarget);
-        //Debug.Log("Target");
-    }
-
-    public void ActivateFlyAway()
-    {
-        flyAway = true;
-        ChangeTarget(flyAwayTarget);
     }
 
     public float map(float s, float a1, float a2, float b1, float b2)
     {
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
-
-    // Random Target in einem bestimmten Bereich
-    // Fliegt zum Target
-    // Wenn in bestimmten Abstand zu Target
-    // Neues Target
 }
 
