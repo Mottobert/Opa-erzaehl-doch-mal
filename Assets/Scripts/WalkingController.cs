@@ -14,6 +14,8 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private GameObject opa;
     [SerializeField]
+    private GameObject player;
+    [SerializeField]
     private GameObject[] teleportationAreas;
     [SerializeField]
     private float teleportationAreaActivationRadius;
@@ -29,9 +31,43 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private PlayableDirector timelineFeuer;
 
+    [SerializeField]
+    private float maxDistanceOpaPlayer;
+
+    float updateTimer;
+    bool opaAhead = false;
+
     private void Start()
     {
         CheckDistanceToTeleportationAreas();
+    }
+
+    private void FixedUpdate()
+    {
+        if (updateTimer == 100)
+        {
+            updateTimer = 0;
+
+            float distanceOpaPlayer = Vector3.Distance(opa.transform.position, player.transform.position);
+
+            if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead)
+            {
+                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
+                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+
+                opaAhead = true;
+                //Debug.Log("Opa too much ahead");
+            }
+            else if(distanceOpaPlayer > 3f && player.transform.position.x < opa.transform.position.x)
+            {
+                ResetCurveSpeed();
+
+                opaAhead = false;
+                //Debug.Log("Opa walk again");
+            }
+        }
+
+        updateTimer++;
     }
 
     public void ReachedPoint(int point)
