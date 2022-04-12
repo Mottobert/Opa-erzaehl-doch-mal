@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Butterfly : MonoBehaviour
 {
@@ -39,6 +40,11 @@ public class Butterfly : MonoBehaviour
     private Vector3 newPos;
     public Vector3 velocity;
 
+    private bool butterflySatOnHand = false;
+
+    [SerializeField]
+    private PlayableDirector butterflySatOnHandTimeline;
+
     private void Start()
     {
         oldPos = activeTarget.transform.position;
@@ -65,6 +71,12 @@ public class Butterfly : MonoBehaviour
             }
             else
             {
+                if (!butterflySatOnHand)
+                {
+                    butterflySatOnHandTimeline.Play();
+                    butterflySatOnHand = true;
+                }
+                
                 animator.SetBool("active", false);
                 transform.position = activeTarget.position;
                 transform.rotation = activeTarget.rotation;
