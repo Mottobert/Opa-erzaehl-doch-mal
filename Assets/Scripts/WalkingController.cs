@@ -14,6 +14,8 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private GameObject opa;
     [SerializeField]
+    private Animator opaAnimator;
+    [SerializeField]
     private GameObject player;
     [SerializeField]
     private GameObject[] teleportationAreas;
@@ -34,12 +36,22 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private float maxDistanceOpaPlayer;
 
+    [SerializeField]
+    private SkinnedMeshRenderer opaSkinnedMeshRendererLOD1;
+    [SerializeField]
+    private SkinnedMeshRenderer opaSkinnedMeshRendererLOD2;
+    [SerializeField]
+    private SkinnedMeshRenderer opaSkinnedMeshRendererLOD3;
+    [SerializeField]
+    private GameObject dissolveParticleSystem;
+
     float updateTimer;
     bool opaAhead = false;
 
     private void Start()
     {
         CheckDistanceToTeleportationAreas();
+        StopWalking();
     }
 
     private void FixedUpdate()
@@ -52,8 +64,7 @@ public class WalkingController : MonoBehaviour
 
             if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead)
             {
-                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
-                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+                StopWalking();
 
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
@@ -76,37 +87,43 @@ public class WalkingController : MonoBehaviour
 
         switch (point)
         {
+            case 0:
+                StopWalking();
+                break;
             case 1:
                 // Blumenwiese Text abspielen
                 timelineBlumenwiese.Play();
-                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
-                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+                StopWalking();
                 break;
             case 6:
                 // See Text abspielen
                 timelineSee.Play();
-                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
-                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+                StopWalking();
                 break;
             case 9:
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
-                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
-                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+                StopWalking();
                 break;
             case 12:
                 // Feuer abspielen
                 timelineFeuer.Play();
-                bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
-                opa.GetComponentInChildren<Animator>().SetBool("active", false);
+                StopWalking();
                 break;
         }
     }
 
+    private void StopWalking()
+    {
+        bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
+        opaAnimator.SetBool("active", false);
+    }
+
     public void ResetCurveSpeed()
     {
+        Debug.Log("ResetCurve");
         bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0.8f;
-        opa.GetComponentInChildren<Animator>().SetBool("active", true);
+        opaAnimator.SetBool("active", true);
     }
 
     private void CheckDistanceToTeleportationAreas()
@@ -123,6 +140,39 @@ public class WalkingController : MonoBehaviour
             {
                 teleArea.SetActive(false);
             }
+        }
+    }
+
+    public void DissolveOpa()
+    {
+        Invoke("StartDissolveParticleSystem", 0.5f);
+        Invoke("StopDissolveParticleSystem", 2f);
+        
+        StartCoroutine(ChangeOpaDissolve(1f));
+    }
+
+    private void StartDissolveParticleSystem()
+    {
+        dissolveParticleSystem.GetComponent<ParticleSystem>().Play();
+        dissolveParticleSystem.GetComponent<Animator>().SetBool("active", true);
+    }
+
+    private void StopDissolveParticleSystem()
+    {
+        dissolveParticleSystem.GetComponent<ParticleSystem>().Stop();
+    }
+
+    IEnumerator ChangeOpaDissolve(float maxValue)
+    {
+        float dissolve = 0;
+
+        while (dissolve < maxValue)
+        {
+            dissolve = dissolve + 0.005f;
+            opaSkinnedMeshRendererLOD1.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", dissolve);
+            opaSkinnedMeshRendererLOD2.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", dissolve);
+            opaSkinnedMeshRendererLOD3.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", dissolve);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }
