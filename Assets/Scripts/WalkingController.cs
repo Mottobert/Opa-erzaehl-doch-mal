@@ -45,6 +45,9 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private GameObject dissolveParticleSystem;
 
+    [SerializeField]
+    private PanicButton safeRoomController;
+
     float updateTimer;
     bool opaAhead = false;
 
@@ -62,14 +65,16 @@ public class WalkingController : MonoBehaviour
 
             float distanceOpaPlayer = Vector3.Distance(opa.transform.position, player.transform.position);
 
-            if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead)
+            bool safeRoomActive = safeRoomController.active;
+
+            if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead && !safeRoomActive)
             {
                 StopWalking();
 
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer > 3f && player.transform.position.x < opa.transform.position.x)
+            else if(distanceOpaPlayer > 3f && player.transform.position.x < opa.transform.position.x && !safeRoomActive)
             {
                 ResetCurveSpeed();
 
@@ -121,7 +126,7 @@ public class WalkingController : MonoBehaviour
 
     public void ResetCurveSpeed()
     {
-        Debug.Log("ResetCurve");
+        //Debug.Log("ResetCurve");
         bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0.8f;
         opaAnimator.SetBool("active", true);
     }

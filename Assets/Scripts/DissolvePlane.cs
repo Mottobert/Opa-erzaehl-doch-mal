@@ -7,11 +7,6 @@ public class DissolvePlane : MonoBehaviour
 {
     [SerializeField]
     private Transform dissolvePoint;
-    [SerializeField]
-    private GameObject dissolveMaterial;
-
-    [SerializeField]
-    private Shader dissolveShader;
 
     void Update()
     {
