@@ -38,13 +38,13 @@ public class ControllerHandler : MonoBehaviour
     }
 
     // Convenience methods
-    public static void HighlightButtonOne(bool active)
+    public void HighlightButtonOne(bool active)
     {
         HighlightButtonOne(active, true);
         HighlightButtonOne(active, false);
     }
 
-    public static void HighlightButtonOne(bool active, bool isLeft)
+    public void HighlightButtonOne(bool active, bool isLeft)
     {
         if (active)
         {
@@ -62,13 +62,13 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void HighlightButtonTwo(bool active)
+    public void HighlightButtonTwo(bool active)
     {
         HighlightButtonTwo(active, true);
         HighlightButtonTwo(active, false);
     }
 
-    public static void HighlightButtonTwo(bool active, bool isLeft)
+    public void HighlightButtonTwo(bool active, bool isLeft)
     {
         if (active)
         {
@@ -86,13 +86,13 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void HighlightToggle(bool active)
+    public void HighlightToggle(bool active)
     {
         HighlightToggle(active, true);
         HighlightToggle(active, false);
     }
 
-    public static void HighlightToggle(bool active, bool isLeft)
+    public void HighlightToggle(bool active, bool isLeft)
     {
         if (active)
         {
@@ -106,13 +106,13 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void HighlightPrimaryTrigger(bool active)
+    public void HighlightPrimaryTrigger(bool active)
     {
         HighlightPrimaryTrigger(active, true);
         HighlightPrimaryTrigger(active, false);
     }
 
-    public static void HighlightPrimaryTrigger(bool active, bool isLeft)
+    public void HighlightPrimaryTrigger(bool active, bool isLeft)
     {
         if (active)
         {
@@ -126,13 +126,13 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void HighlightSecondaryTrigger(bool active)
+    public void HighlightSecondaryTrigger(bool active)
     {
         HighlightSecondaryTrigger(active, true);
         HighlightSecondaryTrigger(active, false);
     }
 
-    public static void HighlightSecondaryTrigger(bool active, bool isLeft)
+    public void HighlightSecondaryTrigger(bool active, bool isLeft)
     {
         if (active)
         {
@@ -148,7 +148,7 @@ public class ControllerHandler : MonoBehaviour
 
 
     // Base methods for all buttons
-    public static void SetControllerButtonColour(ControllerEnum button, Color col, bool isLeft)
+    public void SetControllerButtonColour(ControllerEnum button, Color col, bool isLeft)
     {
         if (isLeft)
         {
@@ -162,7 +162,7 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void SetControllerButtonEmit(ControllerEnum button, bool on, bool isLeft)
+    public void SetControllerButtonEmit(ControllerEnum button, bool on, bool isLeft)
     {
         if (isLeft)
         {
@@ -176,7 +176,7 @@ public class ControllerHandler : MonoBehaviour
         }
     }
 
-    public static void SetControllerDefaultButtonColour(ControllerEnum button, bool isLeft)
+    public void SetControllerDefaultButtonColour(ControllerEnum button, bool isLeft)
     {
         if (isLeft)
         {
@@ -191,113 +191,113 @@ public class ControllerHandler : MonoBehaviour
     }
 
     // Button One
-    public static void SetButtonOneColour(Color col, bool isLeft)
+    public void SetButtonOneColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.BUTTON_ONE, col, isLeft);
     }
 
-    public static void SetButtonOneEmit(bool on, bool isLeft)
+    public void SetButtonOneEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.BUTTON_ONE, on, isLeft);
     }
 
-    public static void SetDefaultButtonOneColour(bool isLeft)
+    public void SetDefaultButtonOneColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.BUTTON_ONE, isLeft);
     }
 
     // Button One Text
-    public static void SetButtonOneTextColour(Color col, bool isLeft)
+    public void SetButtonOneTextColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.BUTTON_ONE_TEXT, col, isLeft);
     }
 
-    public static void SetButtonOneTextEmit(bool on, bool isLeft)
+    public void SetButtonOneTextEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.BUTTON_ONE_TEXT, on, isLeft);
     }
 
-    public static void SetDefaultButtonOneTextColour(bool isLeft)
+    public void SetDefaultButtonOneTextColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.BUTTON_ONE_TEXT, isLeft);
     }
 
     // Button Two
-    public static void SetButtonTwoColour(Color col, bool isLeft)
+    public void SetButtonTwoColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.BUTTON_TWO, col, isLeft);
     }
 
-    public static void SetButtonTwoEmit(bool on, bool isLeft)
+    public void SetButtonTwoEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.BUTTON_TWO, on, isLeft);
     }
 
-    public static void SetDefaultButtonTwoColour(bool isLeft)
+    public void SetDefaultButtonTwoColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.BUTTON_TWO, isLeft);
     }
 
     // Button Two Text
-    public static void SetButtonTwoTextColour(Color col, bool isLeft)
+    public void SetButtonTwoTextColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.BUTTON_TWO_TEXT, col, isLeft);
     }
 
-    public static void SetButtonTwoTextEmit(bool on, bool isLeft)
+    public void SetButtonTwoTextEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.BUTTON_TWO_TEXT, on, isLeft);
     }
 
-    public static void SetDefaultButtonTwoTextColour(bool isLeft)
+    public void SetDefaultButtonTwoTextColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.BUTTON_TWO_TEXT, isLeft);
     }
 
     // Toggle
-    public static void SetToggleColour(Color col, bool isLeft)
+    public void SetToggleColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.TOGGLE, col, isLeft);
     }
 
-    public static void SetToggleEmit(bool on, bool isLeft)
+    public void SetToggleEmit(bool on, bool isLeft)
     {
-        SetControllerButtonColour(ControllerEnum.TOGGLE, on, isLeft);
+        SetControllerButtonEmit(ControllerEnum.TOGGLE, on, isLeft);
     }
 
-    public static void SetDefaultToggleColour(bool isLeft)
+    public void SetDefaultToggleColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.TOGGLE, isLeft);
     }
 
     // Primary Trigger
-    public static void SetPrimaryTriggerColour(Color col, bool isLeft)
+    public void SetPrimaryTriggerColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.PRIMARY_TRIGGER, col, isLeft);
     }
 
-    public static void SetPrimaryTriggerEmit(bool on, bool isLeft)
+    public void SetPrimaryTriggerEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.PRIMARY_TRIGGER, on, isLeft);
     }
 
-    public static void SetDefaultPrimaryTriggerColour(bool isLeft)
+    public void SetDefaultPrimaryTriggerColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.PRIMARY_TRIGGER, isLeft);
     }
 
     // Secondary Trigger
-    public static void SetSecondaryTriggerColour(Color col, bool isLeft)
+    public void SetSecondaryTriggerColour(Color col, bool isLeft)
     {
         SetControllerButtonColour(ControllerEnum.SECONDARY_TRIGGER, col, isLeft);
     }
 
-    public static void SetSecondaryTriggerEmit(bool on, bool isLeft)
+    public void SetSecondaryTriggerEmit(bool on, bool isLeft)
     {
         SetControllerButtonEmit(ControllerEnum.SECONDARY_TRIGGER, on, isLeft);
     }
 
-    public static void SetDefaultSecondaryTriggerColour(bool isLeft)
+    public void SetDefaultSecondaryTriggerColour(bool isLeft)
     {
         SetControllerDefaultButtonColour(ControllerEnum.SECONDARY_TRIGGER, isLeft);
     }

@@ -100,9 +100,9 @@ public class Butterfly : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (handTarget)
+        if (handTarget && other.gameObject.tag == "butterflyTarget")
         {
-            StartCoroutine("ActivateTargetFlightDelay");
+            StartCoroutine("ActivateTargetFlightDelay", other.transform);
             //ActivatePlayerTargetFlight();
         }
     }
@@ -117,7 +117,7 @@ public class Butterfly : MonoBehaviour
         animator.SetBool("active", true);
 
         // Rotation //
-        // Offset für das LookAt Target (zwischen -1 und 1)
+        // Offset f?r das LookAt Target (zwischen -1 und 1)
         float xOffset = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float yOffset = map(Mathf.PerlinNoise(0.3f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float zOffset = map(Mathf.PerlinNoise(0.8f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
@@ -125,7 +125,7 @@ public class Butterfly : MonoBehaviour
         // Transform der immer genau auf das Target rotiert ist (plus einem kleinen Offset)
         lookAtTransform.LookAt(activeTarget.position + new Vector3(xOffset, yOffset, zOffset));
 
-        // Drehungswinkel ist abhängig von der Distanz zum Target (zwischen 0.3 und 1)
+        // Drehungswinkel ist abh?ngig von der Distanz zum Target (zwischen 0.3 und 1)
         float degreeDelta = map(0.4f / distance, 0, 1, 0.3f, 3);
 
         // Schmetterling wird langsam in Richtung Target bewegt
@@ -167,10 +167,10 @@ public class Butterfly : MonoBehaviour
         }
     }
 
-    IEnumerator ActivateTargetFlightDelay()
+    IEnumerator ActivateTargetFlightDelay(Transform newTarget)
     {
         yield return new WaitForSeconds(0.4f);
-        ActivatePlayerTargetFlight();
+        ActivatePlayerTargetFlight(newTarget);
     }
 
     private void ActivateRandomFlight()
@@ -179,10 +179,10 @@ public class Butterfly : MonoBehaviour
         ChangeTarget(RandomTarget(this.transform));
     }
 
-    private void ActivatePlayerTargetFlight()
+    private void ActivatePlayerTargetFlight(Transform newTarget)
     {
         randomFlight = false;
-        ChangeTarget(playerTarget);
+        ChangeTarget(newTarget);
     }
 
     public float map(float s, float a1, float a2, float b1, float b2)
