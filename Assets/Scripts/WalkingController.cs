@@ -59,9 +59,12 @@ public class WalkingController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // alle 2 Sekunden wird gecheckt, ob der Opa sich zu weit entfernt hat
         if (updateTimer == 100)
         {
             updateTimer = 0;
+
+            CheckDistanceToTeleportationAreas();
 
             float distanceOpaPlayer = Vector3.Distance(opa.transform.position, player.transform.position);
 

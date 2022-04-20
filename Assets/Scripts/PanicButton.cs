@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class PanicButton : MonoBehaviour
 {
@@ -19,12 +20,16 @@ public class PanicButton : MonoBehaviour
 
     public bool active = false;
 
+    [SerializeField]
+    private GameObject[] timelines;
+    private List<GameObject> deactivatedTimelines = new List<GameObject>();
+
     // Update is called once per frame
     void Update()
     {
-        bool input = panicButtonReference.action.ReadValue<bool>();
+        float input = panicButtonReference.action.ReadValue<float>();
 
-        if(input || Input.GetKeyDown(KeyCode.B))
+        if((input > 0.1f && !active)|| Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("Panic Button Pressed");
             ActivateSafeRoom();
@@ -37,12 +42,36 @@ public class PanicButton : MonoBehaviour
         }
     }
 
+    private void DeactivateAllActiveTimelines()
+    {
+        deactivatedTimelines = null;
+
+        foreach(GameObject t in timelines)
+        {
+            if (t.GetComponent<PlayableDirector>().playableGraph.IsPlaying())
+            {
+                t.GetComponent<PlayableDirector>().Pause();
+                deactivatedTimelines.Add(t);
+            }
+        }
+    }
+
+    private void ActivateAllTimelines()
+    {
+        foreach(GameObject t in deactivatedTimelines)
+        {
+            t.GetComponent<PlayableDirector>().Play();
+        }
+    }
+
     // bringt Nutzer in den Safe Room
     private void ActivateSafeRoom()
     {
         active = true;
         SafeTransform(playerTransform);
         TeleportPlayerToTransform(safeRoomTransform);
+        //DeactivateAllActiveTimelines();
+        Time.timeScale = 0;
     }
 
     // bringt Nutzer zurück zur Ausgangsposition
@@ -50,6 +79,8 @@ public class PanicButton : MonoBehaviour
     {
         TeleportPlayerToTransform(savedTransform);
         active = false;
+        Time.timeScale = 1;
+        //ActivateAllTimelines();
     }
 
     public void BackToStart()

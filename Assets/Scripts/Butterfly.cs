@@ -53,7 +53,7 @@ public class Butterfly : MonoBehaviour
 
     void FixedUpdate()
     {
-        newPos = playerTarget.transform.position;
+        newPos = activeTarget.transform.position;
         velocity = (newPos - oldPos) / Time.deltaTime;
         oldPos = newPos;
 

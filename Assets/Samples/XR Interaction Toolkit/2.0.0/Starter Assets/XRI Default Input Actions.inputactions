@@ -1101,12 +1101,12 @@
                 },
                 {
                     "name": "PanicButton",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "0a8a88a9-9197-4124-a3eb-aee753e72ac5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
