@@ -16,4 +16,9 @@ public class AttachPlayerToRope : MonoBehaviour
         xrOrigin.transform.parent = this.transform;
         helicopterFlyAwayTimeline.Play();
     }
+
+    public void DetachPlayer()
+    {
+        xrOrigin.transform.parent = null;
+    }
 }

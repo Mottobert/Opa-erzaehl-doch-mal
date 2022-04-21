@@ -183,6 +183,7 @@ public class Butterfly : MonoBehaviour
     {
         randomFlight = false;
         ChangeTarget(newTarget);
+        oldPos = newTarget.transform.position;
     }
 
     public float map(float s, float a1, float a2, float b1, float b2)
