@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Waterhose : MonoBehaviour
 {
     [SerializeField]
-    private InputActionReference waterHoseReference;
+    private InputActionReference triggerReference;
     [SerializeField]
     private ParticleSystem waterParticleSystem;
     [SerializeField]
@@ -20,14 +20,14 @@ public class Waterhose : MonoBehaviour
     {
         if (active)
         {
-            float input = waterHoseReference.action.ReadValue<float>();
+            float input = triggerReference.action.ReadValue<float>();
             UpdateWaterParticleSystem(input);
         }
     }
 
     private void UpdateWaterParticleSystem(float input)
     {
-        if(input != 0)
+        if(input > 0.1f)
         {
             rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f), 1/Time.deltaTime);
         }

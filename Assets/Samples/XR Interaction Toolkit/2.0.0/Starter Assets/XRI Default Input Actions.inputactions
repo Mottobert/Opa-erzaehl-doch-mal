@@ -1091,7 +1091,7 @@
             "id": "441c2292-94db-48bd-9246-5639d620c6cb",
             "actions": [
                 {
-                    "name": "Waterhose",
+                    "name": "rightTrigger",
                     "type": "Value",
                     "id": "ea6579df-439f-46fc-86cb-51d1b07d770e",
                     "expectedControlType": "",
@@ -1107,6 +1107,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "leftGrip",
+                    "type": "Value",
+                    "id": "c7d7c638-072d-4b92-99a8-83f31677ad55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "rightGrip",
+                    "type": "Value",
+                    "id": "38fe1f31-1d83-4b82-a9db-46a9e8117107",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "rightJoystick",
+                    "type": "PassThrough",
+                    "id": "93334693-fd1e-4f9a-a8a3-2b7c9da7c23c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1117,7 +1144,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Waterhose",
+                    "action": "rightTrigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1162,6 +1189,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "PanicButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c450daac-0b68-4491-88d1-e452fde4cd7c",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "leftGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e148b0a-b872-4a9f-bb24-901f38efb0db",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightGrip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5848e76-4f0c-4c8d-953d-353856dbd0a9",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "rightJoystick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
