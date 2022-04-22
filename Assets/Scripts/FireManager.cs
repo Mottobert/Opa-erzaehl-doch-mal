@@ -8,6 +8,7 @@ public class FireManager : MonoBehaviour
     [SerializeField]
     private GameObject[] igniters;
 
+    public int timer = 0;
 
     public void ActivateRandomIgniter()
     {
@@ -52,5 +53,31 @@ public class FireManager : MonoBehaviour
     public void StopFireSound(GameObject fireAudioSource)
     {
         fireAudioSource.GetComponent<AudioSource>().Stop();
+    }
+
+    private void FixedUpdate()
+    {
+        if(timer > 0)
+        {
+            timer--;
+        }
+        
+    }
+
+    public void ResetFireArea(GameObject fireArea)
+    {
+        if(timer <= 0)
+        {
+            StartCoroutine(ReactivateFireArea(fireArea));
+            timer = 300;
+        }
+    }
+
+    IEnumerator ReactivateFireArea(GameObject fireArea)
+    { 
+        yield return new WaitForSeconds(1f);
+        fireArea.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        fireArea.SetActive(true);
     }
 }

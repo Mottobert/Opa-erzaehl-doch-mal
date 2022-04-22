@@ -30,6 +30,11 @@ public class AnimationController : MonoBehaviour
 
     private void Start()
     {
+        ResetBurning();
+    }
+
+    public void ResetBurning()
+    {
         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1);
         terrainMaterial.SetFloat("Vector1_5a729d7b72da468d839cfbf65d212a2f", 0);
     }
