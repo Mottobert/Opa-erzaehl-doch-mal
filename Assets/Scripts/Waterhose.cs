@@ -24,12 +24,18 @@ public class Waterhose : MonoBehaviour
         if (active && waterAmount > 0)
         {
             float input = triggerReference.action.ReadValue<float>();
+
             UpdateWaterParticleSystem(input);
 
             if (waterTick)
             {
                 StartCoroutine(EmptyWater());
             }
+        }
+
+        if(waterAmount < 1)
+        {
+            UpdateWaterParticleSystem(0);
         }
     }
 
@@ -45,7 +51,7 @@ public class Waterhose : MonoBehaviour
     {
         if(input > 0.1f)
         {
-            rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f), 1/Time.deltaTime);
+            rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f), 0.1f);
         }
         
         var emission = waterParticleSystem.emission;
