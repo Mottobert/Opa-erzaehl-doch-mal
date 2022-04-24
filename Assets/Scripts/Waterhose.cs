@@ -13,16 +13,32 @@ public class Waterhose : MonoBehaviour
     [SerializeField]
     private ActionBasedController rightController;
 
+    public float waterAmount = 15;
+    private bool waterTick = true;
+
     public bool active = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        if (active && waterAmount > 0)
         {
             float input = triggerReference.action.ReadValue<float>();
             UpdateWaterParticleSystem(input);
+
+            if (waterTick)
+            {
+                StartCoroutine(EmptyWater());
+            }
         }
+    }
+
+    IEnumerator EmptyWater()
+    {
+        waterTick = false;
+        waterAmount = waterAmount - 1;
+        yield return new WaitForSeconds(1f);
+        waterTick = true;
     }
 
     private void UpdateWaterParticleSystem(float input)
