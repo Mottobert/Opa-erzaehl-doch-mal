@@ -11,6 +11,8 @@ public class Waterpump : MonoBehaviour
 
     private bool active = true;
 
+    public bool outsideActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class Waterpump : MonoBehaviour
         {
             if(waterhose.waterAmount < 16)
             {
-                waterhose.waterAmount++;
+                waterhose.IncreaseWaterAmount();
             }
             
             active = false;
@@ -34,5 +36,15 @@ public class Waterpump : MonoBehaviour
         {
             active = true;
         }
+    }
+
+    public void DeactivatePump()
+    {
+        outsideActive = false;
+    }
+
+    public void ActivatePump()
+    {
+        outsideActive = true;
     }
 }

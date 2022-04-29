@@ -18,10 +18,25 @@ public class Waterhose : MonoBehaviour
 
     public bool active = false;
 
+    [SerializeField]
+    private Waterpump waterpump;
+
+    [SerializeField]
+    private GameObject[] waterAmountdisplay;
+    [SerializeField]
+    private Material waterAmountDisplayDefaultMaterial;
+    [SerializeField]
+    private Material waterAmountDisplayFullMaterial;
+
+    private void Start()
+    {
+        UpdateWaterAmountDisplay();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (active && waterAmount > 0)
+        if (active && waterAmount > 0 && !waterpump.outsideActive)
         {
             float input = triggerReference.action.ReadValue<float>();
 
@@ -43,6 +58,7 @@ public class Waterhose : MonoBehaviour
     {
         waterTick = false;
         waterAmount = waterAmount - 1;
+        UpdateWaterAmountDisplay();
         yield return new WaitForSeconds(1f);
         waterTick = true;
     }
@@ -80,5 +96,32 @@ public class Waterhose : MonoBehaviour
     {
         active = false;
         waterParticleSystem.Stop();
+    }
+
+    public void IncreaseWaterAmount()
+    {
+        waterAmount++;
+        UpdateWaterAmountDisplay();
+    }
+
+    public void UpdateWaterAmountDisplay()
+    {
+        ResetWaterAmountDisplay();
+
+        for(int i = 0; i < waterAmountdisplay.Length; i++)
+        {
+            if(i < waterAmount)
+            {
+                waterAmountdisplay[i].GetComponent<MeshRenderer>().material = waterAmountDisplayFullMaterial;
+            }
+        }
+    }
+
+    private void ResetWaterAmountDisplay()
+    {
+        foreach(GameObject wd in waterAmountdisplay)
+        {
+            wd.GetComponent<MeshRenderer>().material = waterAmountDisplayDefaultMaterial;
+        }
     }
 }

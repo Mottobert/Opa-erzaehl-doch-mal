@@ -100,7 +100,7 @@ public class Butterfly : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (handTarget && other.gameObject.tag == "butterflyTarget")
+        if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget")
         {
             StartCoroutine("ActivateTargetFlightDelay", other.transform);
             //ActivatePlayerTargetFlight();
