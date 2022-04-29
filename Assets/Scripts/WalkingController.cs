@@ -98,22 +98,22 @@ public class WalkingController : MonoBehaviour
             case 0:
                 StopWalking();
                 break;
-            case 1:
+            case 4:
                 // Blumenwiese Text abspielen
                 timelineBlumenwiese.Play();
                 StopWalking();
                 break;
-            case 6:
+            case 15:
                 // See Text abspielen
                 timelineSee.Play();
                 StopWalking();
                 break;
-            case 9:
+            case 23:
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
                 StopWalking();
                 break;
-            case 12:
+            case 32:
                 // Feuer abspielen
                 timelineFeuer.Play();
                 StopWalking();
@@ -159,6 +159,13 @@ public class WalkingController : MonoBehaviour
         StartCoroutine(ChangeOpaDissolve(1f));
     }
 
+    public void ShowOpa()
+    {
+        opaSkinnedMeshRendererLOD1.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", 0);
+        opaSkinnedMeshRendererLOD2.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", 0);
+        opaSkinnedMeshRendererLOD3.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", 0);
+    }
+
     private void StartDissolveParticleSystem()
     {
         dissolveParticleSystem.GetComponent<ParticleSystem>().Play();
@@ -182,5 +189,11 @@ public class WalkingController : MonoBehaviour
             opaSkinnedMeshRendererLOD3.material.SetFloat("Vector1_db32db56eadb40c0bdf8b88238ef20f1", dissolve);
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    public void TeleportOpa(Transform location)
+    {
+        opa.transform.position = location.position;
+        opa.transform.rotation = location.rotation;
     }
 }

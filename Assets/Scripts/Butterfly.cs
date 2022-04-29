@@ -36,6 +36,8 @@ public class Butterfly : MonoBehaviour
     private bool randomFlight = true;
     private bool handTarget = true;
 
+    private bool activateHandFlight = false;
+
     private Vector3 oldPos;
     private Vector3 newPos;
     public Vector3 velocity;
@@ -100,11 +102,16 @@ public class Butterfly : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget")
+        if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget" && activateHandFlight)
         {
             StartCoroutine("ActivateTargetFlightDelay", other.transform);
             //ActivatePlayerTargetFlight();
         }
+    }
+
+    public void ActivateHandFlight()
+    {
+        activateHandFlight = true;
     }
 
     private void ChangeTarget(Transform newTarget)

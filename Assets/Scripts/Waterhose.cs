@@ -48,9 +48,10 @@ public class Waterhose : MonoBehaviour
             }
         }
 
-        if(waterAmount < 1)
+        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19)
         {
             UpdateWaterParticleSystem(0);
+            StartCoroutine(LowerWaterPressure());
         }
     }
 
@@ -63,22 +64,51 @@ public class Waterhose : MonoBehaviour
         waterTick = true;
     }
 
+    IEnumerator LowerWaterPressure()
+    {
+        var waterPSMain = waterParticleSystem.main;
+        float waterpressure = waterParticleSystem.startSpeed;
+        while (waterpressure > 1f)
+        {
+            waterpressure = Clamp(waterpressure - 0.3f, 20, 0);
+            waterPSMain.startSpeedMultiplier = waterpressure;
+
+            var emission = waterParticleSystem.emission;
+            emission.rateOverTime = Clamp(Remap(waterpressure - 1, 0, 20, 0, 1), 1f, 0f) * 1000;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    public void ResetWaterPressure()
+    {
+        waterParticleSystem.startSpeed = 20;
+    }
+
+    public float Remap(float value, float from1, float to1, float from2, float to2)
+    {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
     private void UpdateWaterParticleSystem(float input)
     {
         if(input > 0.1f)
         {
-            rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f), 0.1f);
+            rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f, 0f), 0.1f);
         }
         
         var emission = waterParticleSystem.emission;
         emission.rateOverTime = input * 1000;
     }
 
-    private float Clamp(float value, float maxValue)
+    private float Clamp(float value, float maxValue, float minValue)
     {
         if(value > maxValue)
         {
             return maxValue;
+        }
+        else if(value < minValue)
+        {
+            return minValue;
         }
         else
         {
@@ -102,6 +132,7 @@ public class Waterhose : MonoBehaviour
     {
         waterAmount++;
         UpdateWaterAmountDisplay();
+        ResetWaterPressure();
     }
 
     public void UpdateWaterAmountDisplay()

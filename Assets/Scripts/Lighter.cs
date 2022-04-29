@@ -18,7 +18,7 @@ public class Lighter : MonoBehaviour
     private ActionBasedController rightController;
 
     private Vector3 maxScale;
-    private bool ignited = false;
+    public bool ignited = false;
 
     private void Start()
     {
@@ -62,7 +62,7 @@ public class Lighter : MonoBehaviour
     private void IgniteLighter()
     {
         rightController.SendHapticImpulse(0.8f, 0.1f);
-        sparksPS.Emit(10);
+        sparksPS.Emit((Random.Range(0,5)));
         lighterPS.Play();
         ignited = true;
     }

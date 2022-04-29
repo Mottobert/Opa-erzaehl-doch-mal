@@ -9,10 +9,10 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "lighter")
+        if(other.gameObject.tag == "lighter" && other.GetComponent<Lighter>().ignited)
         {
             EnableCandle();
-            Invoke("DisableCandle", 20f);
+            Invoke("DisableCandle", 5f);
         }
     }
 

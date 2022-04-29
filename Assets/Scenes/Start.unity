@@ -1122,7 +1122,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotate Anchor
       m_Type: 0
@@ -1307,6 +1307,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ee7ba9ce717e684408613a2e72a5fcf2, type: 3}
       propertyPath: m_Name
+      value: lighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee7ba9ce717e684408613a2e72a5fcf2, type: 3}
+      propertyPath: m_TagString
       value: lighter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11498,7 +11502,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -8785819595477538065, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_RotateAnchorAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Rotate Anchor
       m_Type: 0
@@ -12569,7 +12573,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -17503,7 +17507,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -22239,7 +22243,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -26967,7 +26971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4877663046066639508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0029345672, y: 2.8181696, z: -0.050320398}
+  m_LocalPosition: {x: -0.003, y: 3.291, z: 0.005}
   m_LocalScale: {x: 0.09129565, y: 0.04745114, z: 0.0912957}
   m_Children: []
   m_Father: {fileID: 4880578742990076536}
@@ -26981,7 +26985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4878025955397261444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.98, z: 0}
+  m_LocalPosition: {x: 0, y: 3.41, z: 0}
   m_LocalScale: {x: 0.047057994, y: 0.047058, z: 0.047057994}
   m_Children: []
   m_Father: {fileID: 4880326972513065486}
@@ -26995,7 +26999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4877926040352288916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01367298, y: 2.7442732, z: 0.028543478}
+  m_LocalPosition: {x: -0.01367298, y: 3.341, z: 0.028543478}
   m_LocalScale: {x: 0.074199915, y: 0.038564637, z: 0.074199945}
   m_Children: []
   m_Father: {fileID: 4880283997484548692}
@@ -27063,8 +27067,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.32058707
-  m_Center: {x: 0, y: 3.25, z: 0}
+  m_Radius: 0.23724845
+  m_Center: {x: 0, y: 3.436753, z: 0}
 --- !u!1 &4877926040352288916
 GameObject:
   m_ObjectHideFlags: 0
@@ -27127,8 +27131,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.33496365
-  m_Center: {x: 0, y: 3.15, z: 0}
+  m_Radius: 0.2769109
+  m_Center: {x: 0, y: 3.3336809, z: 0}
 --- !u!1 &4878025955397261444
 GameObject:
   m_ObjectHideFlags: 0
@@ -27191,8 +27195,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.27607265
-  m_Center: {x: 0, y: 3.26, z: 0}
+  m_Radius: 0.26886955
+  m_Center: {x: 0, y: 3.396952, z: 0}
 --- !u!4 &4880283997484548692
 Transform:
   m_ObjectHideFlags: 0
