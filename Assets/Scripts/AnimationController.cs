@@ -37,6 +37,10 @@ public class AnimationController : MonoBehaviour
     {
         RenderSettings.skybox.SetFloat("_AtmosphereThickness", 1);
         terrainMaterial.SetFloat("Vector1_5a729d7b72da468d839cfbf65d212a2f", 0);
+        RenderSettings.fogDensity = 0.005f;
+        RenderSettings.fogColor = fogStartColor;
+        volume.profile.TryGet<ColorAdjustments>(out thisExposure);
+        thisExposure.postExposure.value = 1.5f;
     }
 
     public void ActivateBurning()

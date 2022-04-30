@@ -36,10 +36,10 @@ public class Waterhose : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float input = triggerReference.action.ReadValue<float>();
+
         if (active && waterAmount > 0 && !waterpump.outsideActive)
         {
-            float input = triggerReference.action.ReadValue<float>();
-
             UpdateWaterParticleSystem(input);
 
             if (waterTick)
@@ -48,7 +48,7 @@ public class Waterhose : MonoBehaviour
             }
         }
 
-        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19)
+        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19 && input > 0)
         {
             UpdateWaterParticleSystem(0);
             StartCoroutine(LowerWaterPressure());

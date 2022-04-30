@@ -193,6 +193,8 @@ public class WalkingController : MonoBehaviour
 
     public void TeleportOpa(Transform location)
     {
+        bgCurve.GetComponent<BGCcCursorObjectTranslate>().ObjectToManipulate = null;
+
         opa.transform.position = location.position;
         opa.transform.rotation = location.rotation;
     }
