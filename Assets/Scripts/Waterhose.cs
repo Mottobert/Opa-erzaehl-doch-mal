@@ -42,13 +42,13 @@ public class Waterhose : MonoBehaviour
         {
             UpdateWaterParticleSystem(input);
 
-            if (waterTick)
+            if (waterTick && input > 0)
             {
                 StartCoroutine(EmptyWater());
             }
         }
 
-        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19 && input > 0)
+        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19)
         {
             UpdateWaterParticleSystem(0);
             StartCoroutine(LowerWaterPressure());

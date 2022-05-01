@@ -22,9 +22,9 @@ public class FireManager : MonoBehaviour
             }
         }
 
-        if(ignitersCount <= 2)
+        if(ignitersCount <= 1)
         {
-            GameObject randomIgniter = igniters[Random.Range(0, igniters.Length - 1)];
+            GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
             randomIgniter.SetActive(true);
             Debug.Log(randomIgniter);
             StartCoroutine(DeactivateIgniterDelay(randomIgniter, 5f));
