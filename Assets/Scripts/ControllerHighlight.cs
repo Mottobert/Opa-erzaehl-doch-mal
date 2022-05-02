@@ -60,6 +60,11 @@ public class ControllerHighlight : MonoBehaviour
     private GameObject rightGripCanvas;
     [SerializeField]
     private GameObject rightTriggerCanvas;
+    [SerializeField]
+    private GameObject bookCanvas;
+
+    [SerializeField]
+    private GameObject[] outlineObjects;
 
     // Start is called before the first frame update
     void Start()
@@ -70,7 +75,7 @@ public class ControllerHighlight : MonoBehaviour
 
     private void Update()
     {
-        // Wenn rechter Joystick gedrückt -> linker Grip Button highlighten
+        // Wenn rechter Joystick gedrueckt -> linker Grip Button highlighten
         if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0) && !rightJoystickPressed)
         {
             StopAllCoroutines();
@@ -81,7 +86,7 @@ public class ControllerHighlight : MonoBehaviour
             StartCoroutine(ButtonBlinking(leftGripButton, 2f, leftController, leftGripCanvas));
         }
 
-        // Wenn linker Grip Button gedrückt -> Panic Buttons highlighten
+        // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
         if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed)
         {
             StopAllCoroutines();
@@ -95,7 +100,7 @@ public class ControllerHighlight : MonoBehaviour
             StartCoroutine(ButtonBlinking(leftYButton, 2f, leftController, panicButtonCanvas));
         }
 
-        // Wenn Panic Buttons gedrückt -> rechter Grip Button highlighten
+        // Wenn Panic Buttons gedrueckt -> rechter Grip Button highlighten
         if (panicButtonReference.action.ReadValue<float>() > 0 && leftGripPressed && !panicButtonPressed)
         {
             StopAllCoroutines();
@@ -106,10 +111,12 @@ public class ControllerHighlight : MonoBehaviour
 
             panicButtonPressed = true;
 
+            ActivateOutlineObjects();
+
             StartCoroutine(ButtonBlinking(rightGripButton, 2f, rightController, rightGripCanvas));
         }
 
-        // Wenn rechter Grip Button gedrückt -> rechter Trigger highlighten
+        // Wenn rechter Grip Button gedrueckt -> rechter Trigger highlighten
         if (rightGripReference.action.ReadValue<float>() > 0 && panicButtonPressed && !rightGripPressed)
         {
             StopAllCoroutines();
@@ -117,16 +124,20 @@ public class ControllerHighlight : MonoBehaviour
 
             rightGripPressed = true;
 
+            DeactivateOutlineObjects();
+
             StartCoroutine(ButtonBlinking(rightTriggerButton, 2f, rightController, rightTriggerCanvas));
         }
 
-        // Wenn rechter Grip Trigger gedrückt -> kein highlight mehr
+        // Wenn rechter Grip Trigger gedrueckt -> kein highlight mehr
         if (rightTriggerReference.action.ReadValue<float>() > 0 && rightGripPressed && !rightTriggerPressed)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightTriggerButton);
 
             rightTriggerPressed = true;
+
+            bookCanvas.SetActive(true);
         }
     }
 
@@ -167,13 +178,14 @@ public class ControllerHighlight : MonoBehaviour
         }
     }
 
-    private void HideAllCanvases()
+    public void HideAllCanvases()
     {
         joystickCanvas.SetActive(false);
         leftGripCanvas.SetActive(false);
         panicButtonCanvas.SetActive(false);
         rightGripCanvas.SetActive(false);
         rightTriggerCanvas.SetActive(false);
+        bookCanvas.SetActive(false);
     }
 
     private void ResetButtonHighlight(GameObject highlight)
@@ -213,6 +225,22 @@ public class ControllerHighlight : MonoBehaviour
 
             yield return new WaitForSeconds(0.01f);
             blinking.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", value);
+        }
+    }
+
+    private void ActivateOutlineObjects()
+    {
+        foreach(GameObject g in outlineObjects)
+        {
+            g.GetComponent<Outline>().ActivateBlinking();
+        }
+    }
+
+    private void DeactivateOutlineObjects()
+    {
+        foreach (GameObject g in outlineObjects)
+        {
+            g.GetComponent<Outline>().DeactivateBlinking();
         }
     }
 }
