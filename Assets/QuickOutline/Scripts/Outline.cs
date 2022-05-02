@@ -60,7 +60,7 @@ public class Outline : MonoBehaviour {
   [SerializeField]
   private Color outlineColor = Color.white;
 
-  [SerializeField, Range(0f, 20f)]
+  [SerializeField, Range(0f, 10f)]
   private float outlineWidth = 2f;
 
   [Header("Optional")]
@@ -310,7 +310,7 @@ public class Outline : MonoBehaviour {
 
     public void ActivateBlinking()
     {
-        StartCoroutine(Blinking(5f, 20f, 0f));
+        StartCoroutine(Blinking(5f, 10f, 0f));
     }
 
     public void DeactivateBlinking()

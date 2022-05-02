@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ControllerHighlight : MonoBehaviour
 {
+    [SerializeField]
+    private bool tutorialIntroduction;
+    [SerializeField]
+    private PlayableDirector tutorialTimeline;
+
     [SerializeField]
     private GameObject rightGripButton;
     [SerializeField]
@@ -53,13 +59,25 @@ public class ControllerHighlight : MonoBehaviour
     [SerializeField]
     private GameObject joystickCanvas;
     [SerializeField]
+    private GameObject joystickControllerCanvas;
+    [SerializeField]
     private GameObject leftGripCanvas;
+    [SerializeField]
+    private GameObject leftGripControllerCanvas;
     [SerializeField]
     private GameObject panicButtonCanvas;
     [SerializeField]
+    private GameObject panicButtonRightControllerCanvas;
+    [SerializeField]
+    private GameObject panicButtonLeftControllerCanvas;
+    [SerializeField]
     private GameObject rightGripCanvas;
     [SerializeField]
+    private GameObject rightGripControllerCanvas;
+    [SerializeField]
     private GameObject rightTriggerCanvas;
+    [SerializeField]
+    private GameObject rightTriggerControllerCanvas;
     [SerializeField]
     private GameObject bookCanvas;
 
@@ -70,7 +88,20 @@ public class ControllerHighlight : MonoBehaviour
     void Start()
     {
         HideAllCanvases();
-        StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas));
+
+        if (tutorialIntroduction)
+        {
+            tutorialTimeline.Play();
+        }
+        else
+        {
+            StartTutorial();
+        }
+    }
+
+    public void StartTutorial()
+    {
+        StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
     }
 
     private void Update()
@@ -83,7 +114,7 @@ public class ControllerHighlight : MonoBehaviour
 
             rightJoystickPressed = true;
 
-            StartCoroutine(ButtonBlinking(leftGripButton, 2f, leftController, leftGripCanvas));
+            StartCoroutine(ButtonBlinking(leftGripButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
         }
 
         // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
@@ -94,10 +125,10 @@ public class ControllerHighlight : MonoBehaviour
 
             leftGripPressed = true;
 
-            StartCoroutine(ButtonBlinking(rightAButton, 2f, rightController, panicButtonCanvas));
-            StartCoroutine(ButtonBlinking(rightBButton, 2f, rightController, panicButtonCanvas));
-            StartCoroutine(ButtonBlinking(leftXButton, 2f, leftController, panicButtonCanvas));
-            StartCoroutine(ButtonBlinking(leftYButton, 2f, leftController, panicButtonCanvas));
+            StartCoroutine(ButtonBlinking(rightAButton, 2f, rightController, panicButtonCanvas, panicButtonRightControllerCanvas));
+            StartCoroutine(ButtonBlinking(rightBButton, 2f, rightController, panicButtonCanvas, panicButtonRightControllerCanvas));
+            StartCoroutine(ButtonBlinking(leftXButton, 2f, leftController, panicButtonCanvas, panicButtonLeftControllerCanvas));
+            StartCoroutine(ButtonBlinking(leftYButton, 2f, leftController, panicButtonCanvas, panicButtonLeftControllerCanvas));
         }
 
         // Wenn Panic Buttons gedrueckt -> rechter Grip Button highlighten
@@ -113,7 +144,7 @@ public class ControllerHighlight : MonoBehaviour
 
             ActivateOutlineObjects();
 
-            StartCoroutine(ButtonBlinking(rightGripButton, 2f, rightController, rightGripCanvas));
+            StartCoroutine(ButtonBlinking(rightGripButton, 2f, rightController, rightGripCanvas, rightGripControllerCanvas));
         }
 
         // Wenn rechter Grip Button gedrueckt -> rechter Trigger highlighten
@@ -126,7 +157,7 @@ public class ControllerHighlight : MonoBehaviour
 
             DeactivateOutlineObjects();
 
-            StartCoroutine(ButtonBlinking(rightTriggerButton, 2f, rightController, rightTriggerCanvas));
+            StartCoroutine(ButtonBlinking(rightTriggerButton, 2f, rightController, rightTriggerCanvas, rightTriggerControllerCanvas));
         }
 
         // Wenn rechter Grip Trigger gedrueckt -> kein highlight mehr
@@ -141,13 +172,14 @@ public class ControllerHighlight : MonoBehaviour
         }
     }
 
-    IEnumerator ButtonBlinking(GameObject blinking, float delay, ActionBasedController controller, GameObject canvas)
+    IEnumerator ButtonBlinking(GameObject blinking, float delay, ActionBasedController controller, GameObject canvas, GameObject controllerCanvas)
     {
         yield return new WaitForSeconds(delay);
 
         controller.SendHapticImpulse(0.8f, 0.2f);
 
         canvas.SetActive(true);
+        controllerCanvas.SetActive(true);
 
         float value = 0;
         bool positive = true;
@@ -185,6 +217,12 @@ public class ControllerHighlight : MonoBehaviour
         panicButtonCanvas.SetActive(false);
         rightGripCanvas.SetActive(false);
         rightTriggerCanvas.SetActive(false);
+        joystickControllerCanvas.SetActive(false);
+        leftGripControllerCanvas.SetActive(false);
+        panicButtonRightControllerCanvas.SetActive(false);
+        panicButtonLeftControllerCanvas.SetActive(false);
+        rightGripControllerCanvas.SetActive(false);
+        rightTriggerControllerCanvas.SetActive(false);
         bookCanvas.SetActive(false);
     }
 

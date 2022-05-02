@@ -15,7 +15,12 @@ ModelImporter:
   - first:
       74: 5508062484833401239
     second: Armature|PoseLib
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: 907413569021cd64c99f3654b1aed18b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

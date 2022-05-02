@@ -77,7 +77,7 @@ public class WalkingController : MonoBehaviour
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer > 3f && player.transform.position.x < opa.transform.position.x && !safeRoomActive)
+            else if(distanceOpaPlayer < 2f && !safeRoomActive) // && player.transform.position.x < opa.transform.position.x
             {
                 ResetCurveSpeed();
 
@@ -101,7 +101,7 @@ public class WalkingController : MonoBehaviour
             case 4:
                 // Blumenwiese Text abspielen
                 timelineBlumenwiese.Play();
-                StopWalking();
+                //StopWalking();
                 break;
             case 15:
                 // See Text abspielen
