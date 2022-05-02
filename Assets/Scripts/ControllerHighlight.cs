@@ -179,6 +179,7 @@ public class ControllerHighlight : MonoBehaviour
         controller.SendHapticImpulse(0.8f, 0.2f);
 
         canvas.SetActive(true);
+        canvas.GetComponentInChildren<AudioSource>().Play();
         controllerCanvas.SetActive(true);
 
         float value = 0;
