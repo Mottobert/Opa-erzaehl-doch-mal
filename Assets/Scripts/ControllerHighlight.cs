@@ -9,6 +9,8 @@ public class ControllerHighlight : MonoBehaviour
 {
     [SerializeField]
     private bool tutorialIntroduction;
+
+    private bool tutorialStarted = false;
     [SerializeField]
     private PlayableDirector tutorialTimeline;
 
@@ -102,12 +104,13 @@ public class ControllerHighlight : MonoBehaviour
     public void StartTutorial()
     {
         StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
+        tutorialStarted = true;
     }
 
     private void Update()
     {
         // Wenn rechter Joystick gedrueckt -> linker Grip Button highlighten
-        if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0) && !rightJoystickPressed)
+        if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightJoystick);
@@ -118,7 +121,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
-        if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed)
+        if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(leftGripButton);
@@ -132,7 +135,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn Panic Buttons gedrueckt -> rechter Grip Button highlighten
-        if (panicButtonReference.action.ReadValue<float>() > 0 && leftGripPressed && !panicButtonPressed)
+        if (panicButtonReference.action.ReadValue<float>() > 0 && leftGripPressed && !panicButtonPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightAButton);
@@ -148,7 +151,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn rechter Grip Button gedrueckt -> rechter Trigger highlighten
-        if (rightGripReference.action.ReadValue<float>() > 0 && panicButtonPressed && !rightGripPressed)
+        if (rightGripReference.action.ReadValue<float>() > 0 && panicButtonPressed && !rightGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightGripButton);
@@ -161,7 +164,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn rechter Grip Trigger gedrueckt -> kein highlight mehr
-        if (rightTriggerReference.action.ReadValue<float>() > 0 && rightGripPressed && !rightTriggerPressed)
+        if (rightTriggerReference.action.ReadValue<float>() > 0 && rightGripPressed && !rightTriggerPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightTriggerButton);

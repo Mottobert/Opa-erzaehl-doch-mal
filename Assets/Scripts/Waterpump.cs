@@ -22,7 +22,7 @@ public class Waterpump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.position.y < startPosition.y - 0.125f && active)
+        if(gameObject.transform.position.y < startPosition.y - 0.2f && active)
         {
             if(waterhose.waterAmount < 16)
             {

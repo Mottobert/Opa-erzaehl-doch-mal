@@ -51,6 +51,8 @@ public class WalkingController : MonoBehaviour
     float updateTimer;
     bool opaAhead = false;
 
+    public bool permission = false; // is set true when player accepted disclaimer
+
     private void Start()
     {
         CheckDistanceToTeleportationAreas();
@@ -77,7 +79,7 @@ public class WalkingController : MonoBehaviour
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer < 2f && !safeRoomActive) // && player.transform.position.x < opa.transform.position.x
+            else if(distanceOpaPlayer < 2f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
             {
                 ResetCurveSpeed();
 
@@ -197,5 +199,10 @@ public class WalkingController : MonoBehaviour
 
         opa.transform.position = location.position;
         opa.transform.rotation = location.rotation;
+    }
+
+    public void Permission()
+    {
+        permission = true;
     }
 }

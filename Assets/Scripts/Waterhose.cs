@@ -42,7 +42,7 @@ public class Waterhose : MonoBehaviour
         {
             UpdateWaterParticleSystem(input);
 
-            if (waterTick && input > 0)
+            if (waterTick && input > 0.1f)
             {
                 StartCoroutine(EmptyWater());
             }
@@ -89,7 +89,7 @@ public class Waterhose : MonoBehaviour
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
-    private void UpdateWaterParticleSystem(float input)
+    public void UpdateWaterParticleSystem(float input)
     {
         if(input > 0.1f)
         {
