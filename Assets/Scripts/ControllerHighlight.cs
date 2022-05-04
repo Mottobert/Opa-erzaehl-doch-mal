@@ -175,9 +175,11 @@ public class ControllerHighlight : MonoBehaviour
         }
     }
 
-    IEnumerator ButtonBlinking(GameObject blinking, float delay, ActionBasedController controller, GameObject canvas, GameObject controllerCanvas)
+    IEnumerator ButtonBlinking(GameObject button, float delay, ActionBasedController controller, GameObject canvas, GameObject controllerCanvas)
     {
         yield return new WaitForSeconds(delay);
+
+        ResetButtonBlinkingForAll();
 
         controller.SendHapticImpulse(0.8f, 0.2f);
 
@@ -210,7 +212,7 @@ public class ControllerHighlight : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.01f);
-            blinking.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", value);
+            button.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", value);
         }
     }
 
@@ -230,18 +232,18 @@ public class ControllerHighlight : MonoBehaviour
         bookCanvas.SetActive(false);
     }
 
-    private void ResetButtonHighlight(GameObject highlight)
+    private void ResetButtonHighlight(GameObject button)
     {
         //highlight.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
-        StartCoroutine(ResetButtonBlinking(highlight, 0f));
+        StartCoroutine(ResetButtonBlinking(button, 0f));
         HideAllCanvases();
     }
 
-    IEnumerator ResetButtonBlinking(GameObject blinking, float delay)
+    IEnumerator ResetButtonBlinking(GameObject button, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        float value = blinking.GetComponent<SkinnedMeshRenderer>().material.GetFloat("Vector1_58daa7a04f41410286e9e6b425c90861"); 
+        float value = button.GetComponent<SkinnedMeshRenderer>().material.GetFloat("Vector1_58daa7a04f41410286e9e6b425c90861"); 
         bool positive = true;
 
         while (true)
@@ -266,8 +268,23 @@ public class ControllerHighlight : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.01f);
-            blinking.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", value);
+            button.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", value);
         }
+    }
+
+    private void ResetButtonBlinkingForAll()
+    { 
+        rightGripButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        rightJoystick.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        rightAButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        rightBButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+
+        leftGripButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        leftTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        leftJoystick.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        leftXButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        leftYButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
     }
 
     private void ActivateOutlineObjects()
