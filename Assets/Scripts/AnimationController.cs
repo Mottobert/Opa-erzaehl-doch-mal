@@ -27,10 +27,16 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private GameObject burningFloorTerrain;
 
+    [SerializeField]
+    private Terrain treeTerrain;
+    [SerializeField]
+    private int starTreeDistance;
 
     private void Start()
     {
         ResetBurning();
+
+        treeTerrain.treeDistance = starTreeDistance;
     }
 
     public void ResetBurning()
@@ -53,6 +59,8 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
         StartCoroutine(ChangePostProcessingExposure(1.5f, 0f));
         StartCoroutine(ChangeFogColor(fogStartColor, fogEndColor));
+        StartCoroutine(ChangeTreeDistance(50));
+        
 
         Invoke("BurningFloorChangeAlpha", 8f);
     }
@@ -151,6 +159,20 @@ public class AnimationController : MonoBehaviour
 
             volume.profile.TryGet<ColorAdjustments>(out thisExposure);
             thisExposure.postExposure.value = exposure;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator ChangeTreeDistance(float end)
+    {
+        float treeDistance = treeTerrain.treeDistance;
+
+        while (treeDistance > end)
+        {
+            treeDistance = treeDistance - 0.5f;
+
+            treeTerrain.treeDistance = treeDistance;
 
             yield return new WaitForSeconds(0.1f);
         }

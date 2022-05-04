@@ -91,13 +91,16 @@ public class Waterhose : MonoBehaviour
 
     public void UpdateWaterParticleSystem(float input)
     {
-        if(input > 0.1f)
+        if (input > 0.1f)
         {
             rightController.SendHapticImpulse(Clamp(input + Random.Range(0, 0.1f), 1f, 0f), 0.1f);
         }
         
         var emission = waterParticleSystem.emission;
         emission.rateOverTime = input * 1000;
+
+        var waterPSMain = waterParticleSystem.main;
+        waterPSMain.startSpeedMultiplier = Remap(input, 0, 1, 0, 20);
     }
 
     private float Clamp(float value, float maxValue, float minValue)

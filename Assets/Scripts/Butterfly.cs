@@ -51,6 +51,8 @@ public class Butterfly : MonoBehaviour
     {
         oldPos = activeTarget.transform.position;
         ChangeTarget(RandomTarget(this.transform));
+
+        ActivateHandFlight();
     }
 
     void FixedUpdate()

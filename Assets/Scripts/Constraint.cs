@@ -7,18 +7,19 @@ public class Constraint : MonoBehaviour
     [SerializeField]
     private Transform constrainedObject;
     [SerializeField]
-    private Transform sourceObject;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Transform targetObject;
+    [SerializeField]
+    private Vector3 targetPositionOffset;
+    [SerializeField]
+    private Vector3 targetRotationOffset;
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        constrainedObject.position = sourceObject.position;
-        constrainedObject.rotation = sourceObject.rotation;
+        //constrainedObject.position = targetObject.position;
+        //constrainedObject.rotation = targetObject.rotation;
+
+        constrainedObject.position = targetObject.TransformPoint(targetPositionOffset);
+        constrainedObject.rotation = targetObject.rotation * Quaternion.Euler(targetRotationOffset);
     }
 }
