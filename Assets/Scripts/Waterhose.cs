@@ -18,11 +18,15 @@ public class Waterhose : MonoBehaviour
 
     public bool active = false;
 
+    private bool waterEmpty = false;
+
     [SerializeField]
     private Waterpump waterpump;
 
     [SerializeField]
     private GameObject[] waterAmountdisplay;
+    [SerializeField]
+    private GameObject[] waterAmountdisplayPump;
     [SerializeField]
     private Material waterAmountDisplayDefaultMaterial;
     [SerializeField]
@@ -36,10 +40,10 @@ public class Waterhose : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float input = triggerReference.action.ReadValue<float>();
-
         if (active && waterAmount > 0 && !waterpump.outsideActive)
         {
+            float input = triggerReference.action.ReadValue<float>();
+
             UpdateWaterParticleSystem(input);
 
             if (waterTick && input > 0.1f)
@@ -48,9 +52,9 @@ public class Waterhose : MonoBehaviour
             }
         }
 
-        if(waterAmount < 1 && waterParticleSystem.startSpeed > 19)
+        if(waterAmount < 1 && !waterEmpty)
         {
-            UpdateWaterParticleSystem(0);
+            //UpdateWaterParticleSystem(0f);
             StartCoroutine(LowerWaterPressure());
         }
     }
@@ -66,6 +70,8 @@ public class Waterhose : MonoBehaviour
 
     IEnumerator LowerWaterPressure()
     {
+        waterEmpty = true;
+
         var waterPSMain = waterParticleSystem.main;
         float waterpressure = waterParticleSystem.startSpeed;
         while (waterpressure > 1f)
@@ -136,6 +142,7 @@ public class Waterhose : MonoBehaviour
         waterAmount++;
         UpdateWaterAmountDisplay();
         ResetWaterPressure();
+        waterEmpty = false;
     }
 
     public void UpdateWaterAmountDisplay()
@@ -147,6 +154,7 @@ public class Waterhose : MonoBehaviour
             if(i < waterAmount)
             {
                 waterAmountdisplay[i].GetComponent<MeshRenderer>().material = waterAmountDisplayFullMaterial;
+                waterAmountdisplayPump[i].GetComponent<MeshRenderer>().material = waterAmountDisplayFullMaterial;
             }
         }
     }
@@ -154,6 +162,11 @@ public class Waterhose : MonoBehaviour
     private void ResetWaterAmountDisplay()
     {
         foreach(GameObject wd in waterAmountdisplay)
+        {
+            wd.GetComponent<MeshRenderer>().material = waterAmountDisplayDefaultMaterial;
+        }
+
+        foreach (GameObject wd in waterAmountdisplayPump)
         {
             wd.GetComponent<MeshRenderer>().material = waterAmountDisplayDefaultMaterial;
         }
