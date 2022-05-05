@@ -8,41 +8,75 @@ public class FireManager : MonoBehaviour
     [SerializeField]
     private GameObject[] igniters;
 
+    [SerializeField]
+    private GameObject[] fireAreas;
+
     public int timer = 0;
+    public int fireActivationTimer = 300;
+
+    private float maximumActiveFireAreas = 1;
+
+    public bool ignitable = true;
 
     public void ActivateRandomIgniter()
     {
-        int ignitersCount = 0;
-
-        foreach(GameObject i in igniters)
+        if (ignitable)
         {
-            if (i.activeInHierarchy)
+            int ignitersCount = 0;
+
+            //foreach(GameObject i in igniters)
+            //{
+            //    if (i.activeInHierarchy)
+            //    {
+            //        ignitersCount++;
+            //    }
+            //}
+
+            foreach (GameObject i in fireAreas)
             {
-                ignitersCount++;
+                if (i.GetComponent<FlammableObject>().onFire)
+                {
+                    ignitersCount++;
+                }
             }
-        }
 
-        if(ignitersCount <= 1)
-        {
-            GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
-            randomIgniter.SetActive(true);
-            Debug.Log(randomIgniter);
-            StartCoroutine(DeactivateIgniterDelay(randomIgniter, 5f));
-        }
+            if (ignitersCount <= Mathf.FloorToInt(maximumActiveFireAreas))
+            {
+                if(ignitersCount == Mathf.FloorToInt(maximumActiveFireAreas))
+                {
+                    ignitable = false;
+                }   
 
-        StartCoroutine(ActivateIgniterDelay(Random.Range(5f, 15f)));
+                maximumActiveFireAreas = maximumActiveFireAreas + 0.2f;
+                
+                GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
+
+                //StartCoroutine(ActivateIgniterDelay(randomIgniter, 3));
+
+                randomIgniter.SetActive(true);
+                
+                StartCoroutine(DeactivateIgniterDelay(randomIgniter, 5f));
+            }
+
+            //Debug.Log(ignitersCount);
+            //StartCoroutine(ActivateIgniterDelay(Random.Range(5f, 15f)));
+        }
+        
     }
 
-    IEnumerator ActivateIgniterDelay(float delay)
+    IEnumerator ActivateIgniterDelay(GameObject igniter, float delay)
     {
         yield return new WaitForSeconds(delay);
-        ActivateRandomIgniter();
+        igniter.SetActive(true);
+        StartCoroutine(DeactivateIgniterDelay(igniter, 5f));
+        //ActivateRandomIgniter();
     }
 
     IEnumerator DeactivateIgniterDelay(GameObject igniter, float delay)
     {
         yield return new WaitForSeconds(delay);
         igniter.SetActive(false);
+        ignitable = true;
     }
 
     public void StartFireSound(GameObject fireAudioSource)
@@ -61,7 +95,14 @@ public class FireManager : MonoBehaviour
         {
             timer--;
         }
-        
+
+        if(fireActivationTimer <= 0)
+        {
+            fireActivationTimer = 50;
+            ActivateRandomIgniter();
+        }
+
+        fireActivationTimer--;
     }
 
     public void ResetFireArea(GameObject fireArea)
@@ -77,7 +118,7 @@ public class FireManager : MonoBehaviour
     { 
         yield return new WaitForSeconds(1f);
         fireArea.SetActive(false);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         fireArea.SetActive(true);
     }
 }

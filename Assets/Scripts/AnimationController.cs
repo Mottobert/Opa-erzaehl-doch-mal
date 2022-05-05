@@ -51,7 +51,7 @@ public class AnimationController : MonoBehaviour
 
     public void ActivateBurning()
     {
-        ActivateFlammableObjects();
+        //ActivateFlammableObjects();
         ActivateFireAnimationControllers();
 
         StartCoroutine(ChangeFogDensity(0.02f));
@@ -62,7 +62,7 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeTreeDistance(50));
         
 
-        Invoke("BurningFloorChangeAlpha", 8f);
+        Invoke("BurningFloorChangeAlpha", 5f);
     }
 
     private void BurningFloorChangeAlpha()

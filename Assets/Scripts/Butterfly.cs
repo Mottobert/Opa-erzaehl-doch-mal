@@ -52,7 +52,7 @@ public class Butterfly : MonoBehaviour
         oldPos = activeTarget.transform.position;
         ChangeTarget(RandomTarget(this.transform));
 
-        ActivateHandFlight();
+        //ActivateHandFlight();
     }
 
     void FixedUpdate()
@@ -106,6 +106,7 @@ public class Butterfly : MonoBehaviour
     {
         if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget" && activateHandFlight)
         {
+            StopCoroutine(FlyToHand());
             StartCoroutine("ActivateTargetFlightDelay", other.transform);
             //ActivatePlayerTargetFlight();
         }
@@ -114,6 +115,13 @@ public class Butterfly : MonoBehaviour
     public void ActivateHandFlight()
     {
         activateHandFlight = true;
+        StartCoroutine(FlyToHand());
+    }
+
+    IEnumerator FlyToHand()
+    {
+        yield return new WaitForSeconds(10);
+        ActivatePlayerTargetFlight(playerTarget);
     }
 
     private void ChangeTarget(Transform newTarget)
