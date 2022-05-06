@@ -84,6 +84,9 @@ public class ControllerHighlight : MonoBehaviour
     private GameObject bookCanvas;
 
     [SerializeField]
+    private GameObject wildfireBook;
+
+    [SerializeField]
     private GameObject[] outlineObjects;
 
     // Start is called before the first frame update
@@ -172,6 +175,7 @@ public class ControllerHighlight : MonoBehaviour
             rightTriggerPressed = true;
 
             bookCanvas.SetActive(true);
+            wildfireBook.GetComponent<Outline>().ActivateBlinking();
         }
     }
 
@@ -192,7 +196,7 @@ public class ControllerHighlight : MonoBehaviour
 
         while (true)
         {
-            if(value > 0.98f)
+            if(value > 0.75f)
             {
                 positive = false;
             }

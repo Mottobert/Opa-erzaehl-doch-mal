@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09052165, g: 0.11536325, b: 0.16253643, a: 1}
+  m_IndirectSpecularColor: {r: 0.090521425, g: 0.11536293, b: 0.16253597, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -604,6 +604,7 @@ MonoBehaviour:
   rightTriggerCanvas: {fileID: 1622898675}
   rightTriggerControllerCanvas: {fileID: 2053677081}
   bookCanvas: {fileID: 1279488366}
+  wildfireBook: {fileID: 3152471961856620112}
   outlineObjects:
   - {fileID: 3655000508972456810}
   - {fileID: 8513859188528231513}
@@ -665,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 0, g: 0.98039216, b: 1, a: 1}
   outlineWidth: 0
   precomputeOutline: 1
@@ -7772,7 +7773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 0, g: 0.98021173, b: 1, a: 1}
   outlineWidth: 0
   precomputeOutline: 1
@@ -15228,6 +15229,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3152471961856620113}
+        m_TargetAssemblyTypeName: Outline, Assembly-CSharp
+        m_MethodName: DeactivateBlinking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls:
@@ -21378,7 +21391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 0, g: 0.98021173, b: 1, a: 1}
   outlineWidth: 0
   precomputeOutline: 1
@@ -23391,8 +23404,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149286082253}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1448, y: 0.9039, z: 1.2128}
-  m_LocalScale: {x: 0.012353046, y: 0.012353046, z: 0.012353046}
+  m_LocalPosition: {x: -2.1451, y: 0.923, z: 1.2128}
+  m_LocalScale: {x: 0.014853302, y: 0.014853302, z: 0.014853302}
   m_Children:
   - {fileID: 5022772162688018772}
   - {fileID: 5684219398866582416}
@@ -23558,7 +23571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
+  outlineMode: 0
   outlineColor: {r: 0, g: 0.98039216, b: 1, a: 1}
   outlineWidth: 0
   precomputeOutline: 1
@@ -27974,6 +27987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064599385909978024}
   - component: {fileID: 4299901466925766828}
+  - component: {fileID: 3152471961856620113}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -27981,6 +27995,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3152471961856620113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3152471961856620112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0.98039216, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 1
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3287646205433820840
 GameObject:
   m_ObjectHideFlags: 0
