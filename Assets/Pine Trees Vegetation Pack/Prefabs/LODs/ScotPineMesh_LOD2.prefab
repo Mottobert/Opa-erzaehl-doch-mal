@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4039595690777549589}
   - component: {fileID: 4910911546681684657}
   - component: {fileID: 7829496818099385911}
+  - component: {fileID: 4560094910595995089}
   m_Layer: 0
   m_Name: ScotPineMesh_LOD2
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4060473883782375191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -95,7 +96,7 @@ BoxCollider:
   m_GameObject: {fileID: 4060473883782375191}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.37801087, y: 15.361944, z: 0.4528981}
   m_Center: {x: -0.0124179125, y: 7.680973, z: -0.05783558}
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4060473883782375191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45fa1a403ac351a47a29cea99a046537, type: 3}
   m_Name: 
@@ -175,6 +176,29 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
+--- !u!205 &4560094910595995089
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060473883782375191}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0000026226044, y: 7.7966585, z: 0.000002861023}
+  m_Size: 15.593319
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.97147834
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2966634080953270462}
+  - screenRelativeHeight: 0.49516243
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2104693885796853773}
+  m_Enabled: 1
 --- !u!1001 &4989883509630221216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7800811785018722076, guid: 65d92c121a8bd49bb9142fb0ace50737, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7806567982426939166, guid: 65d92c121a8bd49bb9142fb0ace50737, type: 3}
       propertyPath: m_RootOrder
@@ -243,6 +267,11 @@ PrefabInstance:
 --- !u!4 &2983952122718479550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7806567982426939166, guid: 65d92c121a8bd49bb9142fb0ace50737, type: 3}
+  m_PrefabInstance: {fileID: 4989883509630221216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2966634080953270462 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7787912773461031710, guid: 65d92c121a8bd49bb9142fb0ace50737, type: 3}
   m_PrefabInstance: {fileID: 4989883509630221216}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7128990254826485158
@@ -302,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190794557914286303, guid: eab1927fda503431580962ec78b69f5d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9212708070037970347, guid: eab1927fda503431580962ec78b69f5d, type: 3}
       propertyPath: m_CastShadows
@@ -313,5 +342,10 @@ PrefabInstance:
 --- !u!4 &2119000493563097859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9189438245217486501, guid: eab1927fda503431580962ec78b69f5d, type: 3}
+  m_PrefabInstance: {fileID: 7128990254826485158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2104693885796853773 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9212708070037970347, guid: eab1927fda503431580962ec78b69f5d, type: 3}
   m_PrefabInstance: {fileID: 7128990254826485158}
   m_PrefabAsset: {fileID: 0}

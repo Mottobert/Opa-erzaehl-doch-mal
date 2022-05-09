@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7052436237949062168}
   - component: {fileID: 8675458739070078948}
   - component: {fileID: 4719915907880668460}
+  - component: {fileID: 8142336487589151544}
   m_Layer: 0
   m_Name: Pine3Mesh_LOD2
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027912323223259534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -95,7 +96,7 @@ BoxCollider:
   m_GameObject: {fileID: 7027912323223259534}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.42386633, y: 13.829278, z: 0.54998624}
   m_Center: {x: 0.014755107, y: 6.7295356, z: 0.1321606}
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7027912323223259534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45fa1a403ac351a47a29cea99a046537, type: 3}
   m_Name: 
@@ -175,6 +176,29 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
+--- !u!205 &8142336487589151544
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7027912323223259534}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.14963436, y: 6.7409096, z: -0.00000333786}
+  m_Size: 13.852026
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.96692884
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 811152078201064263}
+  - screenRelativeHeight: 0.5041831
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6524922633862012449}
+  m_Enabled: 1
 --- !u!1001 &2605390797825541617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,7 +256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3404334037950778144, guid: 6d5f5bfbe000e455e99725d3d5e65c1e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3416542872622075574, guid: 6d5f5bfbe000e455e99725d3d5e65c1e, type: 3}
       propertyPath: m_CastShadows
@@ -247,6 +271,11 @@ PrefabInstance:
 --- !u!4 &800565408824449557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401370964645437412, guid: 6d5f5bfbe000e455e99725d3d5e65c1e, type: 3}
+  m_PrefabInstance: {fileID: 2605390797825541617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &811152078201064263 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3416542872622075574, guid: 6d5f5bfbe000e455e99725d3d5e65c1e, type: 3}
   m_PrefabInstance: {fileID: 2605390797825541617}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3152004425027315109
@@ -270,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8171344665763924112, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8173744226571382528, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
       propertyPath: m_RootOrder
@@ -321,5 +350,10 @@ PrefabInstance:
 --- !u!4 &6543961440579586725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173744226571382528, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
+  m_PrefabInstance: {fileID: 3152004425027315109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6524922633862012449 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8156869688236063620, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
   m_PrefabInstance: {fileID: 3152004425027315109}
   m_PrefabAsset: {fileID: 0}

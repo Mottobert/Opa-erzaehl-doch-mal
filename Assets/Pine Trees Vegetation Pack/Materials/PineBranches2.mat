@@ -122,7 +122,7 @@ Material:
     - _AlphaCutoff: 0.4
     - _AlphaTreshold: 0.215
     - _Blend: 0
-    - _BumpIntensity: 2
+    - _BumpIntensity: 1
     - _BumpScale: 1.5
     - _Cull: 0
     - _Cutoff: 0.2
