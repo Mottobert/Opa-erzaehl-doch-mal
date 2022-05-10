@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6980320360451625077}
   - component: {fileID: 6650348082958985630}
   - component: {fileID: 4586447334324657280}
-  - component: {fileID: 3162691871913833478}
+  - component: {fileID: 5562439614178468338}
   m_Layer: 0
   m_Name: Pine_1_LOD2
   m_TagString: Untagged
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
---- !u!205 &3162691871913833478
+--- !u!205 &5562439614178468338
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,11 +190,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.97147834
+  - screenRelativeHeight: 0.6994962
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2938618400708018689}
-  - screenRelativeHeight: 0.49782866
+  - screenRelativeHeight: 0.0032533077
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6865020604794687574}

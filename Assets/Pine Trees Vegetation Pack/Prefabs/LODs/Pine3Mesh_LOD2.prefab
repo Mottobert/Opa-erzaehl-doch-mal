@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7026369819092393290}
-  - component: {fileID: 7059548614675841596}
-  - component: {fileID: 7052436237949062168}
   - component: {fileID: 8675458739070078948}
   - component: {fileID: 4719915907880668460}
-  - component: {fileID: 8142336487589151544}
+  - component: {fileID: 3845261110503015432}
   m_Layer: 0
   m_Name: Pine3Mesh_LOD2
   m_TagString: Untagged
@@ -37,56 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7059548614675841596
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027912323223259534}
-  m_Mesh: {fileID: 4300040, guid: 70be494bd0acdd64c8c193a91a1dd67c, type: 3}
---- !u!23 &7052436237949062168
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027912323223259534}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 3
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: ca33818dcb1e19f4ab10362cd615c3e5, type: 2}
-  - {fileID: 2100000, guid: fe02dcba64f34e04cad6702b936e14d4, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 2
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8675458739070078948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -176,7 +124,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
---- !u!205 &8142336487589151544
+--- !u!205 &3845261110503015432
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,11 +138,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.96692884
+  - screenRelativeHeight: 0.6964671
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 811152078201064263}
-  - screenRelativeHeight: 0.5041831
+  - screenRelativeHeight: 0.0034928848
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6524922633862012449}
@@ -291,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8156869688236063620, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
       propertyPath: m_ScaleInLightmap
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8171344665763924112, guid: bfb8e9fe3c3ac416a935cdc7457d9c6c, type: 3}
       propertyPath: m_Name

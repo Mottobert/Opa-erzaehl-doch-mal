@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4039595690777549589}
   - component: {fileID: 4910911546681684657}
   - component: {fileID: 7829496818099385911}
-  - component: {fileID: 4560094910595995089}
+  - component: {fileID: 3965315305287562421}
   m_Layer: 0
   m_Name: ScotPineMesh_LOD2
   m_TagString: Untagged
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
---- !u!205 &4560094910595995089
+--- !u!205 &3965315305287562421
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,11 +190,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.97147834
+  - screenRelativeHeight: 0.6964671
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2966634080953270462}
-  - screenRelativeHeight: 0.49516243
+  - screenRelativeHeight: 0.0032533077
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2104693885796853773}

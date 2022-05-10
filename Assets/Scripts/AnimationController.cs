@@ -30,13 +30,13 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private Terrain treeTerrain;
     [SerializeField]
-    private int starTreeDistance;
+    private int startTreeDistance;
 
     private void Start()
     {
         ResetBurning();
 
-        treeTerrain.treeDistance = starTreeDistance;
+        treeTerrain.treeDistance = startTreeDistance;
     }
 
     public void ResetBurning()
@@ -59,7 +59,7 @@ public class AnimationController : MonoBehaviour
         StartCoroutine(ChangeTerrainMaterialTemperature(0f, 50f));
         StartCoroutine(ChangePostProcessingExposure(1.5f, 0f));
         StartCoroutine(ChangeFogColor(fogStartColor, fogEndColor));
-        StartCoroutine(ChangeTreeDistance(50));
+        //StartCoroutine(ChangeTreeDistance(50));
         
 
         Invoke("BurningFloorChangeAlpha", 5f);

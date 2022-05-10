@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2649169369675135926}
   - component: {fileID: 1333885121285608721}
   - component: {fileID: 4280117885585581483}
-  - component: {fileID: 8990165771676193072}
+  - component: {fileID: 5739753186303688467}
   m_Layer: 0
   m_Name: pine5Mesh_LOD2
   m_TagString: Untagged
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   openTabUpper: 1
   openTabLower: 4
---- !u!205 &8990165771676193072
+--- !u!205 &5739753186303688467
 LODGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,11 +190,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.96692884
+  - screenRelativeHeight: 0.6964671
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5623458857809477782}
-  - screenRelativeHeight: 0.49782866
+  - screenRelativeHeight: 0.0032533077
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2179918712852140057}
