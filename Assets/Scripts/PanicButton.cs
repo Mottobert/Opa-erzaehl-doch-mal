@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PanicButton : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class PanicButton : MonoBehaviour
 
     [SerializeField]
     private Transform playerTransform;
+    [SerializeField]
+    private Transform cameraTransform;
+
+    [SerializeField]
+    private ActionBasedController leftController;
+    [SerializeField]
+    private ActionBasedController rightController;
+
+    [SerializeField]
+    private GameObject[] grabbables;
 
     [SerializeField]
     private Transform savedTransform;
@@ -32,6 +43,8 @@ public class PanicButton : MonoBehaviour
         if((input > 0.1f && !active)|| Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("Panic Button Pressed");
+            DropItemsFromController();
+            DeactivateAllActiveTimelines();
             ActivateSafeRoom();
         }
 
@@ -39,16 +52,19 @@ public class PanicButton : MonoBehaviour
         {
             Debug.Log("Teleport back to previous Position");
             DeactivateSafeRoom();
+
+            
+            ActivatePausedTimelines();
         }
     }
 
     private void DeactivateAllActiveTimelines()
     {
-        deactivatedTimelines = null;
+        deactivatedTimelines = new List<GameObject>();
 
         foreach(GameObject t in timelines)
         {
-            if (t.GetComponent<PlayableDirector>().playableGraph.IsPlaying())
+            if (t.GetComponent<PlayableDirector>().playableGraph.IsValid() && t.GetComponent<PlayableDirector>().playableGraph.IsPlaying())
             {
                 t.GetComponent<PlayableDirector>().Pause();
                 deactivatedTimelines.Add(t);
@@ -56,9 +72,25 @@ public class PanicButton : MonoBehaviour
         }
     }
 
-    private void ActivateAllTimelines()
+    private void DropItemsFromController()
     {
-        foreach(GameObject t in deactivatedTimelines)
+        foreach(GameObject g in grabbables)
+        {
+            g.GetComponent<XRGrabInteractable>().enabled = false;
+
+            StartCoroutine(EnableGrabInteractorDelay(g));
+        }
+    }
+
+    IEnumerator EnableGrabInteractorDelay(GameObject grabbable)
+    {
+        yield return new WaitForSeconds(1f);
+        grabbable.GetComponent<XRGrabInteractable>().enabled = true;
+    }
+
+    public void ActivatePausedTimelines()
+    {
+        foreach (GameObject t in deactivatedTimelines)
         {
             t.GetComponent<PlayableDirector>().Play();
         }
@@ -71,7 +103,7 @@ public class PanicButton : MonoBehaviour
         SafeTransform(playerTransform);
         TeleportPlayerToTransform(safeRoomTransform);
         //DeactivateAllActiveTimelines();
-        Time.timeScale = 0;
+        //Time.timeScale = 1;
     }
 
     // bringt Nutzer zurück zur Ausgangsposition
@@ -79,7 +111,7 @@ public class PanicButton : MonoBehaviour
     {
         TeleportPlayerToTransform(savedTransform);
         active = false;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         //ActivateAllTimelines();
     }
 
