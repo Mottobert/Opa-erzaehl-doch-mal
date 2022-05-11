@@ -9,16 +9,34 @@ public class AttachPlayerToRope : MonoBehaviour
     private GameObject xrOrigin;
 
     [SerializeField]
-    private PlayableDirector helicopterFlyAwayTimeline;
+    private PlayableDirector helicopterFlyAwayTimelineHoehenangst;
+
+    [SerializeField]
+    private PlayableDirector helicopterFlyAwayTimelineNoHoehenangst;
+
+    [SerializeField]
+    private bool hoehenangst;
 
     public void AttachPlayer()
     {
         xrOrigin.transform.parent = this.transform;
-        helicopterFlyAwayTimeline.Play();
+        if (hoehenangst)
+        {
+            helicopterFlyAwayTimelineHoehenangst.Play();
+        }
+        else
+        {
+            helicopterFlyAwayTimelineNoHoehenangst.Play();
+        }
     }
 
     public void DetachPlayer()
     {
         xrOrigin.transform.parent = null;
+    }
+
+    public void SetHoehenangst(bool angst)
+    {
+        hoehenangst = angst;
     }
 }

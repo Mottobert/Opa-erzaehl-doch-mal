@@ -19,11 +19,6 @@ public class PanicButton : MonoBehaviour
     private Transform cameraTransform;
 
     [SerializeField]
-    private ActionBasedController leftController;
-    [SerializeField]
-    private ActionBasedController rightController;
-
-    [SerializeField]
     private GameObject[] grabbables;
 
     [SerializeField]
@@ -42,7 +37,7 @@ public class PanicButton : MonoBehaviour
 
         if((input > 0.1f && !active)|| Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("Panic Button Pressed");
+            //Debug.Log("Panic Button Pressed");
             DropItemsFromController();
             DeactivateAllActiveTimelines();
             ActivateSafeRoom();
@@ -50,7 +45,7 @@ public class PanicButton : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Debug.Log("Teleport back to previous Position");
+            //Debug.Log("Teleport back to previous Position");
             DeactivateSafeRoom();
 
             
@@ -140,6 +135,8 @@ public class PanicButton : MonoBehaviour
     {
         playerTransform.position = newTransform.position;
         playerTransform.rotation = newTransform.rotation;
+
+        cameraTransform.rotation = Quaternion.Euler(cameraTransform.rotation.eulerAngles.x, newTransform.rotation.eulerAngles.y, cameraTransform.rotation.eulerAngles.z);
     }
 
     // Speichern der aktuellen Position und Rotation

@@ -11,6 +11,9 @@ public class FireManager : MonoBehaviour
     [SerializeField]
     private GameObject[] fireAreas;
 
+    [SerializeField]
+    private GameObject[] newFireAreas;
+
     public int timer = 0;
     public int fireActivationTimer = 300;
 
@@ -32,9 +35,17 @@ public class FireManager : MonoBehaviour
             //    }
             //}
 
-            foreach (GameObject i in fireAreas)
+            //foreach (GameObject i in fireAreas)
+            //{
+            //    if (i.GetComponent<FlammableObject>().onFire)
+            //    {
+            //        ignitersCount++;
+            //    }
+            //}
+
+            foreach (GameObject i in newFireAreas)
             {
-                if (i.GetComponent<FlammableObject>().onFire)
+                if (i.GetComponent<FireArea>().active)
                 {
                     ignitersCount++;
                 }
@@ -49,19 +60,15 @@ public class FireManager : MonoBehaviour
 
                 maximumActiveFireAreas = maximumActiveFireAreas + 0.2f;
                 
-                GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
+                //GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
 
-                //StartCoroutine(ActivateIgniterDelay(randomIgniter, 3));
+                newFireAreas[Random.Range(0, newFireAreas.Length)].GetComponent<FireArea>().IgniteFire();
 
-                randomIgniter.SetActive(true);
+                //randomIgniter.SetActive(true);
                 
-                StartCoroutine(DeactivateIgniterDelay(randomIgniter, 5f));
+                //StartCoroutine(DeactivateIgniterDelay(randomIgniter, 5f));
             }
-
-            //Debug.Log(ignitersCount);
-            //StartCoroutine(ActivateIgniterDelay(Random.Range(5f, 15f)));
         }
-        
     }
 
     IEnumerator ActivateIgniterDelay(GameObject igniter, float delay)
@@ -69,7 +76,6 @@ public class FireManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         igniter.SetActive(true);
         StartCoroutine(DeactivateIgniterDelay(igniter, 5f));
-        //ActivateRandomIgniter();
     }
 
     IEnumerator DeactivateIgniterDelay(GameObject igniter, float delay)

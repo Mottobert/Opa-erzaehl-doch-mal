@@ -79,7 +79,7 @@ public class WalkingController : MonoBehaviour
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer < 2f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
+            else if(distanceOpaPlayer < 4f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
             {
                 ResetCurveSpeed();
 
@@ -110,9 +110,11 @@ public class WalkingController : MonoBehaviour
                 timelineSee.Play();
                 StopWalking();
                 break;
-            case 23:
+            case 21:
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
+                break;
+            case 23:
                 StopWalking();
                 break;
             case 32:
@@ -132,7 +134,7 @@ public class WalkingController : MonoBehaviour
     public void ResetCurveSpeed()
     {
         //Debug.Log("ResetCurve");
-        bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0.8f;
+        bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 1f;
         opaAnimator.SetBool("active", true);
     }
 

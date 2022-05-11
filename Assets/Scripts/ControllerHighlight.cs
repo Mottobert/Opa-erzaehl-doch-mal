@@ -84,6 +84,9 @@ public class ControllerHighlight : MonoBehaviour
     private GameObject bookCanvas;
 
     [SerializeField]
+    private GameObject rightTriggerButtonPressCanvas;
+
+    [SerializeField]
     private GameObject wildfireBook;
 
     [SerializeField]
@@ -92,10 +95,16 @@ public class ControllerHighlight : MonoBehaviour
     [SerializeField]
     private PanicButton panicButton;
 
+    [SerializeField]
+    private GameObject[] interactables;
+
+    public bool safeRoomWasActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
         HideAllCanvases();
+        DeactivateInteractables();
 
         if (tutorialIntroduction)
         {
@@ -116,7 +125,7 @@ public class ControllerHighlight : MonoBehaviour
     private void Update()
     {
         // Wenn rechter Joystick gedrueckt -> linker Grip Button highlighten
-        if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted && !panicButton.active)
+        if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightJoystick);
@@ -127,7 +136,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
-        if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed && tutorialStarted && !panicButton.active)
+        if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(leftGripButton);
@@ -138,10 +147,12 @@ public class ControllerHighlight : MonoBehaviour
             StartCoroutine(ButtonBlinking(rightBButton, 2f, rightController, panicButtonCanvas, panicButtonRightControllerCanvas));
             StartCoroutine(ButtonBlinking(leftXButton, 2f, leftController, panicButtonCanvas, panicButtonLeftControllerCanvas));
             StartCoroutine(ButtonBlinking(leftYButton, 2f, leftController, panicButtonCanvas, panicButtonLeftControllerCanvas));
+
+            panicButton.gameObject.SetActive(true);
         }
 
         // Wenn Panic Buttons gedrueckt -> rechter Grip Button highlighten
-        if (panicButtonReference.action.ReadValue<float>() > 0 && leftGripPressed && !panicButtonPressed && tutorialStarted && !panicButton.active)
+        if (leftGripPressed && !panicButtonPressed && tutorialStarted && !panicButton.active && safeRoomWasActive)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightAButton);
@@ -154,6 +165,8 @@ public class ControllerHighlight : MonoBehaviour
             ActivateOutlineObjects();
 
             StartCoroutine(ButtonBlinking(rightGripButton, 2f, rightController, rightGripCanvas, rightGripControllerCanvas));
+
+            ActivateInteractables();
         }
 
         // Wenn rechter Grip Button gedrueckt -> rechter Trigger highlighten
@@ -170,7 +183,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn rechter Grip Trigger gedrueckt -> kein highlight mehr
-        if (rightTriggerReference.action.ReadValue<float>() > 0 && rightGripPressed && !rightTriggerPressed && tutorialStarted && !panicButton.active)
+        if (rightTriggerReference.action.ReadValue<float>() > 0.1f && rightGripPressed && !rightTriggerPressed && tutorialStarted && !panicButton.active)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightTriggerButton);
@@ -182,6 +195,32 @@ public class ControllerHighlight : MonoBehaviour
         }
     }
 
+    private void ActivateInteractables()
+    {
+        foreach(GameObject i in interactables)
+        {
+            i.GetComponent<XRGrabInteractable>().enabled = true;
+        }
+    }
+
+    private void DeactivateInteractables()
+    {
+        foreach (GameObject i in interactables)
+        {
+            i.GetComponent<XRGrabInteractable>().enabled = false;
+        }
+    }
+
+    public void SetSafeRoomActive()
+    {
+        safeRoomWasActive = true;
+    }
+
+    public void HighlightRightTrigger()
+    {
+        StartCoroutine(ButtonBlinking(rightTriggerButton, 0f, rightController, null, rightTriggerButtonPressCanvas));
+    }
+
     IEnumerator ButtonBlinking(GameObject button, float delay, ActionBasedController controller, GameObject canvas, GameObject controllerCanvas)
     {
         yield return new WaitForSeconds(delay);
@@ -190,8 +229,12 @@ public class ControllerHighlight : MonoBehaviour
 
         controller.SendHapticImpulse(0.8f, 0.2f);
 
-        canvas.SetActive(true);
-        canvas.GetComponentInChildren<AudioSource>().Play();
+        if (canvas)
+        {
+            canvas.SetActive(true);
+            canvas.GetComponentInChildren<AudioSource>().Play();
+        }
+        
         controllerCanvas.SetActive(true);
 
         float value = 0;
@@ -237,6 +280,7 @@ public class ControllerHighlight : MonoBehaviour
         rightGripControllerCanvas.SetActive(false);
         rightTriggerControllerCanvas.SetActive(false);
         bookCanvas.SetActive(false);
+        rightTriggerButtonPressCanvas.SetActive(false);
     }
 
     private void ResetButtonHighlight(GameObject button)

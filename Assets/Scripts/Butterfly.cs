@@ -87,7 +87,7 @@ public class Butterfly : MonoBehaviour
             }
         }
 
-        if (!randomFlight && velocity.magnitude > 1f && handTarget)
+        if (!randomFlight && velocity.magnitude > 1.5f && handTarget)
         {
             handTarget = false;
             StopAllCoroutines();
@@ -173,7 +173,7 @@ public class Butterfly : MonoBehaviour
 
         float distanceToSpawnPoint = Vector3.Distance(zeroTarget.position, spawnPosition.position);
 
-        if (distanceToSpawnPoint < spawnRadius)
+        if (distanceToSpawnPoint < spawnRadius && zeroTarget.position.y >= spawnPosition.position.y)
         {
             currentTargetVisualizer.transform.position = zeroTarget.position;
             return zeroTarget;
