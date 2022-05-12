@@ -38,7 +38,7 @@ public class PanicButton : MonoBehaviour
         if((input > 0.1f && !active)|| Input.GetKeyDown(KeyCode.B))
         {
             //Debug.Log("Panic Button Pressed");
-            DropItemsFromController();
+            DropItemsFromController(true);
             DeactivateAllActiveTimelines();
             ActivateSafeRoom();
         }
@@ -67,13 +67,16 @@ public class PanicButton : MonoBehaviour
         }
     }
 
-    private void DropItemsFromController()
+    public void DropItemsFromController(bool reenable)
     {
         foreach(GameObject g in grabbables)
         {
             g.GetComponent<XRGrabInteractable>().enabled = false;
 
-            StartCoroutine(EnableGrabInteractorDelay(g));
+            if (reenable)
+            {
+                StartCoroutine(EnableGrabInteractorDelay(g));
+            }
         }
     }
 
