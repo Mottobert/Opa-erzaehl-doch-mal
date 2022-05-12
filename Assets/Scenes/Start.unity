@@ -5110,7 +5110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 256.5, y: 50}
+  m_SizeDelta: {x: 293.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353989029
 MonoBehaviour:
@@ -5132,7 +5132,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nutze einen der Buttons um den Safe Room zu aktivieren
+  m_text: Nutze einen der Buttons um den sicheren Raum zu aktivieren
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8202,7 +8202,7 @@ RectTransform:
   m_Children:
   - {fileID: 710875716}
   m_Father: {fileID: 2073549592}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16362,7 +16362,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 257.2, y: 50}
+  m_SizeDelta: {x: 290.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234557582
 MonoBehaviour:
@@ -16384,7 +16384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nutze einen der Buttons um den Safe Room zu aktivieren
+  m_text: Nutze einen der Buttons um den sicheren Raum zu aktivieren
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18514,8 +18514,6 @@ MonoBehaviour:
   safeRoomTransform: {fileID: 269723498}
   playerTransform: {fileID: 880528454}
   cameraTransform: {fileID: 2082409246}
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
   grabbables:
   - {fileID: 919132147899099195}
   - {fileID: 919132149286082253}
@@ -19402,7 +19400,7 @@ RectTransform:
   m_LocalScale: {x: 0.016218, y: 0.016218, z: 0.016218}
   m_Children: []
   m_Father: {fileID: 2073549592}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19429,7 +19427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Du stehst im Safe Room.
+  m_text: Du stehst im sicheren Raum.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21668,8 +21666,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0.0422}
   m_LocalScale: {x: 0.019766154, y: 0.019766154, z: 0.019766154}
   m_Children:
-  - {fileID: 926600587}
   - {fileID: 1843062972}
+  - {fileID: 926600587}
   m_Father: {fileID: 952946300}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -18.707, y: 69.135, z: -0.002}
