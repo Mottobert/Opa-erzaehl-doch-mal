@@ -114,7 +114,7 @@ public class WalkingController : MonoBehaviour
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
                 break;
-            case 23:
+            case 24:
                 StopWalking();
                 break;
             case 32:
