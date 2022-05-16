@@ -82,6 +82,13 @@ public class FireArea : MonoBehaviour
 
         fireManager.gameObject.SetActive(true);
 
+        StartCoroutine(ActivateRandomIgniterDelay(2f));
+    }
+
+    IEnumerator ActivateRandomIgniterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         fireManager.ActivateRandomIgniter();
         fireManager.ignitable = true;
     }

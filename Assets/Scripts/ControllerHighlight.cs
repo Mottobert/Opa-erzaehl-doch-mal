@@ -100,6 +100,8 @@ public class ControllerHighlight : MonoBehaviour
 
     public bool safeRoomWasActive = false;
 
+    private bool playerTeleported = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -136,7 +138,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
-        if (leftGripReference.action.ReadValue<float>() > 0 && rightJoystickPressed && !leftGripPressed && tutorialStarted)
+        if (playerTeleported && rightJoystickPressed && !leftGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(leftGripButton);
@@ -177,7 +179,7 @@ public class ControllerHighlight : MonoBehaviour
 
             rightGripPressed = true;
 
-            DeactivateOutlineObjects();
+            //DeactivateOutlineObjects();
 
             StartCoroutine(ButtonBlinking(rightTriggerButton, 2f, rightController, rightTriggerCanvas, rightTriggerControllerCanvas));
         }
@@ -242,7 +244,7 @@ public class ControllerHighlight : MonoBehaviour
 
         while (true)
         {
-            if(value > 0.75f)
+            if(value > 0.9f)
             {
                 positive = false;
             }
@@ -352,5 +354,10 @@ public class ControllerHighlight : MonoBehaviour
         {
             g.GetComponent<Outline>().DeactivateBlinking();
         }
+    }
+
+    public void PlayerTeleportet()
+    {
+        playerTeleported = true;
     }
 }

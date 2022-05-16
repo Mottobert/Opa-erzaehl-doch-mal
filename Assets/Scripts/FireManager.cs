@@ -58,7 +58,7 @@ public class FireManager : MonoBehaviour
                     ignitable = false;
                 }   
 
-                maximumActiveFireAreas = maximumActiveFireAreas + 0.2f;
+                maximumActiveFireAreas = maximumActiveFireAreas + 0.1f;
                 
                 //GameObject randomIgniter = igniters[Random.Range(0, igniters.Length)];
 

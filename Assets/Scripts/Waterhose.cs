@@ -32,9 +32,14 @@ public class Waterhose : MonoBehaviour
     [SerializeField]
     private Material waterAmountDisplayFullMaterial;
 
+    [SerializeField]
+    private GameObject waterEmptyCanvas;
+
     private void Start()
     {
         UpdateWaterAmountDisplay();
+
+        HideEmptyWaterCanvas();
     }
 
     // Update is called once per frame
@@ -83,6 +88,8 @@ public class Waterhose : MonoBehaviour
             emission.rateOverTime = Clamp(Remap(waterpressure - 1, 0, 20, 0, 1), 1f, 0f) * 1000;
             yield return new WaitForSeconds(0.02f);
         }
+
+        ShowEmptyWaterCanvas();
     }
 
     public void ResetWaterPressure()
@@ -143,6 +150,8 @@ public class Waterhose : MonoBehaviour
         UpdateWaterAmountDisplay();
         ResetWaterPressure();
         waterEmpty = false;
+
+        HideEmptyWaterCanvas();
     }
 
     public void UpdateWaterAmountDisplay()
@@ -170,5 +179,15 @@ public class Waterhose : MonoBehaviour
         {
             wd.GetComponent<MeshRenderer>().material = waterAmountDisplayDefaultMaterial;
         }
+    }
+
+    private void ShowEmptyWaterCanvas()
+    {
+        waterEmptyCanvas.SetActive(true);
+    }
+
+    public void HideEmptyWaterCanvas()
+    {
+        waterEmptyCanvas.SetActive(false);
     }
 }

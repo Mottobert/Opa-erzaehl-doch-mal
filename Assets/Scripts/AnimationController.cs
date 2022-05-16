@@ -32,11 +32,43 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private int startTreeDistance;
 
+    [SerializeField]
+    private Material pineBranches1Material;
+    [SerializeField]
+    private float pineBranches1MaterialDefaultAlphaCutoff;
+
+    [SerializeField]
+    private Material pineBranches2Material;
+    [SerializeField]
+    private float pineBranches2MaterialDefaultAlphaCutoff;
+
+    [SerializeField]
+    private Material pineBranches3Material;
+    [SerializeField]
+    private float pineBranches3MaterialDefaultAlphaCutoff;
+
+    [SerializeField]
+    private Material pineBranches4Material;
+    [SerializeField]
+    private float pineBranches4MaterialDefaultAlphaCutoff;
+
+    [SerializeField]
+    private Material pineBillboard1Material;
+    [SerializeField]
+    private float pineBillboard1MaterialDefaultAlphaCutoff;
+
+    [SerializeField]
+    private Material pineBillboard2Material;
+    [SerializeField]
+    private float pineBillboard2MaterialDefaultAlphaCutoff;
+
     private void Start()
     {
         ResetBurning();
 
         treeTerrain.treeDistance = startTreeDistance;
+
+        ResetLeafAlphaCutoff();
     }
 
     public void ResetBurning()
@@ -176,5 +208,35 @@ public class AnimationController : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public void ChangeLeafAlphaCutoff()
+    { 
+        pineBranches1Material.SetFloat("_AlphaTreshold", 1);
+
+        pineBranches2Material.SetFloat("_AlphaTreshold", 1);
+
+        pineBranches3Material.SetFloat("_AlphaTreshold", 1);
+
+        pineBranches4Material.SetFloat("_AlphaTreshold", 1);
+
+        pineBillboard1Material.SetFloat("_Cutoff", 0.9f);
+
+        pineBillboard2Material.SetFloat("_Cutoff", 0.99f);
+    }
+
+    private void ResetLeafAlphaCutoff()
+    {
+        pineBranches1Material.SetFloat("_AlphaTreshold", pineBranches1MaterialDefaultAlphaCutoff);
+
+        pineBranches2Material.SetFloat("_AlphaTreshold", pineBranches2MaterialDefaultAlphaCutoff);
+
+        pineBranches3Material.SetFloat("_AlphaTreshold", pineBranches3MaterialDefaultAlphaCutoff);
+
+        pineBranches4Material.SetFloat("_AlphaTreshold", pineBranches4MaterialDefaultAlphaCutoff);
+
+        pineBillboard1Material.SetFloat("_Cutoff", pineBillboard1MaterialDefaultAlphaCutoff);
+
+        pineBillboard2Material.SetFloat("_Cutoff", pineBillboard2MaterialDefaultAlphaCutoff);
     }
 }
