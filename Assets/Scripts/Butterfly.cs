@@ -120,7 +120,7 @@ public class Butterfly : MonoBehaviour
 
     IEnumerator FlyToHand()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3);
         ActivatePlayerTargetFlight(playerTarget);
     }
 

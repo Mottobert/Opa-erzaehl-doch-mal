@@ -8,6 +8,7 @@ TagManager:
   - butterflyTarget
   - lighter
   - particleWater
+  - treeSapling
   layers:
   - Default
   - TransparentFX

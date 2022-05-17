@@ -134,14 +134,16 @@ public class ControllerHighlight : MonoBehaviour
 
             rightJoystickPressed = true;
 
-            StartCoroutine(ButtonBlinking(leftGripButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
+            StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
+
+            playerTeleported = false;
         }
 
-        // Wenn linker Grip Button gedrueckt -> Panic Buttons highlighten
+        // Wenn linker Trigger Button gedrueckt -> Panic Buttons highlighten
         if (playerTeleported && rightJoystickPressed && !leftGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
-            ResetButtonHighlight(leftGripButton);
+            ResetButtonHighlight(leftTriggerButton);
 
             leftGripPressed = true;
 
