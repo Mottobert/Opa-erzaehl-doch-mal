@@ -9,6 +9,7 @@ TagManager:
   - lighter
   - particleWater
   - treeSapling
+  - bread
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - Terrain
   - Fire
   - RayIgnore
-  - 
-  - 
+  - LakePlane
+  - SwimCapsule
   - 
   - 
   - 

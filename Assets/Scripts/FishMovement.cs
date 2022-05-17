@@ -6,13 +6,10 @@ using UnityEngine.Playables;
 public class FishMovement : MonoBehaviour
 {
     [SerializeField]
-    private Transform activeTarget;
+    public Transform activeTarget;
 
     [SerializeField]
     private GameObject currentTargetVisualizer;
-
-    [SerializeField]
-    private Transform playerTarget;
 
     [SerializeField]
     private Transform lookAtTransform;
@@ -26,14 +23,14 @@ public class FishMovement : MonoBehaviour
     private Transform zeroTarget;
 
     [SerializeField]
-    private Animator animator;
-
-    [SerializeField]
     private float speed;
     [SerializeField]
     private float minDistance;
 
     private bool randomFlight = true;
+
+    [SerializeField]
+    private float fishYOffset;
 
     private void Start()
     {
@@ -48,10 +45,21 @@ public class FishMovement : MonoBehaviour
         {
             FlyToTarget(dist);
         }
-        else if (randomFlight)
+        else if (dist <= minDistance)
         {
+            if(activeTarget.tag == "bread")
+            {
+                StartCoroutine(DestroyTarget(activeTarget.gameObject));
+            }
+
             ChangeTarget(RandomTarget(this.transform));
         }
+    }
+
+    IEnumerator DestroyTarget(GameObject target)
+    {
+        yield return new WaitForSeconds(0.2f);
+        Destroy(target.gameObject);
     }
 
     public void ChangeTarget(Transform newTarget)
@@ -64,15 +72,15 @@ public class FishMovement : MonoBehaviour
         //animator.SetBool("active", true);
 
         // Rotation //
-        // Offset f?r das LookAt Target (zwischen -1 und 1)
+        // Offset fuer das LookAt Target (zwischen -1 und 1)
         float xOffset = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float yOffset = map(Mathf.PerlinNoise(0.3f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float zOffset = map(Mathf.PerlinNoise(0.8f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
 
         // Transform der immer genau auf das Target rotiert ist (plus einem kleinen Offset)
-        lookAtTransform.LookAt(activeTarget.position + new Vector3(xOffset, yOffset, zOffset));
+        lookAtTransform.LookAt(activeTarget.position + new Vector3(xOffset, yOffset + fishYOffset, zOffset));
 
-        // Drehungswinkel ist abh?ngig von der Distanz zum Target (zwischen 0.3 und 1)
+        // Drehungswinkel ist abhaengig von der Distanz zum Target (zwischen 0.3 und 1)
         float degreeDelta = map(0.4f / distance, 0, 1, 0.3f, 3);
 
         // Schmetterling wird langsam in Richtung Target bewegt
@@ -103,7 +111,7 @@ public class FishMovement : MonoBehaviour
 
         float distanceToSpawnPoint = Vector3.Distance(zeroTarget.position, spawnPosition.position);
 
-        if (distanceToSpawnPoint < spawnRadius && zeroTarget.position.y >= spawnPosition.position.y)
+        if (distanceToSpawnPoint < spawnRadius && zeroTarget.position.y <= spawnPosition.position.y && zeroTarget.position.y >= spawnPosition.position.y - 0.1f)
         {
             currentTargetVisualizer.transform.position = zeroTarget.position;
             return zeroTarget;

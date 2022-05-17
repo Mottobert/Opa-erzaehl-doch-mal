@@ -134,7 +134,7 @@ public class Butterfly : MonoBehaviour
         animator.SetBool("active", true);
 
         // Rotation //
-        // Offset f?r das LookAt Target (zwischen -1 und 1)
+        // Offset fuer das LookAt Target (zwischen -1 und 1)
         float xOffset = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float yOffset = map(Mathf.PerlinNoise(0.3f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float zOffset = map(Mathf.PerlinNoise(0.8f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
@@ -142,7 +142,7 @@ public class Butterfly : MonoBehaviour
         // Transform der immer genau auf das Target rotiert ist (plus einem kleinen Offset)
         lookAtTransform.LookAt(activeTarget.position + new Vector3(xOffset, yOffset, zOffset));
 
-        // Drehungswinkel ist abh?ngig von der Distanz zum Target (zwischen 0.3 und 1)
+        // Drehungswinkel ist abhaengig von der Distanz zum Target (zwischen 0.3 und 1)
         float degreeDelta = map(0.4f / distance, 0, 1, 0.3f, 3);
 
         // Schmetterling wird langsam in Richtung Target bewegt
