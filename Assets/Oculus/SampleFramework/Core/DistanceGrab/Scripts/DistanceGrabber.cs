@@ -67,7 +67,7 @@ namespace OculusSampleFramework
         [SerializeField]
         int m_obstructionLayer = 0;
 
-        DistanceGrabber m_otherHand;
+        public DistanceGrabber m_otherHand;
 
         protected DistanceGrabbable m_target;
         // Tracked separately from m_target, because we support child colliders of a DistanceGrabbable.

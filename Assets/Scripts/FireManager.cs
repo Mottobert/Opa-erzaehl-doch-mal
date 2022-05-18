@@ -104,7 +104,7 @@ public class FireManager : MonoBehaviour
 
         if(fireActivationTimer <= 0)
         {
-            fireActivationTimer = 50;
+            fireActivationTimer = 250;
             ActivateRandomIgniter();
         }
 

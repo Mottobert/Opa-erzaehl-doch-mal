@@ -62,6 +62,24 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private float pineBillboard2MaterialDefaultAlphaCutoff;
 
+    [SerializeField]
+    private Material pineBark1Material;
+    [SerializeField]
+    private Material pineBark2Material;
+    [SerializeField]
+    private Material sprucePineBarkMaterial;
+    [SerializeField]
+    private Material whitePineBark1Material;
+    [SerializeField]
+    private Material whitePineBark2Material;
+    [SerializeField]
+    private Material pineTreeBillboard1Material;
+    [SerializeField]
+    private Material pineTreeBillboard2Material;
+
+    [SerializeField]
+    private Color treeDarkColor;
+
     private void Start()
     {
         ResetBurning();
@@ -69,6 +87,7 @@ public class AnimationController : MonoBehaviour
         treeTerrain.treeDistance = startTreeDistance;
 
         ResetLeafAlphaCutoff();
+        ResetTreeColor();
     }
 
     public void ResetBurning()
@@ -238,5 +257,77 @@ public class AnimationController : MonoBehaviour
         pineBillboard1Material.SetFloat("_Cutoff", pineBillboard1MaterialDefaultAlphaCutoff);
 
         pineBillboard2Material.SetFloat("_Cutoff", pineBillboard2MaterialDefaultAlphaCutoff);
+    }
+
+    public void FadeLeafAlpha(float input)
+    {
+        float lerpInput = Mathf.Clamp(input, 0, 1);
+
+        pineBranches1Material.SetFloat("_AlphaTreshold", Mathf.Lerp(1, pineBranches1MaterialDefaultAlphaCutoff, lerpInput));
+
+        pineBranches2Material.SetFloat("_AlphaTreshold", Mathf.Lerp(1, pineBranches2MaterialDefaultAlphaCutoff, lerpInput));
+
+        pineBranches3Material.SetFloat("_AlphaTreshold", Mathf.Lerp(1, pineBranches3MaterialDefaultAlphaCutoff, lerpInput));
+
+        pineBranches4Material.SetFloat("_AlphaTreshold", Mathf.Lerp(1, pineBranches4MaterialDefaultAlphaCutoff, lerpInput));
+
+        pineBillboard1Material.SetFloat("_Cutoff", Mathf.Lerp(0.9f, pineBillboard1MaterialDefaultAlphaCutoff, lerpInput));
+
+        pineBillboard2Material.SetFloat("_Cutoff", Mathf.Lerp(0.99f, pineBillboard2MaterialDefaultAlphaCutoff, lerpInput));
+    }
+
+    public void DarkenTreeColor()
+    {
+        pineBark1Material.SetColor("_BaseColor", treeDarkColor);
+
+        pineBark2Material.SetColor("_BaseColor", treeDarkColor);
+
+        sprucePineBarkMaterial.SetColor("_BaseColor", treeDarkColor);
+
+        whitePineBark1Material.SetColor("_BaseColor", treeDarkColor);
+
+        whitePineBark2Material.SetColor("_BaseColor", treeDarkColor);
+
+        pineTreeBillboard1Material.SetColor("_BaseColor", treeDarkColor);
+
+        pineTreeBillboard2Material.SetColor("_BaseColor", treeDarkColor);
+    }
+
+    public void ResetTreeColor()
+    {
+        pineBark1Material.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        pineBark2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        sprucePineBarkMaterial.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        whitePineBark1Material.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        whitePineBark2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        pineTreeBillboard1Material.SetColor("_BaseColor", new Color(1, 1, 1));
+
+        pineTreeBillboard2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+    }
+
+    public void FadeTreeColor(float input)
+    {
+        float lerpInput = Mathf.Clamp(input, 0, 1);
+
+        Color newTreeColor = Color.Lerp(treeDarkColor, new Color(1, 1, 1), lerpInput);
+
+        pineBark1Material.SetColor("_BaseColor", newTreeColor);
+
+        pineBark2Material.SetColor("_BaseColor", newTreeColor);
+
+        sprucePineBarkMaterial.SetColor("_BaseColor", newTreeColor);
+
+        whitePineBark1Material.SetColor("_BaseColor", newTreeColor);
+
+        whitePineBark2Material.SetColor("_BaseColor", newTreeColor);
+
+        pineTreeBillboard1Material.SetColor("_BaseColor", newTreeColor);
+
+        pineTreeBillboard2Material.SetColor("_BaseColor", newTreeColor);
     }
 }

@@ -120,23 +120,37 @@ public class ControllerHighlight : MonoBehaviour
 
     public void StartTutorial()
     {
-        StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
+        //StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
+        StartCoroutine(ButtonBlinking(leftTriggerButton, 0f, leftController, leftGripCanvas, leftGripControllerCanvas));
         tutorialStarted = true;
     }
 
     private void Update()
     {
         // Wenn rechter Joystick gedrueckt -> linker Grip Button highlighten
-        if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted)
+        //if((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted)
+        //{
+        //    StopAllCoroutines();
+        //    ResetButtonHighlight(rightJoystick);
+        //
+        //    rightJoystickPressed = true;
+        //
+        //    StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
+        //
+        //    playerTeleported = false;
+        //}
+
+        // Wenn linker Trigger gedrueckt -> Joystick highlighten
+        if (playerTeleported && !leftGripPressed && tutorialStarted)
         {
             StopAllCoroutines();
-            ResetButtonHighlight(rightJoystick);
+            ResetButtonHighlight(leftTriggerButton);
 
-            rightJoystickPressed = true;
+            leftGripPressed = true;
 
-            StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
+            StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
 
-            playerTeleported = false;
+            playerTeleported = true;
         }
 
         // Wenn linker Trigger Button gedrueckt -> Panic Buttons highlighten
