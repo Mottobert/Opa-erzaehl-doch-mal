@@ -105,19 +105,19 @@ public class WalkingController : MonoBehaviour
                 timelineBlumenwiese.Play();
                 //StopWalking();
                 break;
-            case 15:
+            case 17:
                 // See Text abspielen
                 timelineSee.Play();
                 StopWalking();
                 break;
-            case 21:
+            case 26:
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
                 break;
-            case 24:
+            case 28:
                 StopWalking();
                 break;
-            case 32:
+            case 36:
                 // Feuer abspielen
                 timelineFeuer.Play();
                 StopWalking();

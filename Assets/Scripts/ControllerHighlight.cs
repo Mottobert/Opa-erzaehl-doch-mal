@@ -48,7 +48,7 @@ public class ControllerHighlight : MonoBehaviour
     private InputActionReference rightTriggerReference;
 
     private bool rightJoystickPressed = false;
-    private bool leftGripPressed = false;
+    private bool leftTriggerPressed = false;
     private bool panicButtonPressed = false;
     private bool rightGripPressed = false;
     private bool rightTriggerPressed = false;
@@ -82,6 +82,8 @@ public class ControllerHighlight : MonoBehaviour
     private GameObject rightTriggerControllerCanvas;
     [SerializeField]
     private GameObject bookCanvas;
+    [SerializeField]
+    private GameObject controllerSchauenCanvas;
 
     [SerializeField]
     private GameObject rightTriggerButtonPressCanvas;
@@ -121,7 +123,10 @@ public class ControllerHighlight : MonoBehaviour
     public void StartTutorial()
     {
         //StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
-        StartCoroutine(ButtonBlinking(leftTriggerButton, 0f, leftController, leftGripCanvas, leftGripControllerCanvas));
+        StopAllCoroutines();
+        rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+
+        StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
         tutorialStarted = true;
     }
 
@@ -141,25 +146,27 @@ public class ControllerHighlight : MonoBehaviour
         //}
 
         // Wenn linker Trigger gedrueckt -> Joystick highlighten
-        if (playerTeleported && !leftGripPressed && tutorialStarted)
+        if (playerTeleported && !leftTriggerPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(leftTriggerButton);
 
-            leftGripPressed = true;
+            leftTriggerPressed = true;
 
-            StartCoroutine(ButtonBlinking(rightJoystick, 0f, rightController, joystickCanvas, joystickControllerCanvas));
+            controllerSchauenCanvas.SetActive(false);
+
+            StartCoroutine(ButtonBlinking(rightJoystick, 2f, rightController, joystickCanvas, joystickControllerCanvas));
 
             playerTeleported = true;
         }
 
         // Wenn linker Trigger Button gedrueckt -> Panic Buttons highlighten
-        if (playerTeleported && rightJoystickPressed && !leftGripPressed && tutorialStarted)
+        if ((rightJoystickReference.action.ReadValue<Vector2>().x > 0 || rightJoystickReference.action.ReadValue<Vector2>().x < 0 || rightJoystickReference.action.ReadValue<Vector2>().y > 0 || rightJoystickReference.action.ReadValue<Vector2>().y < 0) && !rightJoystickPressed && tutorialStarted)
         {
             StopAllCoroutines();
             ResetButtonHighlight(leftTriggerButton);
 
-            leftGripPressed = true;
+            rightJoystickPressed = true;
 
             StartCoroutine(ButtonBlinking(rightAButton, 2f, rightController, panicButtonCanvas, panicButtonRightControllerCanvas));
             StartCoroutine(ButtonBlinking(rightBButton, 2f, rightController, panicButtonCanvas, panicButtonRightControllerCanvas));
@@ -170,7 +177,7 @@ public class ControllerHighlight : MonoBehaviour
         }
 
         // Wenn Panic Buttons gedrueckt -> rechter Grip Button highlighten
-        if (leftGripPressed && !panicButtonPressed && tutorialStarted && !panicButton.active && safeRoomWasActive)
+        if (leftTriggerPressed && !panicButtonPressed && tutorialStarted && !panicButton.active && safeRoomWasActive)
         {
             StopAllCoroutines();
             ResetButtonHighlight(rightAButton);
@@ -375,5 +382,11 @@ public class ControllerHighlight : MonoBehaviour
     public void PlayerTeleportet()
     {
         playerTeleported = true;
+    }
+
+    public void DeactivateButtonBlinkingRightTrigger()
+    {
+        //StopAllCoroutines();
+        //rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
     }
 }
