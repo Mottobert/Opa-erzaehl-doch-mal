@@ -128,6 +128,8 @@ public class ControllerHighlight : MonoBehaviour
 
         StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
         tutorialStarted = true;
+
+        playerTeleported = false;
     }
 
     private void Update()
@@ -156,8 +158,6 @@ public class ControllerHighlight : MonoBehaviour
             controllerSchauenCanvas.SetActive(false);
 
             StartCoroutine(ButtonBlinking(rightJoystick, 2f, rightController, joystickCanvas, joystickControllerCanvas));
-
-            playerTeleported = true;
         }
 
         // Wenn linker Trigger Button gedrueckt -> Panic Buttons highlighten
@@ -381,12 +381,15 @@ public class ControllerHighlight : MonoBehaviour
 
     public void PlayerTeleportet()
     {
-        playerTeleported = true;
+        if (tutorialStarted)
+        {
+            playerTeleported = true;
+        }
     }
 
     public void DeactivateButtonBlinkingRightTrigger()
     {
-        //StopAllCoroutines();
-        //rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
+        StopAllCoroutines();
+        rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ForestWaterChecker : MonoBehaviour
 {
@@ -16,14 +17,15 @@ public class ForestWaterChecker : MonoBehaviour
     [SerializeField]
     private float waterAmountThreshold;
 
+    [SerializeField]
+    private PlayableDirector zusammenfassungTimeline;
+
     private bool active = true;
 
     private void OnParticleCollision(GameObject other)
     {
         if(other.tag == "particleWater" && active)
         {
-            
-
             waterAmount = waterAmount + waterAmountIncrease;
 
             if(waterAmount >= waterAmountThreshold)
@@ -36,6 +38,8 @@ public class ForestWaterChecker : MonoBehaviour
 
             if(waterAmount >= waterAmountMax)
             {
+                zusammenfassungTimeline.Play();
+
                 active = false;
             }
         }

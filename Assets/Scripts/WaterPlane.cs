@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WaterPlane : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class WaterPlane : MonoBehaviour
     {
         if(collision.gameObject.tag == "bread")
         {
-            fish.GetComponent<FishMovement>().ChangeTarget(collision.gameObject.transform);
+            //fish.GetComponent<FishMovement>().ChangeTarget(collision.gameObject.transform);
+
+            fish.GetComponent<FishMovement>().AddToNextTargets(collision.gameObject);
+            collision.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
         }
     }
 }

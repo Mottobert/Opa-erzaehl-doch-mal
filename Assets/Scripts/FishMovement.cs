@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class FishMovement : MonoBehaviour
 {
@@ -30,10 +31,17 @@ public class FishMovement : MonoBehaviour
     private bool randomFlight = true;
 
     [SerializeField]
+    private GameObject[] breads;
+
+    [SerializeField]
     private float fishYOffset;
+
+    public List<GameObject> nextTargets = new List<GameObject>();
 
     private void Start()
     {
+        DeactivateBreadGrabInteractable();
+
         ChangeTarget(RandomTarget(this.transform));
     }
 
@@ -52,7 +60,15 @@ public class FishMovement : MonoBehaviour
                 StartCoroutine(DestroyTarget(activeTarget.gameObject));
             }
 
-            ChangeTarget(RandomTarget(this.transform));
+            if(nextTargets.Count != 0)
+            {
+                ChangeTarget(nextTargets[0].transform);
+                nextTargets.RemoveAt(0);
+            }
+            else
+            {
+                ChangeTarget(RandomTarget(this.transform));
+            }
         }
     }
 
@@ -119,6 +135,43 @@ public class FishMovement : MonoBehaviour
         else
         {
             return RandomTarget(currentPosition);
+        }
+    }
+
+    public void ActivateBreadGrabInteractable()
+    {
+        foreach(GameObject b in breads)
+        {
+            b.GetComponent<XRGrabInteractable>().enabled = true;
+        }
+    }
+
+    public void DeactivateBreadGrabInteractable()
+    {
+        foreach (GameObject b in breads)
+        {
+            b.GetComponent<XRGrabInteractable>().enabled = false;
+        }
+    }
+
+    private bool CheckNextTargets(GameObject target)
+    {
+        foreach(GameObject t in nextTargets)
+        {
+            if(t == target)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void AddToNextTargets(GameObject target)
+    {
+        if (CheckNextTargets(target))
+        {
+            nextTargets.Add(target);
         }
     }
 

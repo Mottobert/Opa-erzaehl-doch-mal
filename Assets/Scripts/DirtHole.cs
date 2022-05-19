@@ -17,6 +17,8 @@ public class DirtHole : MonoBehaviour
     [SerializeField]
     private GameObject treeSapling;
 
+    private bool active = true;
+
     [SerializeField]
     private PlayableDirector zusammenfassung2Timeline;
 
@@ -25,7 +27,7 @@ public class DirtHole : MonoBehaviour
         if(other.tag == "treeSapling")
         {
             treeSaplingPlaced = true;
-            Debug.Log("Tree Sapling Placed");
+            //Debug.Log("Tree Sapling Placed");
         }
     }
 
@@ -39,21 +41,24 @@ public class DirtHole : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if(other.tag == "particleWater" && treeSaplingPlaced)
+        if(other.tag == "particleWater" && treeSaplingPlaced && active)
         {
             waterNeeded = waterNeeded - waterReduction;
         }
 
-        if(waterNeeded <= 0)
+        if(waterNeeded <= 0 && active)
         {
-            Debug.Log("Tree has enough water");
+            //Debug.Log("Tree has enough water");
 
             treeSapling.SetActive(false);
+            Destroy(treeSapling);
 
             treeModel.SetActive(true);
             treeModel.GetComponent<Animator>().SetBool("active", true);
 
             Invoke("PlayZusammenfassung2Timeline", 3f);
+
+            active = false;
         }
     }
 

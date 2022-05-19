@@ -190,4 +190,10 @@ public class Waterhose : MonoBehaviour
     {
         waterEmptyCanvas.SetActive(false);
     }
+
+    public void ResetWaterAmount()
+    {
+        waterAmount = 15;
+        UpdateWaterAmountDisplay();
+    }
 }

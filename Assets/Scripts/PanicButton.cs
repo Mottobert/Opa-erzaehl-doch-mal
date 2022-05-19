@@ -48,7 +48,6 @@ public class PanicButton : MonoBehaviour
             //Debug.Log("Teleport back to previous Position");
             DeactivateSafeRoom();
 
-            
             ActivatePausedTimelines();
         }
     }
@@ -71,7 +70,10 @@ public class PanicButton : MonoBehaviour
     {
         foreach(GameObject g in grabbables)
         {
-            g.GetComponent<XRGrabInteractable>().enabled = false;
+            if(g != null)
+            {
+                g.GetComponent<XRGrabInteractable>().enabled = false;
+            }
 
             if (reenable)
             {

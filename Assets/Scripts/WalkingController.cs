@@ -125,7 +125,7 @@ public class WalkingController : MonoBehaviour
         }
     }
 
-    private void StopWalking()
+    public void StopWalking()
     {
         bgCurve.GetComponent<BGCcCursorChangeLinear>().Speed = 0;
         opaAnimator.SetBool("active", false);
