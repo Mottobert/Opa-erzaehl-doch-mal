@@ -14,7 +14,12 @@ public class WaterPlane : MonoBehaviour
         {
             //fish.GetComponent<FishMovement>().ChangeTarget(collision.gameObject.transform);
 
-            fish.GetComponent<FishMovement>().AddToNextTargets(collision.gameObject);
+            if (!collision.gameObject.GetComponentInParent<Bread>().hasSunken)
+            {
+                collision.gameObject.GetComponentInParent<Bread>().SinkBread();
+            }
+
+            fish.GetComponent<FishMovement>().AddToNextTargets(collision.gameObject.GetComponentInParent<Bread>().breadMesh);
             collision.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
         }
     }

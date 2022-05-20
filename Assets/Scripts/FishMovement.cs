@@ -36,6 +36,9 @@ public class FishMovement : MonoBehaviour
     [SerializeField]
     private float fishYOffset;
 
+    [SerializeField]
+    private WalkingController walkingController;
+
     public List<GameObject> nextTargets = new List<GameObject>();
 
     private void Start()
@@ -75,7 +78,32 @@ public class FishMovement : MonoBehaviour
     IEnumerator DestroyTarget(GameObject target)
     {
         yield return new WaitForSeconds(0.2f);
-        Destroy(target.gameObject);
+        if(target.gameObject.GetComponentInParent<Bread>().gameObject != null)
+        {
+            Destroy(target.gameObject.GetComponentInParent<Bread>().gameObject);
+        }
+
+        if (CheckBreads())
+        {
+            walkingController.ResetCurveSpeed();
+        }
+    }
+
+    private bool CheckBreads()
+    {
+        Debug.Log(breads[0]);
+        Debug.Log(breads[1]);
+        Debug.Log(breads[2]);
+
+        foreach (GameObject g in breads)
+        {
+            if(g != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void ChangeTarget(Transform newTarget)

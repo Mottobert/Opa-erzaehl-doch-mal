@@ -126,7 +126,7 @@ public class ControllerHighlight : MonoBehaviour
         StopAllCoroutines();
         rightTriggerButton.GetComponent<SkinnedMeshRenderer>().material.SetFloat("Vector1_58daa7a04f41410286e9e6b425c90861", 0);
 
-        StartCoroutine(ButtonBlinking(leftTriggerButton, 2f, leftController, leftGripCanvas, leftGripControllerCanvas));
+        StartCoroutine(ButtonBlinking(leftTriggerButton, 4f, leftController, leftGripCanvas, leftGripControllerCanvas));
         tutorialStarted = true;
 
         playerTeleported = false;

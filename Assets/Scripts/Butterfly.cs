@@ -87,7 +87,7 @@ public class Butterfly : MonoBehaviour
             }
         }
 
-        if (!randomFlight && velocity.magnitude > 1.5f && handTarget && butterflySatOnHand)
+        if (!randomFlight && velocity.magnitude > 1f && handTarget && butterflySatOnHand)
         {
             handTarget = false;
             StopAllCoroutines();
