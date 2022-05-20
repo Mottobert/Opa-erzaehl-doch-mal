@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RedPlastic
-    second: {fileID: 2100000, guid: 795fe16c882a6f545a3cdf011c5d28c5, type: 2}
+    second: {fileID: 2100000, guid: 12e49654f7d4e4539b0ae110e2ce8eab, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,7 +41,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1

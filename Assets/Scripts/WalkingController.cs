@@ -201,6 +201,8 @@ public class WalkingController : MonoBehaviour
 
         opa.transform.position = location.position;
         opa.transform.rotation = location.rotation;
+
+        opaAnimator.SetBool("active", false);
     }
 
     public void Permission()

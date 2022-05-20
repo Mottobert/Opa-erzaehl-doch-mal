@@ -75,7 +75,7 @@ public class PanicButton : MonoBehaviour
                 g.GetComponent<XRGrabInteractable>().enabled = false;
             }
 
-            if (reenable)
+            if (reenable && g != null)
             {
                 StartCoroutine(EnableGrabInteractorDelay(g));
             }
