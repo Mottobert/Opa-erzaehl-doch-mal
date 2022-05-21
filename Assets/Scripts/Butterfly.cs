@@ -50,6 +50,8 @@ public class Butterfly : MonoBehaviour
     [SerializeField]
     public bool treeButterfly;
 
+    private bool treeButterflyActive = true;
+
     public List<Transform> nextTargets = new List<Transform>();
 
     private int nextTargetTimer = 0;
@@ -85,7 +87,7 @@ public class Butterfly : MonoBehaviour
         }
         else if(dist <= minDistance)
         {
-            if (treeButterfly && nextTargets.Count != 0 && nextTargetTimer <= 0)
+            if (treeButterflyActive && nextTargets.Count != 0 && nextTargetTimer <= 0)
             {
                 ChangeTarget(nextTargets[0]);
                 nextTargets.RemoveAt(0);
@@ -93,7 +95,7 @@ public class Butterfly : MonoBehaviour
                 nextTargetTimer = 100;
             }
 
-            if(treeButterfly && nextTargets.Count == 0 && nextTargetTimer <= 0)
+            if(treeButterflyActive && nextTargets.Count == 0 && nextTargetTimer <= 0)
             {
                 animator.SetBool("active", false);
                 transform.position = activeTarget.position;
@@ -102,11 +104,11 @@ public class Butterfly : MonoBehaviour
                 StartCoroutine(DeactivateTreeButterflyDelay());
             }
 
-            if (randomFlight && !treeButterfly)
+            if (randomFlight && !treeButterflyActive)
             {
                 ChangeTarget(RandomTarget(this.transform));
             }
-            else if(!treeButterfly)
+            else if(!treeButterflyActive)
             {
                 if (!butterflySatOnHand && !treeButterfly)
                 {
@@ -143,7 +145,7 @@ public class Butterfly : MonoBehaviour
     IEnumerator DeactivateTreeButterflyDelay()
     {
         yield return new WaitForSeconds(4f);
-        treeButterfly = false;
+        treeButterflyActive = false;
     }
 
     private void OnTriggerEnter(Collider other)

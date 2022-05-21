@@ -17,14 +17,17 @@ public class ClimatePlanner : MonoBehaviour
     {
         DeselectAllButtons();
 
-        activeButton.GetComponent<Image>().color = selectedColor;
+        //activeButton.GetComponent<Image>().color = selectedColor;
+
+        activeButton.SetActive(true);
     }
 
     private void DeselectAllButtons()
     {
         foreach(GameObject b in buttons)
         {
-            b.GetComponent<Image>().color = defaultColor;
+            //b.GetComponent<Image>().color = defaultColor;
+            b.SetActive(false);
         }
     }
 }
