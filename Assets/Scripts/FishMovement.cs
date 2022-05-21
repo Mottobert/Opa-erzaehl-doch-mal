@@ -83,6 +83,8 @@ public class FishMovement : MonoBehaviour
             Destroy(target.gameObject.GetComponentInParent<Bread>().gameObject);
         }
 
+        yield return new WaitForSeconds(1f);
+
         if (CheckBreads())
         {
             walkingController.ResetCurveSpeed();
@@ -171,6 +173,8 @@ public class FishMovement : MonoBehaviour
         foreach(GameObject b in breads)
         {
             b.GetComponent<XRGrabInteractable>().enabled = true;
+
+            b.GetComponentInChildren<Outline>().ActivateBlinking();
         }
     }
 

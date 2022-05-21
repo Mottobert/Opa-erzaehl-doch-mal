@@ -25,4 +25,9 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(index);
     }
+
+    public void SetTutorialPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("startTutorial", 1);
+    }
 }

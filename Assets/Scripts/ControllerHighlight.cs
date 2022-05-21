@@ -110,14 +110,27 @@ public class ControllerHighlight : MonoBehaviour
         HideAllCanvases();
         DeactivateInteractables();
 
-        if (tutorialIntroduction)
+        Debug.Log(PlayerPrefs.GetInt("startTutorial"));
+
+        if (PlayerPrefs.GetInt("startTutorial") == 0)
         {
             tutorialTimeline.Play();
         }
-        else
+        else if (PlayerPrefs.GetInt("startTutorial") == 1)
         {
-            StartTutorial();
+            NoTutorial();
+
+            PlayerPrefs.SetInt("startTutorial", 0);
         }
+
+        //if (tutorialIntroduction)
+        //{
+        //    tutorialTimeline.Play();
+        //}
+        //else
+        //{
+        //    StartTutorial();
+        //}
     }
 
     public void StartTutorial()
@@ -130,6 +143,11 @@ public class ControllerHighlight : MonoBehaviour
         tutorialStarted = true;
 
         playerTeleported = false;
+    }
+
+    public void NoTutorial()
+    {
+        ActivateInteractables();
     }
 
     private void Update()

@@ -47,10 +47,26 @@ public class Butterfly : MonoBehaviour
     [SerializeField]
     private PlayableDirector butterflySatOnHandTimeline;
 
+    [SerializeField]
+    public bool treeButterfly;
+
+    public List<Transform> nextTargets = new List<Transform>();
+
+    private int nextTargetTimer = 0;
+
     private void Start()
     {
         oldPos = activeTarget.transform.position;
-        ChangeTarget(RandomTarget(this.transform));
+
+        if (!treeButterfly)
+        {
+            ChangeTarget(RandomTarget(this.transform));
+        }
+        else
+        {
+            ChangeTarget(nextTargets[0]);
+            nextTargets.RemoveAt(0);
+        }
 
         //ActivateHandFlight();
     }
@@ -67,15 +83,32 @@ public class Butterfly : MonoBehaviour
         {
             FlyToTarget(dist);
         }
-        else
+        else if(dist <= minDistance)
         {
-            if (randomFlight)
+            if (treeButterfly && nextTargets.Count != 0 && nextTargetTimer <= 0)
+            {
+                ChangeTarget(nextTargets[0]);
+                nextTargets.RemoveAt(0);
+
+                nextTargetTimer = 100;
+            }
+
+            if(treeButterfly && nextTargets.Count == 0 && nextTargetTimer <= 0)
+            {
+                animator.SetBool("active", false);
+                transform.position = activeTarget.position;
+                transform.rotation = activeTarget.rotation;
+
+                StartCoroutine(DeactivateTreeButterflyDelay());
+            }
+
+            if (randomFlight && !treeButterfly)
             {
                 ChangeTarget(RandomTarget(this.transform));
             }
-            else
+            else if(!treeButterfly)
             {
-                if (!butterflySatOnHand)
+                if (!butterflySatOnHand && !treeButterfly)
                 {
                     butterflySatOnHandTimeline.Play();
                     butterflySatOnHand = true;
@@ -94,12 +127,23 @@ public class Butterfly : MonoBehaviour
             StartCoroutine(DelayBeforeHandTarget());
             ActivateRandomFlight();
         }
+
+        if(nextTargetTimer > 0)
+        {
+            nextTargetTimer--;
+        }
     }
 
     IEnumerator DelayBeforeHandTarget()
     {
         yield return new WaitForSeconds(3f);
         handTarget = true;
+    }
+
+    IEnumerator DeactivateTreeButterflyDelay()
+    {
+        yield return new WaitForSeconds(4f);
+        treeButterfly = false;
     }
 
     private void OnTriggerEnter(Collider other)
