@@ -146,6 +146,9 @@ public class Butterfly : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         treeButterflyActive = false;
+
+        ChangeTarget(playerTarget);
+        activateHandFlight = true;
     }
 
     private void OnTriggerEnter(Collider other)
