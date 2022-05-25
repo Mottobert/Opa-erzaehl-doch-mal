@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class ClimatePlanner : MonoBehaviour
@@ -13,21 +14,44 @@ public class ClimatePlanner : MonoBehaviour
     [SerializeField]
     private Color selectedColor;
 
+    private GameObject currentButton;
+
     public void SelectButton(GameObject activeButton)
     {
         DeselectAllButtons();
+        currentButton = activeButton;
 
-        //activeButton.GetComponent<Image>().color = selectedColor;
+        currentButton.GetComponent<Image>().color = selectedColor;
 
-        activeButton.SetActive(true);
+        //activeButton.SetActive(true);
     }
 
     private void DeselectAllButtons()
     {
         foreach(GameObject b in buttons)
         {
-            //b.GetComponent<Image>().color = defaultColor;
+            b.GetComponent<Image>().color = defaultColor;
+            //b.SetActive(false);
+        }
+    }
+
+    private void HideAllButtons()
+    {
+        foreach (GameObject b in buttons)
+        {
             b.SetActive(false);
         }
+    }
+
+    public void SelectVorhaben()
+    {
+        HideAllButtons();
+
+        currentButton.SetActive(true);
+        currentButton.GetComponent<Image>().color = defaultColor;
+
+        currentButton.GetComponent<RectTransform>().position = new Vector2(0, 30);
+
+        currentButton.GetComponent<VorhabenButton>().timeline.Play();
     }
 }

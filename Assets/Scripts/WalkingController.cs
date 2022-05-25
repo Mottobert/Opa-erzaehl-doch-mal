@@ -79,7 +79,7 @@ public class WalkingController : MonoBehaviour
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer < 4f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
+            else if(distanceOpaPlayer < 30f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
             {
                 ResetCurveSpeed();
 
