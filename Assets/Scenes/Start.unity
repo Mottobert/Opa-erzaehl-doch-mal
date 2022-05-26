@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.183
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 135649799}
-  m_IndirectSpecularColor: {r: 0.09052165, g: 0.11536325, b: 0.16253643, a: 1}
+  m_IndirectSpecularColor: {r: 0.01656546, g: 0.021111473, b: 0.029744165, a: 0.183}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9a0762b54915c9942b65d9113505d6c2, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: f917eebb8ec1392419f77b371d24b6ff, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -18572,6 +18572,14 @@ PrefabInstance:
     - target: {fileID: 8829512791542432520, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829512791542432522, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829512791542432523, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
+      propertyPath: m_Mode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791660402144, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Name

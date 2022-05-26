@@ -88,6 +88,28 @@ public class PanicButton : MonoBehaviour
         grabbable.GetComponent<XRGrabInteractable>().enabled = true;
     }
 
+    public void DeactivateAllGrabInteractors()
+    {
+        foreach (GameObject g in grabbables)
+        {
+            if (g != null)
+            {
+                g.GetComponent<XRGrabInteractable>().enabled = false;
+            }
+        }
+    }
+
+    public void ActivateAllGrabInteractors()
+    {
+        foreach (GameObject g in grabbables)
+        {
+            if (g != null)
+            {
+                g.GetComponent<XRGrabInteractable>().enabled = true;
+            }
+        }
+    }
+
     public void ActivatePausedTimelines()
     {
         foreach (GameObject t in deactivatedTimelines)

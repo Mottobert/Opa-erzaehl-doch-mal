@@ -24,7 +24,7 @@ public class Bread : MonoBehaviour
         {
             yield return new WaitForSeconds(0.00001f);
 
-            breadMesh.transform.position = new Vector3(transform.position.x, breadMesh.transform.position.y - 0.001f, transform.position.z);
+            breadMesh.transform.position = new Vector3(transform.position.x, breadMesh.transform.position.y - 0.002f, transform.position.z);
 
             i = i + 0.001f;
         }

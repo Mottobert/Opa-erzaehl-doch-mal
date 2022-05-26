@@ -51,6 +51,10 @@ public class WalkingController : MonoBehaviour
     float updateTimer;
     bool opaAhead = false;
 
+    private bool opaDontStop = false;
+
+    private bool opaDontWalk = false;
+
     public bool permission = false; // is set true when player accepted disclaimer
 
     private void Start()
@@ -72,14 +76,14 @@ public class WalkingController : MonoBehaviour
 
             bool safeRoomActive = safeRoomController.active;
 
-            if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead && !safeRoomActive)
+            if(distanceOpaPlayer > maxDistanceOpaPlayer && player.transform.position.x > opa.transform.position.x && !opaAhead && !safeRoomActive && !opaDontStop)
             {
                 StopWalking();
 
                 opaAhead = true;
                 //Debug.Log("Opa too much ahead");
             }
-            else if(distanceOpaPlayer < 30f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission) 
+            else if(distanceOpaPlayer < 30f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission && !opaDontWalk) 
             {
                 ResetCurveSpeed();
 
@@ -105,19 +109,25 @@ public class WalkingController : MonoBehaviour
                 timelineBlumenwiese.Play();
                 //StopWalking();
                 break;
+            case 16:
+                // Wenn Opa auf den Steg läuft soll er nicht mehr anhalten
+                opaDontStop = true;
+                break;
             case 17:
                 // See Text abspielen
                 timelineSee.Play();
                 StopWalking();
+                opaDontStop = false;
                 break;
-            case 26:
+            case 27:
                 // Schmetterling Text abspielen
                 timelineSchmetterling.Play();
                 break;
-            case 28:
+            case 29:
                 StopWalking();
+                opaDontWalk = true;
                 break;
-            case 36:
+            case 37:
                 // Feuer abspielen
                 timelineFeuer.Play();
                 StopWalking();
@@ -208,5 +218,15 @@ public class WalkingController : MonoBehaviour
     public void Permission()
     {
         permission = true;
+    }
+
+    public void OpaWalkAgain()
+    {
+        opaDontWalk = false;
+    }
+
+    public void OpaDontWalk()
+    {
+        opaDontWalk = true;
     }
 }

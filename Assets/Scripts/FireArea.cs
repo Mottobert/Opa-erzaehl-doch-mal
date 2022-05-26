@@ -82,7 +82,7 @@ public class FireArea : MonoBehaviour
 
         fireManager.gameObject.SetActive(true);
 
-        StartCoroutine(ActivateRandomIgniterDelay(2f));
+        StartCoroutine(ActivateRandomIgniterDelay(5f));
     }
 
     IEnumerator ActivateRandomIgniterDelay(float delay)

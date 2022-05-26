@@ -73,6 +73,11 @@ public class FishMovement : MonoBehaviour
                 ChangeTarget(RandomTarget(this.transform));
             }
         }
+
+        if(nextTargets.Count == 0 && activeTarget == null)
+        {
+            ChangeTarget(RandomTarget(this.transform));
+        }
     }
 
     IEnumerator DestroyTarget(GameObject target)
@@ -93,10 +98,6 @@ public class FishMovement : MonoBehaviour
 
     private bool CheckBreads()
     {
-        Debug.Log(breads[0]);
-        Debug.Log(breads[1]);
-        Debug.Log(breads[2]);
-
         foreach (GameObject g in breads)
         {
             if(g != null)

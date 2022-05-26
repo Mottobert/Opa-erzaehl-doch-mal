@@ -8,7 +8,10 @@ public class FishEating : MonoBehaviour
     {
         if(other.tag == "bread")
         {
-            other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+            if (other)
+            {
+                other.gameObject.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+            }
         }
     }
 }

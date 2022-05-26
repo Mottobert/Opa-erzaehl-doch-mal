@@ -50,7 +50,7 @@ public class ClimatePlanner : MonoBehaviour
         currentButton.SetActive(true);
         currentButton.GetComponent<Image>().color = defaultColor;
 
-        currentButton.GetComponent<RectTransform>().position = new Vector2(0, 30);
+        currentButton.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 30, 0);
 
         currentButton.GetComponent<VorhabenButton>().timeline.Play();
     }

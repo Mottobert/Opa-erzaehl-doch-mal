@@ -79,6 +79,8 @@ public class AnimationController : MonoBehaviour
 
     [SerializeField]
     private Color treeDarkColor;
+    [SerializeField]
+    private Color treeOrangeColor;
 
     private void Start()
     {
@@ -137,7 +139,7 @@ public class AnimationController : MonoBehaviour
 
     private void ActivateFireAnimationControllers()
     {
-        StartCoroutine(ActivateFireAnimationControllersDelay(2, 4));
+        StartCoroutine(ActivateFireAnimationControllersDelay(4, 6));
     }
 
     IEnumerator ActivateFireAnimationControllersDelay(float minDelay, float maxDelay)
@@ -297,17 +299,17 @@ public class AnimationController : MonoBehaviour
     {
         pineBark1Material.SetColor("_BaseColor", new Color(1, 1, 1));
 
-        pineBark2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+        pineBark2Material.SetColor("_BaseColor", treeOrangeColor);
 
         sprucePineBarkMaterial.SetColor("_BaseColor", new Color(1, 1, 1));
 
-        whitePineBark1Material.SetColor("_BaseColor", new Color(1, 1, 1));
+        whitePineBark1Material.SetColor("_BaseColor", treeOrangeColor);
 
-        whitePineBark2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+        whitePineBark2Material.SetColor("_BaseColor", treeOrangeColor);
 
-        pineTreeBillboard1Material.SetColor("_BaseColor", new Color(1, 1, 1));
+        pineTreeBillboard1Material.SetColor("_BaseColor", treeOrangeColor);
 
-        pineTreeBillboard2Material.SetColor("_BaseColor", new Color(1, 1, 1));
+        pineTreeBillboard2Material.SetColor("_BaseColor", treeOrangeColor);
     }
 
     public void FadeTreeColor(float input)

@@ -50,11 +50,16 @@ public class Butterfly : MonoBehaviour
     [SerializeField]
     public bool treeButterfly;
 
-    private bool treeButterflyActive = true;
+    private bool treeButterflyActive = false;
 
     public List<Transform> nextTargets = new List<Transform>();
 
     private int nextTargetTimer = 0;
+
+    [SerializeField]
+    private WalkingController walkingController;
+    [SerializeField]
+    private GameObject endButton;
 
     private void Start()
     {
@@ -68,6 +73,7 @@ public class Butterfly : MonoBehaviour
         {
             ChangeTarget(nextTargets[0]);
             nextTargets.RemoveAt(0);
+            treeButterflyActive = true;
         }
 
         //ActivateHandFlight();
@@ -108,12 +114,19 @@ public class Butterfly : MonoBehaviour
             {
                 ChangeTarget(RandomTarget(this.transform));
             }
-            else if(!treeButterflyActive)
+            else if(!treeButterflyActive && handTarget)
             {
                 if (!butterflySatOnHand && !treeButterfly)
                 {
                     butterflySatOnHandTimeline.Play();
+                    walkingController.OpaWalkAgain();
                     butterflySatOnHand = true;
+                }
+
+                if (!butterflySatOnHand && treeButterfly)
+                {
+                    butterflySatOnHand = true;
+                    endButton.SetActive(true);
                 }
                 
                 animator.SetBool("active", false);
@@ -149,11 +162,12 @@ public class Butterfly : MonoBehaviour
 
         ChangeTarget(playerTarget);
         activateHandFlight = true;
+        randomFlight = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget" && activateHandFlight)
+        if (handTarget && other.gameObject.tag == "butterflyTarget" && activeTarget.tag != "butterflyTarget" && activateHandFlight && butterflySatOnHand)
         {
             StopCoroutine(FlyToHand());
             StartCoroutine("ActivateTargetFlightDelay", other.transform);
