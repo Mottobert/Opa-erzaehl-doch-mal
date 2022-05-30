@@ -120,7 +120,7 @@ Material:
     - Vector1_D4808672: 0.034
     - _AlphaClip: 1
     - _AlphaCutoff: 0.4
-    - _AlphaTreshold: 1
+    - _AlphaTreshold: 0.215
     - _Blend: 0
     - _BumpIntensity: 1
     - _BumpScale: 1.5
