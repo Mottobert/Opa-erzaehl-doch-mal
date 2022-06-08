@@ -120,6 +120,7 @@ public class Butterfly : MonoBehaviour
                 {
                     butterflySatOnHandTimeline.Play();
                     walkingController.OpaWalkAgain();
+                    walkingController.StopWalking();
                     butterflySatOnHand = true;
                 }
 

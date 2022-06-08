@@ -92,8 +92,14 @@ public class FishMovement : MonoBehaviour
 
         if (CheckBreads())
         {
-            walkingController.ResetCurveSpeed();
+            Invoke("ResetOpaWalking", 2f);
+            //walkingController.ResetCurveSpeed();
         }
+    }
+
+    private void ResetOpaWalking()
+    {
+        walkingController.ResetCurveSpeed();
     }
 
     private bool CheckBreads()

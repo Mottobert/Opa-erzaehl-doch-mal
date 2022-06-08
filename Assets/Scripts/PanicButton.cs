@@ -27,6 +27,10 @@ public class PanicButton : MonoBehaviour
     public bool active = false;
 
     [SerializeField]
+    private WalkingController walkingController;
+    private bool opaAnimationStopped = false;
+
+    [SerializeField]
     private GameObject[] timelines;
     private List<GameObject> deactivatedTimelines = new List<GameObject>();
 
@@ -52,7 +56,7 @@ public class PanicButton : MonoBehaviour
         }
     }
 
-    private void DeactivateAllActiveTimelines()
+    public void DeactivateAllActiveTimelines()
     {
         deactivatedTimelines = new List<GameObject>();
 
@@ -124,6 +128,14 @@ public class PanicButton : MonoBehaviour
         active = true;
         SafeTransform(playerTransform);
         TeleportPlayerToTransform(safeRoomTransform);
+
+        
+        if (walkingController.opaAnimator.GetBool("active"))
+        {
+            walkingController.StopWalking();
+            opaAnimationStopped = true;
+        }
+
         //DeactivateAllActiveTimelines();
         //Time.timeScale = 1;
     }
@@ -133,6 +145,13 @@ public class PanicButton : MonoBehaviour
     {
         TeleportPlayerToTransform(savedTransform);
         active = false;
+
+        if (opaAnimationStopped)
+        {
+            walkingController.ResetCurveSpeed();
+            opaAnimationStopped = false;        
+        }
+
         //Time.timeScale = 1;
         //ActivateAllTimelines();
     }

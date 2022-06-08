@@ -14,7 +14,7 @@ public class WalkingController : MonoBehaviour
     [SerializeField]
     private GameObject opa;
     [SerializeField]
-    private Animator opaAnimator;
+    public Animator opaAnimator;
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -47,6 +47,9 @@ public class WalkingController : MonoBehaviour
 
     [SerializeField]
     private PanicButton safeRoomController;
+
+    [SerializeField]
+    private PanicButton panicButton;
 
     float updateTimer;
     bool opaAhead = false;
@@ -81,6 +84,8 @@ public class WalkingController : MonoBehaviour
                 StopWalking();
 
                 opaAhead = true;
+
+                panicButton.DeactivateAllActiveTimelines();
                 //Debug.Log("Opa too much ahead");
             }
             else if(distanceOpaPlayer < 30f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission && !opaDontWalk) 
@@ -88,6 +93,8 @@ public class WalkingController : MonoBehaviour
                 ResetCurveSpeed();
 
                 opaAhead = false;
+
+                panicButton.ActivatePausedTimelines();
                 //Debug.Log("Opa walk again");
             }
         }

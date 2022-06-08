@@ -27,7 +27,7 @@ public class FireArea : MonoBehaviour
     [SerializeField]
     private AudioSource fireSound;
 
-    public bool active;
+    public bool active = false;
 
     // Start is called before the first frame update
     void Start()
