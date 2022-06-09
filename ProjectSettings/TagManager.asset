@@ -10,6 +10,7 @@ TagManager:
   - particleWater
   - treeSapling
   - bread
+  - wall
   layers:
   - Default
   - TransparentFX
