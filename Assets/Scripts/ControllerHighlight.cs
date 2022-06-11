@@ -100,6 +100,9 @@ public class ControllerHighlight : MonoBehaviour
     [SerializeField]
     private GameObject[] interactables;
 
+    [SerializeField]
+    private GameObject creditPanelButton;
+
     public bool safeRoomWasActive = false;
 
     private bool playerTeleported = false;
@@ -235,6 +238,8 @@ public class ControllerHighlight : MonoBehaviour
 
             bookCanvas.SetActive(true);
             wildfireBook.GetComponent<Outline>().ActivateBlinking();
+
+            creditPanelButton.SetActive(true);
         }
     }
 

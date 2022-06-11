@@ -34,6 +34,9 @@ public class PanicButton : MonoBehaviour
     private GameObject[] timelines;
     private List<GameObject> deactivatedTimelines = new List<GameObject>();
 
+    [SerializeField]
+    private GameObject zusammenfassungTimeline;
+
     // Update is called once per frame
     void Update()
     {
@@ -183,6 +186,24 @@ public class PanicButton : MonoBehaviour
         playerTransform.rotation = newTransform.rotation;
 
         cameraTransform.rotation = Quaternion.Euler(cameraTransform.rotation.eulerAngles.x, newTransform.rotation.eulerAngles.y, cameraTransform.rotation.eulerAngles.z);
+    }
+
+    public void ActivateZusammenfassung()
+    {
+        DeactivateAllActiveTimelines();
+
+        zusammenfassungTimeline.GetComponent<PlayableDirector>().Play();
+    }
+
+    private void DeactivateAllTimelines()
+    {
+        foreach (GameObject t in timelines)
+        {
+            if (t.GetComponent<PlayableDirector>().playableGraph.IsValid() && t.GetComponent<PlayableDirector>().playableGraph.IsPlaying())
+            {
+                t.GetComponent<PlayableDirector>().Stop();
+            }
+        }
     }
 
     // Speichern der aktuellen Position und Rotation
