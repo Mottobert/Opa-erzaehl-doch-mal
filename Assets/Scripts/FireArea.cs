@@ -70,7 +70,8 @@ public class FireArea : MonoBehaviour
 
         currentExtinguishAmount = extinguishAmount;
 
-        fireSound.Play();
+        //fireSound.Play();
+        ActivateFireSound(1f);
     }
 
     private void ExtinguishFire()
@@ -78,7 +79,8 @@ public class FireArea : MonoBehaviour
         fireParticleSystem.GetComponent<ParticleSystem>().Stop();
         active = false;
 
-        fireSound.Stop();
+        //fireSound.Stop();
+        DisableFireSound(1f);
 
         fireManager.gameObject.SetActive(true);
 
@@ -91,5 +93,41 @@ public class FireArea : MonoBehaviour
 
         fireManager.ActivateRandomIgniter();
         fireManager.ignitable = true;
+    }
+
+    IEnumerator DisableFireSound(float time)
+    {
+        float newVolume = 1;
+        float delay = 0.1f;
+        float increment = delay / time;
+
+        while (newVolume > 0)
+        {
+            yield return new WaitForSeconds(delay);
+
+            fireSound.volume = newVolume;
+
+            newVolume = newVolume - increment;
+        }
+
+        fireSound.Stop();
+    }
+
+    IEnumerator ActivateFireSound(float time)
+    {
+        float newVolume = 0;
+        float delay = 0.1f;
+        float increment = delay / time;
+
+        fireSound.Play();
+
+        while (newVolume < 1)
+        {
+            yield return new WaitForSeconds(delay);
+
+            fireSound.volume = newVolume;
+
+            newVolume = newVolume + increment;
+        }
     }
 }
