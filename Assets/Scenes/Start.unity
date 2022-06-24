@@ -340,8 +340,8 @@ MonoBehaviour:
   m_text: "Mit dem Button an deinem rechten Mittelfinger kannst du Gegenst\xE4nde
     aufnehmen."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -503,8 +503,8 @@ MonoBehaviour:
     (http://creativecommons.org/licenses/by/4.0/).\r\n\"Low Poly City House 2\" ()
     by ahedahedov is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &80022484
@@ -1303,8 +1303,8 @@ MonoBehaviour:
   m_text: "Schaue auf deine Controller.\nHier wird dir gezeigt, welchen Button du
     dr\xFCcken musst."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11217,8 +11217,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nein
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11242,8 +11242,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11351,8 +11351,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nutze einen der Buttons um den sicheren Raum zu aktivieren
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11485,8 +11485,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tutorial starten?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12118,8 +12118,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits ausblenden
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12500,8 +12500,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sicheren Raum Deaktivieren
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12767,8 +12767,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Benutze den rechten Joystick um dich auf der Stelle zu drehen.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13333,8 +13333,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Mit dem Button an deinem rechten Zeigefinger kannst du Kn\xF6pfe dr\xFCcken."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14803,8 +14803,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nutze den Button an deinem rechten Mittelfinger um Gegenst\xE4nde aufzuheben"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14937,8 +14937,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tutorial starten?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15311,8 +15311,8 @@ MonoBehaviour:
     Nimm dir hier eine kleine Auszeit, falls
     dir das Szenario zu intensiv ist.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17484,7 +17484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952946296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.938972, y: 15.19, z: -10.660794}
+  m_LocalPosition: {x: -34.938972, y: 16.241, z: -10.660794}
   m_LocalScale: {x: 33.68688, y: 33.68688, z: 33.68688}
   m_Children:
   - {fileID: 1459598317}
@@ -17557,8 +17557,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Ja
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17582,8 +17582,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -22756,7 +22756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.97}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995804726
@@ -22781,8 +22781,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -22916,8 +22916,8 @@ MonoBehaviour:
   m_text: "Richte den linken Controller auf den Boden und dr\xFCcke den Button an
     deinem linken Zeigefinger um dich zu teleportieren"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23560,8 +23560,8 @@ MonoBehaviour:
   m_text: "Wenn du einen Gegenstand in der Hand h\xE4lst, kannst du ihn mit dem Button
     an deinem rechten Zeigefinger aktivieren."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23815,8 +23815,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nutze den rechten Joystick um dich zu drehen
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23950,8 +23950,8 @@ MonoBehaviour:
   m_text: "Richte den linken Controller auf den Boden und dr\xFCcke den Button an
     deinem linken Zeigefinger um dich zu teleportieren"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -24349,7 +24349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.82}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213157074
@@ -24374,8 +24374,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '>'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -24508,8 +24508,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nutze einen der Buttons um den sicheren Raum zu aktivieren
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -24834,7 +24834,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Um ein Szenario zu starten, suche ein passendes Buch aus dem Schrank.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -24898,7 +24898,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1279488369
@@ -26851,8 +26851,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Benutze den rechten Joystick um dich auf der Stelle zu drehen.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29248,8 +29248,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Wenn du einen Button dr\xFCckst kommst du in einen sicheren Raum."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29894,8 +29894,8 @@ MonoBehaviour:
     woods project)\" (https://skfb.ly/ooVMR) by Helindu is licensed under Creative
     Commons Attribution (http://creativecommons.org/licenses/by/4.0/).\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30059,8 +30059,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Credits anzeigen
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
+  m_sharedMaterial: {fileID: -8156882159070190853, guid: b27f21bfdf5bfc44ba4a5527fe1c2bc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30240,8 +30240,8 @@ MonoBehaviour:
     Nimm dir hier eine kleine Auszeit, falls
     dir das Szenario zu intensiv ist.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
+  m_sharedMaterial: {fileID: -3606169726979836251, guid: 35ca3a9277c4e7a48960a6da5f2a8537, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33885,8 +33885,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nutze den Button an deinem linken Zeigefinger um dich zu teleportieren
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -34404,8 +34404,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nutze den Button an deinem rechten Zeigefinger um Gegenst\xE4nde zu aktivieren"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
+  m_sharedMaterial: {fileID: 1803603663503590029, guid: f212d4d0928a0a84ca6669d645c5fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
