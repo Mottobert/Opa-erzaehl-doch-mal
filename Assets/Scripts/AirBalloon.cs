@@ -7,12 +7,17 @@ public class AirBalloon : MonoBehaviour
 {
     public float airAmount = 0;
     private Animator animator;
-    private bool decreaseAir = true;
+    public bool decreaseAir = true;
 
     [SerializeField]
-    private AudioSource audioSource;
+    private AudioSource audioSourcePop;
+    [SerializeField]
+    private AudioSource audioSourceFillIn;
     [SerializeField]
     private Color[] colors;
+
+    [SerializeField]
+    private GameObject descriptionCanvas;
 
     private int colorIndex;
 
@@ -37,7 +42,7 @@ public class AirBalloon : MonoBehaviour
     {
         if (other.tag == "wall")
         {
-            audioSource.Play();
+            audioSourcePop.Play();
 
             Invoke("ResetAirBalloon", 3f);
         }
@@ -63,13 +68,16 @@ public class AirBalloon : MonoBehaviour
         if(airAmount < 15)
         {
             airAmount++;
+            audioSourceFillIn.Play();
 
-            if(airAmount > 15)
+            if (airAmount > 15)
             {
                 airAmount = 15;
                 UpdateSize();
                 animator.SetBool("active", true);
                 decreaseAir = false;
+
+                descriptionCanvas.SetActive(false);
             }
 
             UpdateSize();
@@ -83,9 +91,17 @@ public class AirBalloon : MonoBehaviour
 
     private void ResetAirBalloon()
     {
+        animator.SetBool("active", false);
         airAmount = 0;
         UpdateSize();
-        animator.SetBool("active", false);
+
+        Invoke("ResetAirBalloonFillIn", 0.2f);
+    }
+
+    private void ResetAirBalloonFillIn()
+    {
+        airAmount = 0;
+        UpdateSize();
         decreaseAir = true;
         SelectRandomColor();
     }

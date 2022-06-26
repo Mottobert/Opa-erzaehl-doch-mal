@@ -19,36 +19,47 @@ public class ConfettiCanon : MonoBehaviour
 
     private float updateTimer = 0;
 
+    private bool isTriggerable = true;
+
     // Update is called once per frame
     void Update()
     {
-        if (active)
+        if (active && isTriggerable)
         {
             float input = triggerReference.action.ReadValue<float>();
-            UpdateAirHornSound(input);
+            UpdateConfettiCanon(input);
         }
     }
 
-    private void UpdateAirHornSound(float input)
+    private void UpdateConfettiCanon(float input)
     {
-        if (input > 0.7f && updateTimer > 1 && !confettiParticleSystem.isPlaying)
+        if (input > 0.7f && updateTimer > 10)
         {
             updateTimer = 0;
             rightController.SendHapticImpulse(0.8f, 0.1f);
             confettiParticleSystem.Play();
+            confettiParticleSystem.Emit(50);
+            confettiSound.Stop();
             confettiSound.Play();
+
+            isTriggerable = false;
+            Invoke("SetTriggerable", 2f);
         }
 
         updateTimer++;
     }
 
-    public void ActivateAirHorn()
+    private void SetTriggerable()
     {
-        active = true;
-        
+        isTriggerable = true;
     }
 
-    public void DeactivateAirHorn()
+    public void ActivateConfettiCanon()
+    {
+        active = true;
+    }
+
+    public void DeactivateConfettiCanon()
     {
         active = false;
         confettiSound.Stop();

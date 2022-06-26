@@ -11,7 +11,7 @@ public class CreditPanel : MonoBehaviour
 
     public void ShowNextSite()
     {
-        if(siteIndex < sites.Length - 2)
+        if(siteIndex < sites.Length - 1)
         {
             siteIndex++;
 

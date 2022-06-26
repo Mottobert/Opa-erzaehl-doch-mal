@@ -24,7 +24,7 @@ public class Airpump : MonoBehaviour
     {
         if (gameObject.transform.position.y < startPosition.y - 0.2f && active)
         {
-            if (balloon.airAmount < 16)
+            if (balloon.airAmount < 16 && balloon.decreaseAir)
             {
                 balloon.IncreaseAirAmount();
             }

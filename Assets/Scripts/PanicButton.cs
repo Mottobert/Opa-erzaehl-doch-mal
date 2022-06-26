@@ -133,7 +133,7 @@ public class PanicButton : MonoBehaviour
         TeleportPlayerToTransform(safeRoomTransform);
 
         
-        if (walkingController.opaAnimator.GetBool("active"))
+        if (walkingController && walkingController.opaAnimator.GetBool("active"))
         {
             walkingController.StopWalking();
             opaAnimationStopped = true;
