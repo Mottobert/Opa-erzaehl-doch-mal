@@ -121,6 +121,7 @@ public class Butterfly : MonoBehaviour
                     butterflySatOnHandTimeline.Play();
                     walkingController.OpaWalkAgain();
                     walkingController.StopWalking();
+                    Invoke("ResetOpaWalking", 2f);
                     butterflySatOnHand = true;
                 }
 
@@ -265,6 +266,11 @@ public class Butterfly : MonoBehaviour
         randomFlight = false;
         ChangeTarget(newTarget);
         oldPos = newTarget.transform.position;
+    }
+
+    private void ResetOpaWalking()
+    {
+        walkingController.ResetCurveSpeed();
     }
 
     public float map(float s, float a1, float a2, float b1, float b2)

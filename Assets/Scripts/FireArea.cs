@@ -52,12 +52,12 @@ public class FireArea : MonoBehaviour
     {
         //Debug.Log(currentExtinguishAmount);
 
-        if (other.gameObject.tag == "particleWater" && currentExtinguishAmount >= 0 && active)
+        if (other.gameObject.tag == "particleWater" && currentExtinguishAmount >= 0 && active && fireManager.gameObject.activeInHierarchy)
         {
             currentExtinguishAmount = currentExtinguishAmount - extinguishReduction;
         }
         
-        if (other.gameObject.tag == "particleWater" && currentExtinguishAmount <= 0 && active)
+        if (other.gameObject.tag == "particleWater" && currentExtinguishAmount <= 0 && active && fireManager.gameObject.activeInHierarchy)
         {
             ExtinguishFire();
         }
@@ -71,7 +71,8 @@ public class FireArea : MonoBehaviour
         currentExtinguishAmount = extinguishAmount;
 
         //fireSound.Play();
-        ActivateFireSound(1f);
+        StartCoroutine("ActivateFireSound", 1f);
+        //ActivateFireSound(1f);
     }
 
     private void ExtinguishFire()
@@ -80,7 +81,8 @@ public class FireArea : MonoBehaviour
         active = false;
 
         //fireSound.Stop();
-        DisableFireSound(1f);
+        StartCoroutine("DisableFireSound", 1f);
+        //DisableFireSound(1f);
 
         fireManager.gameObject.SetActive(true);
 

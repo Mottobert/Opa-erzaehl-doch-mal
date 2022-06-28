@@ -85,7 +85,7 @@ public class WalkingController : MonoBehaviour
 
                 opaAhead = true;
 
-                panicButton.DeactivateAllActiveTimelines();
+                //panicButton.DeactivateAllActiveTimelines();
                 //Debug.Log("Opa too much ahead");
             }
             else if(distanceOpaPlayer < 30f && player.transform.position.x < opa.transform.position.x && !safeRoomActive && permission && !opaDontWalk) 
@@ -94,7 +94,7 @@ public class WalkingController : MonoBehaviour
 
                 opaAhead = false;
 
-                panicButton.ActivatePausedTimelines();
+                //panicButton.ActivatePausedTimelines();
                 //Debug.Log("Opa walk again");
             }
         }

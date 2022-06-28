@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 1
+  m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: -3858557815704784374}
   m_Parent: {fileID: -8874548223883876318}
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_TrackProperties:
-    volume: 0.9473813
+    volume: 0.0026902382
     stereoPan: 0
     spatialBlend: 0
 --- !u!114 &-4016492870435163072
