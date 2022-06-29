@@ -14,7 +14,16 @@ public class ClimatePlanner : MonoBehaviour
     [SerializeField]
     private Color selectedColor;
 
+    [SerializeField]
+    private GameObject headerText;
+
     private GameObject currentButton;
+
+    private void Start()
+    {
+        //currentButton = buttons[0];
+        //SelectVorhaben();
+    }
 
     public void SelectButton(GameObject activeButton)
     {
@@ -50,7 +59,8 @@ public class ClimatePlanner : MonoBehaviour
         currentButton.SetActive(true);
         currentButton.GetComponent<Image>().color = defaultColor;
 
-        currentButton.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 30, 0);
+        headerText.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 21, 0);
+        currentButton.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -20, 0);
 
         currentButton.GetComponent<VorhabenButton>().timeline.Play();
     }

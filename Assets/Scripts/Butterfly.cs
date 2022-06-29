@@ -121,14 +121,14 @@ public class Butterfly : MonoBehaviour
                     butterflySatOnHandTimeline.Play();
                     walkingController.OpaWalkAgain();
                     walkingController.StopWalking();
-                    Invoke("ResetOpaWalking", 2f);
+                    Invoke("ResetOpaWalking", 10f);
                     butterflySatOnHand = true;
                 }
 
                 if (!butterflySatOnHand && treeButterfly)
                 {
                     butterflySatOnHand = true;
-                    endButton.SetActive(true);
+                    Invoke("ShowEndButton", 2f);
                 }
                 
                 animator.SetBool("active", false);
@@ -149,6 +149,11 @@ public class Butterfly : MonoBehaviour
         {
             nextTargetTimer--;
         }
+    }
+
+    private void ShowEndButton()
+    {
+        endButton.SetActive(true);
     }
 
     IEnumerator DelayBeforeHandTarget()
