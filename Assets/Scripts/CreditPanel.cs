@@ -9,6 +9,13 @@ public class CreditPanel : MonoBehaviour
     [SerializeField]
     private GameObject[] sites;
 
+    private void Start()
+    {
+        DisableAllSites();
+
+        ShowSite(siteIndex);
+    }
+
     public void ShowNextSite()
     {
         if(siteIndex < sites.Length - 1)

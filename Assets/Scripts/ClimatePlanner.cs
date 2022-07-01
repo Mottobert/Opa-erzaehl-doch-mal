@@ -16,6 +16,11 @@ public class ClimatePlanner : MonoBehaviour
 
     [SerializeField]
     private GameObject headerText;
+    [SerializeField]
+    private GameObject previousButton;
+    [SerializeField]
+    private GameObject nextButton;
+
 
     private GameObject currentButton;
 
@@ -55,6 +60,8 @@ public class ClimatePlanner : MonoBehaviour
     public void SelectVorhaben()
     {
         HideAllButtons();
+        previousButton.SetActive(false);
+        nextButton.SetActive(false);
 
         currentButton.SetActive(true);
         currentButton.GetComponent<Image>().color = defaultColor;
