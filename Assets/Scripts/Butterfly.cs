@@ -204,7 +204,7 @@ public class Butterfly : MonoBehaviour
         animator.SetBool("active", true);
 
         // Rotation //
-        // Offset fuer das LookAt Target (zwischen -1 und 1)
+        // Offset fuer das LookAt Target (zwischen 0 und 1)
         float xOffset = map(Mathf.PerlinNoise(0.1f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float yOffset = map(Mathf.PerlinNoise(0.3f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
         float zOffset = map(Mathf.PerlinNoise(0.8f, Time.realtimeSinceStartup / 1) * distance, 0, 6, 0, 1);
