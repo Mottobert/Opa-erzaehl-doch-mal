@@ -169,17 +169,18 @@ public class ButterflyTutorial : MonoBehaviour
 
     public void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Vector3 direction = transform.TransformDirection(Vector3.forward) * 0.4f;
         Gizmos.DrawRay(transform.position, direction);
 
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.red;
         desiredDirection = Vector3.Normalize(activeTarget.position - transform.position);
         desiredDirection = desiredDirection * 0.4f;
         Gizmos.DrawRay(transform.position, desiredDirection);
 
         if (flightMode == FlightMode.Noise)
         {
+            Gizmos.color = Color.blue;
             Gizmos.DrawSphere(activeTarget.position + activeTargetOffset, 0.03f);
         }
     }
