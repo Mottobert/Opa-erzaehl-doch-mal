@@ -545,7 +545,7 @@ MonoBehaviour:
   animator: {fileID: 76494051}
   speed: 0.008
   minDistance: 0.01
-  flightMode: 0
+  flightMode: 3
 --- !u!1 &852231756
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,13 +911,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569226653}
-  m_LocalRotation: {x: 0.17305252, y: -0.21459064, z: 0.038663678, w: 0.9604733}
-  m_LocalPosition: {x: 1.341, y: 2.648, z: -2.892}
+  m_LocalRotation: {x: 0.1773166, y: 0, z: 0, w: 0.98415387}
+  m_LocalPosition: {x: 0, y: 2.648, z: -2.892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20.427, y: -25.189, z: 0}
+  m_LocalEulerAnglesHint: {x: 20.427, y: 0, z: 0}
 --- !u!114 &1569226657
 MonoBehaviour:
   m_ObjectHideFlags: 0
