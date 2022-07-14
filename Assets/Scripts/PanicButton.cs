@@ -37,6 +37,10 @@ public class PanicButton : MonoBehaviour
     [SerializeField]
     private GameObject zusammenfassungTimeline;
 
+    [SerializeField]
+    private GameObject helicopterRope;
+    public bool playerWasAttachedToRope = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -132,7 +136,12 @@ public class PanicButton : MonoBehaviour
         SafeTransform(playerTransform);
         TeleportPlayerToTransform(safeRoomTransform);
 
-        
+        if(helicopterRope != null)
+        {
+            playerWasAttachedToRope = helicopterRope.GetComponent<AttachPlayerToRope>().active;
+            helicopterRope.GetComponent<AttachPlayerToRope>().DetachPlayer();
+        }
+
         if (walkingController && walkingController.opaAnimator.GetBool("active"))
         {
             walkingController.StopWalking();
@@ -153,6 +162,15 @@ public class PanicButton : MonoBehaviour
         {
             walkingController.ResetCurveSpeed();
             opaAnimationStopped = false;        
+        }
+
+        // falls Nutzer an Helikopter Seil festgehangen hat soll er wieder an das Seil geparented werden
+        if (playerWasAttachedToRope)
+        {
+            helicopterRope.GetComponent<AttachPlayerToRope>().AttachPlayerToHelicopter();
+            playerWasAttachedToRope = false;
+
+            playerTransform.localPosition = new Vector3(0, -1f, 0);
         }
 
         //Time.timeScale = 1;
@@ -205,9 +223,4 @@ public class PanicButton : MonoBehaviour
             }
         }
     }
-
-    // Speichern der aktuellen Position und Rotation
-    // Teleportieren zum Safe Room und anhalten des Spielgeschehens
-    // Wieder zurück zur Ursprünglichen Position teleportieren, wenn weitergemacht werden soll
-    // Oder beenden wenn abgebrochen werden soll
 }

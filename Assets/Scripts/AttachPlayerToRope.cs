@@ -17,9 +17,13 @@ public class AttachPlayerToRope : MonoBehaviour
     [SerializeField]
     private bool hoehenangst;
 
+    public bool active = false;
+
     public void AttachPlayer()
     {
-        xrOrigin.transform.parent = this.transform;
+        AttachPlayerToHelicopter();
+        active = true;
+
         if (hoehenangst)
         {
             helicopterFlyAwayTimelineHoehenangst.Play();
@@ -30,9 +34,16 @@ public class AttachPlayerToRope : MonoBehaviour
         }
     }
 
+    public void AttachPlayerToHelicopter()
+    {
+        active = true;
+        xrOrigin.transform.parent = this.transform;
+    }
+
     public void DetachPlayer()
     {
         xrOrigin.transform.parent = null;
+        active = false;
     }
 
     public void SetHoehenangst(bool angst)
