@@ -2588,7 +2588,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1991550364}
+      - m_Target: {fileID: 1370426971}
         m_TargetAssemblyTypeName: Outline, Assembly-CSharp
         m_MethodName: DeactivateBlinking
         m_Mode: 1
@@ -2600,7 +2600,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1529016275}
+      - m_Target: {fileID: 1370426970}
         m_TargetAssemblyTypeName: Outline, Assembly-CSharp
         m_MethodName: DeactivateBlinking
         m_Mode: 1
@@ -34171,6 +34171,7 @@ MonoBehaviour:
   - {fileID: 919132149286082253}
   - {fileID: 919132147960543140}
   - {fileID: 1017210280}
+  - {fileID: 204917146}
   savedTransform: {fileID: 1937405859}
   active: 0
   walkingController: {fileID: 0}
