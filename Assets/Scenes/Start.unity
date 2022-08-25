@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 9a0762b54915c9942b65d9113505d6c2, type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: f917eebb8ec1392419f77b371d24b6ff, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -31762,7 +31762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512789943738691, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829512789943738691, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -31862,7 +31862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791828290922, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791828290923, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -31870,11 +31870,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791846978612, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791846978613, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791846978613, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
