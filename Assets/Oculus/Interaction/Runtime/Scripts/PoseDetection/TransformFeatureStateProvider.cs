@@ -1,14 +1,22 @@
-/************************************************************************************
-Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
-
-Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
-https://developer.oculus.com/licenses/oculussdk/
-
-Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-ANY KIND, either express or implied. See the License for the specific language governing
-permissions and limitations under the License.
-************************************************************************************/
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using Oculus.Interaction.Input;
 using System;
@@ -58,6 +66,7 @@ namespace Oculus.Interaction.PoseDetection
         public Handedness Handedness;
         public Pose CenterEyePose, WristPose;
         public Vector3 TrackingSystemUp;
+        public Vector3 TrackingSystemForward;
     }
 
     internal class TransformFeatureStateCollection
@@ -121,7 +130,7 @@ namespace Oculus.Interaction.PoseDetection
         public void UpdateFeatureStates(int lastUpdatedFrameId,
             bool disableProactiveEvaluation)
         {
-            foreach(var transformStateInfo in _idToTransformStateInfo.Values)
+            foreach (var transformStateInfo in _idToTransformStateInfo.Values)
             {
                 var featureStateProvider = transformStateInfo.StateProvider;
                 if (!disableProactiveEvaluation)
@@ -137,6 +146,23 @@ namespace Oculus.Interaction.PoseDetection
         }
     }
 
+    public interface ITransformFeatureStateProvider
+    {
+        bool IsStateActive(TransformConfig config, TransformFeature feature,
+            FeatureStateActiveMode mode, string stateId);
+
+        bool GetCurrentState(TransformConfig config, TransformFeature transformFeature,
+            out string currentState);
+
+        void RegisterConfig(TransformConfig transformConfig);
+
+        void UnRegisterConfig(TransformConfig transformConfig);
+
+        void GetFeatureVectorAndWristPos(TransformConfig config,
+            TransformFeature transformFeature, bool isHandVector, ref Vector3? featureVec,
+            ref Vector3? wristPos);
+    }
+
     /// <summary>
     /// Interprets transform feature values from a <see cref="TransformFeatureValueProvider"/>
     /// and uses the given <see cref="TransformFeatureStateThresholds"/> to quantize
@@ -145,11 +171,15 @@ namespace Oculus.Interaction.PoseDetection
     /// frame and the given state thresholds to apply a buffer between
     /// state transition edges.
     /// </summary>
-    public class TransformFeatureStateProvider : MonoBehaviour
+    public class TransformFeatureStateProvider : MonoBehaviour, ITransformFeatureStateProvider
     {
         [SerializeField, Interface(typeof(IHand))]
         private MonoBehaviour _hand;
         public IHand Hand { get; private set; }
+
+        [SerializeField, Interface(typeof(IHmd))]
+        private MonoBehaviour _hmd;
+        public IHmd Hmd { get; private set; }
 
         [SerializeField, Interface(typeof(ITrackingToWorldTransformer))]
         private MonoBehaviour _trackingToWorldTransformer;
@@ -166,25 +196,24 @@ namespace Oculus.Interaction.PoseDetection
 
         private TransformJointData _jointData = new TransformJointData();
         private TransformFeatureStateCollection _transformFeatureStateCollection;
-
-        Func<float> _timeProvider;
+        private Func<float> _timeProvider;
 
         protected bool _started = false;
 
         protected virtual void Awake()
         {
             Hand = _hand as IHand;
+            Hmd = _hmd as IHmd;
+            TrackingToWorldTransformer = _trackingToWorldTransformer as ITrackingToWorldTransformer;
             _transformFeatureStateCollection = new TransformFeatureStateCollection();
-
-            if (_timeProvider == null)
-            {
-                _timeProvider = () => Time.time;
-            }
+            _timeProvider = () => Time.time;
         }
 
-        public void RegisterNewConfig(TransformConfig transformConfig)
+        public void RegisterConfig(TransformConfig transformConfig)
         {
-            _transformFeatureStateCollection.RegisterConfig(transformConfig, _jointData, _timeProvider);
+            //Register time provider indirectly in case reference changes
+            Func<float> getTime = () => _timeProvider();
+            _transformFeatureStateCollection.RegisterConfig(transformConfig, _jointData, getTime);
         }
 
         public void UnRegisterConfig(TransformConfig transformConfig)
@@ -195,10 +224,10 @@ namespace Oculus.Interaction.PoseDetection
         protected virtual void Start()
         {
             this.BeginStart(ref _started);
-            Assert.IsNotNull(Hand);
-
-            TrackingToWorldTransformer = _trackingToWorldTransformer as ITrackingToWorldTransformer;
-            Assert.IsNotNull(TrackingToWorldTransformer);
+            this.AssertField(Hand, nameof(Hand));
+            this.AssertField(Hmd, nameof(Hmd));
+            this.AssertField(_timeProvider, nameof(_timeProvider));
+            this.AssertField(TrackingToWorldTransformer, nameof(TrackingToWorldTransformer));
             this.EndStart(ref _started);
         }
 
@@ -206,7 +235,7 @@ namespace Oculus.Interaction.PoseDetection
         {
             if (_started)
             {
-                Hand.HandUpdated += HandDataAvailable;
+                Hand.WhenHandUpdated += HandDataAvailable;
             }
         }
 
@@ -214,7 +243,7 @@ namespace Oculus.Interaction.PoseDetection
         {
             if (_started)
             {
-                Hand.HandUpdated -= HandDataAvailable;
+                Hand.WhenHandUpdated -= HandDataAvailable;
             }
         }
 
@@ -227,7 +256,7 @@ namespace Oculus.Interaction.PoseDetection
         private void UpdateJointData()
         {
             _jointData.IsValid = Hand.GetRootPose(out _jointData.WristPose) &&
-                                 Hand.GetCenterEyePose(out _jointData.CenterEyePose);
+                                 Hmd.TryGetRootPose(out _jointData.CenterEyePose);
             if (!_jointData.IsValid)
             {
                 return;
@@ -235,6 +264,7 @@ namespace Oculus.Interaction.PoseDetection
 
             _jointData.Handedness = Hand.Handedness;
             _jointData.TrackingSystemUp = TrackingToWorldTransformer.Transform.up;
+            _jointData.TrackingSystemForward = TrackingToWorldTransformer.Transform.forward;
         }
 
         private void UpdateStateForHand()
@@ -322,9 +352,10 @@ namespace Oculus.Interaction.PoseDetection
         }
 
         #region Inject
-        public void InjectAllTransformFeatureStateProvider(IHand hand, bool disableProactiveEvaluation)
+        public void InjectAllTransformFeatureStateProvider(IHand hand, IHmd hmd, bool disableProactiveEvaluation)
         {
-            Hand = hand;
+            InjectHand(hand);
+            InjectHmd(hmd);
             _disableProactiveEvaluation = disableProactiveEvaluation;
         }
 
@@ -332,6 +363,12 @@ namespace Oculus.Interaction.PoseDetection
         {
             _hand = hand as MonoBehaviour;
             Hand = hand;
+        }
+
+        public void InjectHmd(IHmd hand)
+        {
+            _hmd = hand as MonoBehaviour;
+            Hmd = hand;
         }
 
         public void InjectDisableProactiveEvaluation(bool disabled)

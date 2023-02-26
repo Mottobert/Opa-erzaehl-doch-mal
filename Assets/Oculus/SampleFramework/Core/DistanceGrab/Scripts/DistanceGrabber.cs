@@ -1,13 +1,23 @@
-/************************************************************************************
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.  
-
-See SampleFramework license.txt for license terms.  Unless required by applicable law 
-or agreed to in writing, the sample code is provided “AS IS” WITHOUT WARRANTIES OR 
-CONDITIONS OF ANY KIND, either express or implied.  See the license for specific 
-language governing permissions and limitations under the license.
-
-************************************************************************************/
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,7 +77,7 @@ namespace OculusSampleFramework
         [SerializeField]
         int m_obstructionLayer = 0;
 
-        public DistanceGrabber m_otherHand;
+        DistanceGrabber m_otherHand;
 
         protected DistanceGrabbable m_target;
         // Tracked separately from m_target, because we support child colliders of a DistanceGrabbable.
@@ -81,7 +91,6 @@ namespace OculusSampleFramework
             // Note that there's no major downside to making this value too high, as objects
             // outside the player's grabbable trigger volume will not be eligible targets regardless.
             Collider sc = m_player.GetComponentInChildren<Collider>();
-            
             if(sc != null)
             {
                 m_maxGrabDistance = sc.bounds.size.z * 0.5f + 3.0f;

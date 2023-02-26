@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 namespace Oculus.Interaction.InterfaceSupport
 {
@@ -27,8 +28,12 @@ namespace Oculus.Interaction.InterfaceSupport
     [CustomPropertyDrawer(typeof(InterfaceAttribute))]
     public class InterfaceDrawer : PropertyDrawer
     {
+        private int _filteredObjectPickerID;
+        private static readonly Type[] _singleMonoBehaviourType = new Type[1] { typeof(MonoBehaviour) };
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            _filteredObjectPickerID = GUIUtility.GetControlID(FocusType.Passive);
             if (property.serializedObject.isEditingMultipleObjects) return;
 
             if (property.propertyType != SerializedPropertyType.ObjectReference)
@@ -36,6 +41,8 @@ namespace Oculus.Interaction.InterfaceSupport
                 EditorGUI.LabelField(position, label.text, "InterfaceType Attribute can only be used with MonoBehaviour Components.");
                 return;
             }
+
+            EditorGUI.BeginProperty(position, label, property);
 
             Type[] attTypes = GetInterfaceTypes(property);
 
@@ -60,7 +67,25 @@ namespace Oculus.Interaction.InterfaceSupport
                 }
             }
 
-            MonoBehaviour currentComponent = EditorGUI.ObjectField(position, label, oldComponent, typeof(MonoBehaviour), true) as MonoBehaviour;
+            Component currentComponent = EditorGUI.ObjectField(position, label, oldComponent, typeof(Component), true) as Component;
+            
+            int objectPickerID = GUIUtility.GetControlID(FocusType.Passive) - 1;
+            ReplaceObjectPickerForControl(attTypes, objectPickerID);
+            if (Event.current.commandName == "ObjectSelectorUpdated"
+                && EditorGUIUtility.GetObjectPickerControlID() == _filteredObjectPickerID)
+            {
+                UnityEngine.Object pickedObject = EditorGUIUtility.GetObjectPickerObject();
+                if (pickedObject is GameObject)
+                {
+                    currentComponent = (pickedObject as GameObject).transform;
+                }
+                else
+                {
+                    currentComponent = pickedObject as Component;
+                }
+            }
+
+            MonoBehaviour currentMono = currentComponent as MonoBehaviour;
 
             if (Event.current.type == EventType.Repaint)
             {
@@ -71,35 +96,57 @@ namespace Oculus.Interaction.InterfaceSupport
             }
 
             // If a component is assigned, make sure it is the interface we are looking for.
-            if (currentComponent != null)
+            if (currentMono != null)
             {
                 // Make sure component is of the right interface
-                if(!IsAssignableFromTypes(currentComponent.GetType(), attTypes))
+                if (!IsAssignableFromTypes(currentMono.GetType(), attTypes))
                     // Component failed. Check game object.
                     foreach (Type attType in attTypes)
                     {
-                        currentComponent = currentComponent.gameObject.GetComponent(attType) as MonoBehaviour;
-                        if (currentComponent == null)
+                        currentMono = currentMono.gameObject.GetComponent(attType) as MonoBehaviour;
+                        if (currentMono == null)
                         {
                             break;
                         }
                     }
 
                 // Item failed test. Do not override old component
-                if (currentComponent == null)
+                if (currentMono == null)
                 {
                     if (oldComponent != null && !IsAssignableFromTypes(oldComponent.GetType(), attTypes))
                     {
                         temporaryGameObject = new GameObject("None (" + attTypesName + ")");
                         MonoBehaviour temporaryComponent = temporaryGameObject.AddComponent<InterfaceMono>();
-                        currentComponent = EditorGUI.ObjectField(position, label, temporaryComponent, typeof(MonoBehaviour), true) as MonoBehaviour;
+                        currentMono = EditorGUI.ObjectField(position, label, temporaryComponent, typeof(MonoBehaviour), true) as MonoBehaviour;
                         GameObject.DestroyImmediate(temporaryGameObject);
                     }
                 }
             }
+            else if (currentComponent is Transform)
+            {
+                // If assigned component is a Transform, this means a GameObject was dragged into the property field.
+                // Find all matching components on the transform's GameObject and open the picker window.
 
-            property.objectReferenceValue = currentComponent;
-            property.serializedObject.ApplyModifiedProperties();
+                List<MonoBehaviour> monos = new List<MonoBehaviour>();
+                monos.AddRange(currentComponent.gameObject.GetComponents<MonoBehaviour>().
+                    Where((mono) => IsAssignableFromTypes(mono.GetType(), attTypes)));
+
+                if (monos.Count > 1)
+                {
+                    EditorApplication.delayCall += () => InterfacePicker.Show(property, monos);
+                }
+                else
+                {
+                    currentMono = monos.Count == 1 ? monos[0] : null;
+                }
+            }
+
+            if (currentComponent == null || currentMono != null)
+            {
+                property.objectReferenceValue = currentMono;
+            }
+
+            EditorGUI.EndProperty();
         }
 
         private bool IsAssignableFromTypes(Type source, Type[] targets)
@@ -168,10 +215,38 @@ namespace Oculus.Interaction.InterfaceSupport
                 }
             }
 
-            return t ?? singleMonoBehaviourType;
+            return t ?? _singleMonoBehaviourType;
         }
 
-        private static readonly Type[] singleMonoBehaviourType = new Type[1] {typeof(MonoBehaviour)};
+        void ReplaceObjectPickerForControl(Type[] attTypes, int replacePickerID)
+        {
+            var currentObjectPickerID = EditorGUIUtility.GetObjectPickerControlID();
+            if (currentObjectPickerID != replacePickerID)
+            {
+                return;
+            }
+
+            var derivedTypes = TypeCache.GetTypesDerivedFrom(attTypes[0]);
+            HashSet<Type> validTypes = new HashSet<Type>(derivedTypes);
+            for (int i = 1; i < attTypes.Length; i++)
+            {
+                var derivedTypesIntersect = TypeCache.GetTypesDerivedFrom(attTypes[i]);
+                validTypes.IntersectWith(derivedTypesIntersect);
+            }
+
+            //start filter with a long empty area to allow for easy clicking and typing
+            var filterBuilder = new System.Text.StringBuilder("                       ");
+            foreach (Type type in validTypes)
+            {
+                if (type.IsGenericType)
+                {
+                    continue;
+                }
+                filterBuilder.Append("t:" + type.FullName + " ");
+            }
+            string filter = filterBuilder.ToString();
+            EditorGUIUtility.ShowObjectPicker<Component>(null, true, filter, _filteredObjectPickerID);
+        }
     }
 
 

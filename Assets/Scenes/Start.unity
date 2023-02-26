@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.183
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 135649799}
-  m_IndirectSpecularColor: {r: 0.01656546, g: 0.021111473, b: 0.029744165, a: 0.183}
+  m_IndirectSpecularColor: {r: 0.016565375, g: 0.02111136, b: 0.029744023, a: 0.183}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15326,7 +15326,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880528452}
-  m_LocalRotation: {x: -0, y: 0.707107, z: -0, w: 0.70710665}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -4.239, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -25704,7 +25704,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1208027989
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -25717,10 +25717,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1208027990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26547,7 +26548,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1323128093
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -26560,10 +26561,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1323128094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31313,6 +31315,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1338925288959786733, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338925288959786733, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -31758,7 +31764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512789943738690, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Lightmapping
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8829512789943738691, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_IsActive
@@ -31774,6 +31780,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791188637224, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829512791188637225, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791188637225, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
@@ -31862,7 +31872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791828290922, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Lightmapping
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791828290923, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -31870,7 +31880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791846978612, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_Lightmapping
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8829512791846978613, guid: d3b80cd0e09d2a44ba5b52fb172786c1, type: 3}
       propertyPath: m_IsActive
@@ -36953,7 +36963,7 @@ MonoBehaviour:
   m_ButtonPressPoint: 0.5
 --- !u!95 &1921801602
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -36966,10 +36976,11 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1924802750
 GameObject:
   m_ObjectHideFlags: 0

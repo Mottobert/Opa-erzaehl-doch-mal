@@ -1,19 +1,25 @@
-/************************************************************************************
-Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
-
-Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
-https://developer.oculus.com/licenses/oculussdk/
-
-Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-ANY KIND, either express or implied. See the License for the specific language governing
-permissions and limitations under the License.
-************************************************************************************/
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Oculus.Interaction.Input
 {
@@ -21,28 +27,26 @@ namespace Oculus.Interaction.Input
     // Rather than sourcing data directly from the runtime layer, provides one
     // level of abstraction so that the aforementioned data can be injected
     // from other sources.
-    public class Hand : DataModifier<HandDataAsset, HandDataSourceConfig>, IHand
+    public class Hand : DataModifier<HandDataAsset>, IHand
     {
-        [SerializeField]
-        [Tooltip("Provides access to additional functionality on top of what the IHand interface provides." +
-                 "For example, this list can be used to provide access to the SkinnedMeshRenderer through " +
-                 "the IHand.GetHandAspect method.")]
-        private Component[] _aspects;
-
-        public IReadOnlyList<Component> Aspects => _aspects;
+        public Handedness Handedness => GetData().Config.Handedness;
 
         public ITrackingToWorldTransformer TrackingToWorldTransformer =>
-            Config.TrackingToWorldTransformer;
+            GetData().Config.TrackingToWorldTransformer;
+
+        public HandSkeleton HandSkeleton => GetData().Config.HandSkeleton;
 
         private HandJointCache _jointPosesCache;
 
-        public event Action HandUpdated = delegate { };
+        public event Action WhenHandUpdated = delegate { };
 
         public bool IsConnected => GetData().IsDataValidAndConnected;
         public bool IsHighConfidence => GetData().IsHighConfidence;
         public bool IsDominantHand => GetData().IsDominantHand;
-        public Handedness Handedness => Config.Handedness;
-        public float Scale => GetData().HandScale * TrackingToWorldTransformer.Transform.localScale.x;
+
+        public float Scale => (TrackingToWorldTransformer != null
+                               ? TrackingToWorldTransformer.Transform.lossyScale.x
+                               : 1) * GetData().HandScale;
 
         private static readonly Vector3 PALM_LOCAL_OFFSET = new Vector3(0.08f, -0.01f, 0.0f);
 
@@ -58,7 +62,7 @@ namespace Oculus.Interaction.Input
             if (Started)
             {
                 InitializeJointPosesCache();
-                HandUpdated.Invoke();
+                WhenHandUpdated.Invoke();
             }
         }
 
@@ -66,7 +70,7 @@ namespace Oculus.Interaction.Input
         {
             if (_jointPosesCache == null && GetData().IsDataValidAndConnected)
             {
-                _jointPosesCache = new HandJointCache(Config.HandSkeleton);
+                _jointPosesCache = new HandJointCache(HandSkeleton);
             }
         }
 
@@ -192,31 +196,8 @@ namespace Oculus.Interaction.Input
             return ValidatePose(currentData.Root, currentData.RootPoseOrigin, out pose);
         }
 
-        public bool IsCenterEyePoseValid => Config.HmdData.GetData().IsTracked;
-
-        public bool GetCenterEyePose(out Pose pose)
-        {
-            HmdDataAsset hmd = Config.HmdData.GetData();
-            if (!hmd.IsTracked)
-            {
-                pose = new Pose();
-                return false;
-            }
-
-            pose = TrackingToWorldTransformer.ToWorldPose(hmd.Root);
-            return true;
-        }
-
         #endregion
 
-
-        public Transform TrackingToWorldSpace
-        {
-            get
-            {
-                return TrackingToWorldTransformer.Transform;
-            }
-        }
 
         private bool ValidatePose(in Pose sourcePose, PoseOrigin sourcePoseOrigin, out Pose pose)
         {
@@ -225,7 +206,11 @@ namespace Oculus.Interaction.Input
                 pose = Pose.identity;
                 return false;
             }
-            pose = TrackingToWorldTransformer.ToWorldPose(sourcePose);
+
+            pose = TrackingToWorldTransformer != null
+                ? TrackingToWorldTransformer.ToWorldPose(sourcePose)
+                : sourcePose;
+
             return true;
         }
 
@@ -239,34 +224,12 @@ namespace Oculus.Interaction.Input
             return poseOrigin == PoseOrigin.None;
         }
 
-        public bool GetHandAspect<TComponent>(out TComponent foundComponent) where TComponent : class
-        {
-            foreach (Component aspect in _aspects)
-            {
-                foundComponent = aspect as TComponent;
-                if (foundComponent != null)
-                {
-                    return true;
-                }
-            }
-
-            foundComponent = null;
-            return false;
-        }
-
         #region Inject
 
         public void InjectAllHand(UpdateModeFlags updateMode, IDataSource updateAfter,
-            DataModifier<HandDataAsset, HandDataSourceConfig> modifyDataFromSource, bool applyModifier,
-            Component[] aspects)
+            DataModifier<HandDataAsset> modifyDataFromSource, bool applyModifier)
         {
             base.InjectAllDataModifier(updateMode, updateAfter, modifyDataFromSource, applyModifier);
-            InjectAspects(aspects);
-        }
-
-        public void InjectAspects(Component[] aspects)
-        {
-            _aspects = aspects;
         }
 
         #endregion

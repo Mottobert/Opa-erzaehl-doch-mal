@@ -1,116 +1,127 @@
-/************************************************************************************
-Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
-https://developer.oculus.com/licenses/oculussdk/
-
-Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-ANY KIND, either express or implied. See the License for the specific language governing
-permissions and limitations under the License.
-************************************************************************************/
-
-using System;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Serialization;
+using Oculus.Interaction.Surfaces;
 
 namespace Oculus.Interaction
 {
-    public class RayInteractable : Interactable<RayInteractor, RayInteractable>, IPointable
+    public class RayInteractable : PointerInteractable<RayInteractor, RayInteractable>
     {
-        [SerializeField]
-        private Collider _collider;
-        public Collider Collider { get => _collider; }
+        [SerializeField, Interface(typeof(ISurface))]
+        private MonoBehaviour _surface;
+        public ISurface Surface { get; private set; }
+
+        [SerializeField, Optional, Interface(typeof(ISurface))]
+        private MonoBehaviour _selectSurface = null;
+        private ISurface SelectSurface;
+
+        [SerializeField, Optional, Interface(typeof(IMovementProvider))]
+        private MonoBehaviour _movementProvider;
+        private IMovementProvider MovementProvider { get; set; }
 
         [SerializeField, Optional]
-        private Transform _pointablePlane = null;
+        private int _tiebreakerScore = 0;
 
-        public event Action<PointerArgs> OnPointerEvent = delegate { };
-        private PointableDelegate<RayInteractor> _pointableDelegate;
-
-        protected bool _started = false;
-
-        protected virtual void Start()
+        #region Properties
+        public int TiebreakerScore
         {
-            this.BeginStart(ref _started);
-            Assert.IsNotNull(_collider);
-            _pointableDelegate = new PointableDelegate<RayInteractor>(this, ComputePointer);
+            get
+            {
+                return _tiebreakerScore;
+            }
+            set
+            {
+                _tiebreakerScore = value;
+            }
+        }
+        #endregion
+
+        protected override void Awake()
+        {
+            base.Awake();
+            Surface = _surface as ISurface;
+            SelectSurface = _selectSurface as ISurface;
+            MovementProvider = _movementProvider as IMovementProvider;
+        }
+
+        protected override void Start()
+        {
+            this.BeginStart(ref _started, () => base.Start());
+            this.AssertField(Surface, nameof(Surface));
+            if (_selectSurface != null)
+            {
+                this.AssertField(SelectSurface, nameof(SelectSurface));
+            }
+            else
+            {
+                SelectSurface = Surface;
+                _selectSurface = SelectSurface as MonoBehaviour;
+            }
             this.EndStart(ref _started);
         }
 
-        protected override void OnEnable()
+        public bool Raycast(Ray ray, out SurfaceHit hit, in float maxDistance, bool selectSurface)
         {
-            base.OnEnable();
-            if (_started)
-            {
-                _pointableDelegate.OnPointerEvent += InvokePointerEvent;
-            }
+            hit = new SurfaceHit();
+            ISurface surface = selectSurface ? SelectSurface : Surface;
+            return surface.Raycast(ray, out hit, maxDistance);
         }
 
-        protected override void OnDisable()
+        public IMovement GenerateMovement(in Pose to, in Pose source)
         {
-            if (_started)
+            if (MovementProvider == null)
             {
-                _pointableDelegate.OnPointerEvent -= InvokePointerEvent;
+                return null;
             }
-            base.OnDisable();
-        }
-
-        private void InvokePointerEvent(PointerArgs args)
-        {
-            OnPointerEvent(args);
-        }
-
-        private  void ComputePointer(RayInteractor rayInteractor, out Vector3 position, out Quaternion rotation)
-        {
-            if (_pointablePlane != null)
-            {
-                var plane = new Plane(-1f * _pointablePlane.forward, _pointablePlane.position);
-                var ray = new Ray(rayInteractor.Origin, rayInteractor.Rotation * Vector3.forward);
-
-                float enter;
-                if (plane.Raycast(ray, out enter))
-                {
-                    position = ray.GetPoint(enter);
-                    rotation = Quaternion.LookRotation(-1f * _pointablePlane.forward);
-                    return;
-                }
-            }
-
-            rotation = rayInteractor.Rotation;
-
-            if (rayInteractor.CollisionInfo != null)
-            {
-                position = rayInteractor.CollisionInfo.Value.point;
-                return;
-            }
-
-            position = Vector3.zero;
-        }
-
-        protected virtual void OnDestroy()
-        {
-            _pointableDelegate = null;
+            IMovement movement = MovementProvider.CreateMovement();
+            movement.StopAndSetPose(source);
+            movement.MoveTo(to);
+            return movement;
         }
 
         #region Inject
 
-        public void InjectAllRayInteractable(Collider collider)
+        public void InjectAllRayInteractable(ISurface surface)
         {
-            InjectCollider(collider);
+            InjectSurface(surface);
         }
 
-        public void InjectCollider(Collider collider)
+        public void InjectSurface(ISurface surface)
         {
-            _collider = collider;
+            Surface = surface;
+            _surface = surface as MonoBehaviour;
         }
 
-        public void InjectOptionalPointablePlane(Transform pointablePlane)
+        public void InjectOptionalSelectSurface(ISurface surface)
         {
-            _pointablePlane = pointablePlane;
+            SelectSurface = surface;
+            _selectSurface = surface as MonoBehaviour;
         }
 
+        public void InjectOptionalMovementProvider(IMovementProvider provider)
+        {
+            _movementProvider = provider as MonoBehaviour;
+            MovementProvider = provider;
+        }
         #endregion
     }
 }
