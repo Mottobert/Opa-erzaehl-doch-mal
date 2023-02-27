@@ -22,6 +22,7 @@ MonoBehaviour:
   FocusAware: 1
   OptimizeBufferDiscards: 1
   PhaseSync: 1
+  SymmetricProjection: 0
   SubsampledLayout: 0
   TargetQuest: 1
   TargetQuest2: 1
