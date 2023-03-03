@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Forest 1.unity
     guid: a4fc35aa69f9e874db50a1f1f3a49e43
+  - enabled: 0
+    path: Assets/Scenes/PerformanceTest.unity
+    guid: 27b383fe45c6be9479649452f4f6be01
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6bbcd772ae25ec84781bf80ff90743a2, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 0b5e75799f49e114688314da063895d8, type: 2}
